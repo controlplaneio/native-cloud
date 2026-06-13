@@ -9,6 +9,7 @@ body {
 
 main {
   flex: 1;
+  padding: 2rem;
 }
 
 body header > nav {
@@ -27,6 +28,7 @@ body header > nav {
 body header > nav {
   background-color: CanvasText;
   color: Canvas;
+  font-family: sans-serif;
 }
 
 body header > nav .top-nav-menu {
@@ -45,6 +47,13 @@ body header > nav .top-nav-menu > li {
   align-items: center;
   text-align: center;
   min-width: 1em;
+}
+
+body header > nav .top-nav-menu > li a,
+body header > nav .top-nav-menu > li a:visited
+{
+  background: transparent;
+  color: inherit;
 }
 
 footer {
