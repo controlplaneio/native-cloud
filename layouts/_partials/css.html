@@ -1,0 +1,18 @@
+{{- with resources.Get "css/site.css" -}}
+  {{ $opts := dict
+    "minify" (cond hugo.IsDevelopment false true)
+    "sourceMap" (cond hugo.IsDevelopment "inline" "none")
+    "targetPath" "css/styles.css"
+  }}
+  {{ with . | css.Build $opts }}
+    {{ if hugo.IsDevelopment }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{ else }}
+      {{ with . | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{ errorf "%s" "Could not find CSS to render for site" }}
+{{- end -}}

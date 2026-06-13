@@ -1,0 +1,9 @@
+<nav>
+<ul class="top-nav-menu">
+{{- range .Site.Menus.topNav -}}
+<li>
+  <a href="{{ .Page.RelPermalink }}" title="{{ .Page.Title }}"{{ if or ($.IsMenuCurrent "topNav" .) ($.HasMenuCurrent "topNav" .) }} aria-current="page"{{ end }}>{{ .Page.LinkTitle }}</a>
+</li>
+{{- end -}}
+</ul>
+</nav>

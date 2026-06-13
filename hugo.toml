@@ -1,0 +1,87 @@
+tintle = "native.cloud"
+baseURL = "https://native.cloud"
+
+disableBrowserError = true
+disableKinds = ["taxonomy"]
+enableGitInfo = false
+enableRobotsTXT = true
+ignoreFiles = [ ]
+
+# Language settings
+contentDir = "site/en-US"
+defaultContentLanguage = "en-US"
+defaultContentLanguageInSubdir = false
+disableLanguages = [ ]
+
+# Permalinks configuration to remove /groups/ prefix from section URLs
+[permalinks]
+  [permalinks.section]
+    groups = '/:slug/'
+
+timeZone = "UTC"
+
+# Hugo-level timeout for static site generation
+timeout = "120s"
+
+[caches]
+ [caches.assets]
+  dir = ":resourceDir/_gen"
+  maxAge = "86400s"
+ [caches.getresource]
+  dir = ":cacheDir/:project"
+  maxAge = "86400s"
+ [caches.images]
+  dir = ":resourceDir/_gen"
+  maxAge = "86400s"
+ [caches.misc]
+  dir = ":cacheDir/:project"
+  maxAge = "180s"
+ [caches.modulegitinfo]
+  dir = ":cacheDir/modulegitinfo"
+  maxAge = "120s"
+ [caches.modulequeries]
+  dir = ":cacheDir/modulequeries"
+  maxAge = "120s"
+ [caches.modules]
+  dir = ":cacheDir/modules"
+  maxAge = "86400s"
+
+# Where to find the date for blog-style articles
+[frontmatter]
+date = ["date", "publishDate", ":filename"]
+
+[languages]
+[languages.en-US]
+disabled = false
+direction = "ltr"
+title = "native.cloud"
+label = "English"
+weight = 0
+
+
+[markup]
+ [markup.goldmark]
+   [markup.goldmark.extensions]
+     definitionList = true
+     strikethrough = true
+     table = true
+     typographer = false
+   [markup.goldmark.parser]
+     autoHeadingID = true
+     autoHeadingIDType = "blackfriday"
+     [markup.goldmark.parser.attribute]
+       block = true
+   [markup.goldmark.renderer]
+     unsafe = false
+
+
+# Output formats
+[outputs]
+home = [ "HTML" ]
+page = [ "HTML"]
+section = [ "HTML" ]
+
+# Site map and default priority
+[sitemap]
+  filename = "sitemap.xml"
+  priority = 0.9
