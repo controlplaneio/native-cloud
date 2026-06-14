@@ -1,0 +1,47 @@
+---
+title: Tenant ID
+layout: ontology_key
+
+draft: true
+params:
+  ontology:
+    key: tenancy.native.cloud/tenantID
+    exampleValues:
+      - "tenant-12345"
+      - "org-acme-corp"
+      - "customer-uuid-a1b2c3d4"
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: true
+      kubernetesTaint: true
+---
+
+Use this key to identify the tenant in a multi-tenant environment.
+The tenant ID uniquely identifies an organization, customer, or isolated group
+within a shared infrastructure.
+
+This key is particularly relevant for SaaS (Software as a Service) applications
+and platforms where multiple customers share the same pool of infrastructure
+while maintaining logical isolation.
+
+This key enables tenant isolation, resource quotas, and access control policies
+for cloud-native workloads and platforms.
+
+The value **should** be a valid Kubernetes label value (alphanumeric characters,
+hyphens, underscores, and periods; maximum 63 characters). However, this is
+not formally a validation requirement.
+
+Here's an example manifest for a Namespace in Kubernetes. Typically you would
+use a controller to define a namespace based on automation:
+
+```yaml
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-tenant-namespace
+  labels:
+    tenancy.native.cloud/tenantID: "tenant-12345"
+  annotations:
+    kubernetes.io/description: "Namespace for tenant-12345 (ACME Corporation)"
+```
