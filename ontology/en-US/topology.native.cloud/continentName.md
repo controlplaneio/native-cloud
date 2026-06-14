@@ -5,10 +5,10 @@ layout: ontology_key
 draft: true
 params:
   ontology:
-    key: topology.native.cloud/planetName
+    key: topology.native.cloud/continentName
     exampleValues:
       - "antartica"
-      - "australasia"
+      - "north-america"
     allowedValues:
       - "africa"
       - "antartica"

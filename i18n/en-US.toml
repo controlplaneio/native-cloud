@@ -1,0 +1,33 @@
+[body_ontology_validation]
+other = """
+In your cloud native platform, you can use validating admission checks, such as ValidatingAdmissionPolicy, to warn about invalid values.
+You can even set up full blocking enforcement if that's what you need to do.
+"""
+
+[header_ontology_validation]
+other = "Value validation"
+
+[header_ontology_allowed_values]
+other = "Allowed values"
+
+[header_ontology_key_contexts]
+other = "Where used"
+
+[header_ontology_prefixes]
+other = "Keys, grouped by prefix"
+
+[label_ontology_allowed_values]
+other = "Allowed values:"
+
+[ontology_groups_title]
+other = "Key groups"
+
+[ontology_keys_title]
+other = "Keys"
+
+[ontology_example_values]
+other = "Example values:"
+
+[ontology_key_count]
+one = "{{ . }} key"
+other = "{{ . }} keys"

@@ -34,7 +34,7 @@ body header > nav {
 body header > nav .top-nav-menu {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
 
   margin: 0;
@@ -54,6 +54,37 @@ body header > nav .top-nav-menu > li a:visited
 {
   background: transparent;
   color: inherit;
+}
+
+body header > nav .nav-brand-text {
+  margin-left: auto;
+  text-align: right;
+}
+
+.prefixes-list a.ontology-group,
+.prefixes-list .prefix-keys-list > li a,
+#key-groups + ol > li,
+#key-groups + ul > li {
+  font-family: sans-serif;
+}
+
+.example-values label.ontology-example-values {
+  display: block;
+  margin-top: 0.5em;
+  padding-left: 1em;
+}
+
+.ontology-keys summary {
+  font-style: italic;
+  font-weight: inherit;
+}
+
+.ontology-keys details[open] > summary {
+  text-decoration: underline;
+}
+
+.ontology-keys dd + dt {
+  margin-top: 1rem;
 }
 
 footer {

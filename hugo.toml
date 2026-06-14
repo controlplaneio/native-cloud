@@ -8,10 +8,22 @@ enableRobotsTXT = true
 ignoreFiles = [ ]
 
 # Language settings
-contentDir = "site/en-US"
 defaultContentLanguage = "en-US"
 defaultContentLanguageInSubdir = false
 disableLanguages = [ ]
+
+# Summary length in words (default is 70)
+# Set high to avoid auto-truncation, but not so high it breaks <!-- more -->
+summaryLength = 1000
+
+# Mount ontology to the path that the site expects
+[module]
+  [[module.mounts]]
+    source = "site/en-US"
+    target = "content"
+  [[module.mounts]]
+    source = "ontology/en-US"
+    target = "content/groups"
 
 # Permalinks configuration to remove /groups/ prefix from section URLs
 [permalinks]
@@ -64,8 +76,10 @@ weight = 0
    [markup.goldmark.extensions]
      definitionList = true
      strikethrough = true
-     table = true
      typographer = false
+     [markup.goldmark.extensions.extras]
+       [markup.goldmark.extensions.extras.superscript]
+         enable = true
    [markup.goldmark.parser]
      autoHeadingID = true
      autoHeadingIDType = "blackfriday"
