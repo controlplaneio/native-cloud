@@ -2,6 +2,7 @@
 {{- $pages := .Pages -}}
 {{ if .Content }}
 <section class="content">
+     {{ partial "breadcrumbs.html" . }}
      {{- partial "page-content.html" (dict "context" . "content" .Content) -}}
 </section>
 {{ end }}

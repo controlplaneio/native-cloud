@@ -1,5 +1,6 @@
 {{- define "main" -}}
 <section class="content">
+  {{ partial "breadcrumbs.html" . }}
   <h1>{{ .Title }}</h1>
   {{- with .Content -}}
     {{- partial "page-content.html" (dict "context" . "content" .) -}}
