@@ -1,0 +1,26 @@
+{{- $key := .key -}}
+{{- $contexts := .contexts -}}
+{{- $examples := slice -}}
+
+{{- $effectiveValues := .values -}}
+{{- if and (not .values) (not .snippets) (ge (len .allowedValues) 1) (le (len .allowedValues) 3) -}}
+  {{- $effectiveValues = .allowedValues -}}
+{{- end -}}
+{{- /* Format exampleValues into display strings */ -}}
+{{- range $effectiveValues -}}
+  {{- $examples = $examples | append (printf `%s: "%s"` $key .) -}}
+{{- end -}}
+{{- /* Add pre-formatted snippets */ -}}
+{{- range .snippets -}}
+  {{- $examples = $examples | append . -}}
+{{- end -}}
+{{- with $examples | sort -}}
+<div class="example-values">
+  <label class="ontology-example-values">{{ T "ontology_example_values" }}</label>
+  <ul>
+    {{- range . -}}
+      <li><tt class="yaml-snippet">{{ . | strings.TrimRight "\n " | replaceRE "\n" "<br><span class=\"leadingspace\"></span>" | safeHTML }}</tt></li>
+    {{- end -}}
+  </ul>
+</div>
+{{- end -}}

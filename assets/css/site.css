@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: Canvas;
+  color: CanvasText;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+body header > nav {
+  min-height: 6rem;
+  margin: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+
+  padding: 0 1.5rem;
+}
+
+body header > nav {
+  background-color: CanvasText;
+  color: Canvas;
+  font-family: sans-serif;
+}
+
+body header > nav .top-nav-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body header > nav .top-nav-menu > li {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  min-width: 1em;
+}
+
+body header > nav .top-nav-menu > li a,
+body header > nav .top-nav-menu > li a:visited
+{
+  background: transparent;
+  color: inherit;
+}
+
+body header > nav .nav-brand-text {
+  margin-left: auto;
+  text-align: right;
+}
+
+.prefixes-list a.ontology-group,
+.prefixes-list .prefix-keys-list > li a,
+#key-groups + ol > li,
+#key-groups + ul > li {
+  font-family: sans-serif;
+}
+
+.example-values label.ontology-example-values {
+  display: block;
+  margin-top: 0.5em;
+  padding-left: 1em;
+}
+
+.ontology-keys summary {
+  font-style: italic;
+  font-weight: inherit;
+}
+
+.ontology-keys details[open] > summary {
+  text-decoration: underline;
+}
+
+.ontology-keys dd + dt {
+  margin-top: 1rem;
+}
+
+.breadcrumbs {
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
+  background-color: transparent;
+  border-radius: 0.25rem;
+}
+
+.breadcrumbs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.breadcrumbs-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumbs-item:not(:last-child)::after {
+  content: "/";
+  margin-left: 0.5rem;
+  color: CanvasText;
+}
+
+.breadcrumbs-item a,
+.breadcrumbs-item a:hover,
+.breadcrumbs-item a:visited,
+.breadcrumbs-item a:hover:visited {
+  color: CanvasText;
+  text-decoration: none;
+}
+
+.breadcrumbs-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs-current {
+  font-weight: 500;
+}
+
+footer {
+  background-color: Canvas;
+  color: CanvasText;
+  min-height: 40mm;
+  padding: 2rem 1rem;
+}

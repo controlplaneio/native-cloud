@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}" class="{{.Params.class}}">
+  {{ partial "head.html" . }}
+  <body class="{{ if hugo.IsProduction}}production-site {{ end }}{{ with .Page.Params.pageType }}{{ printf "pagetype-%s " (. | lower ) }}{{ end }}">
+    <div class="page-wrapper">
+      <header>
+        {{ partial "top-nav.html" . }}
+      </header>
+      <main id="main-content">
+        {{ block "main" . }}
+        {{ end }}
+      </main>
+      {{ partial "footer.html" . }}
+    </div>
+    {{ partial "page-end-scripts.html" . }}
+  </body>
+</html>

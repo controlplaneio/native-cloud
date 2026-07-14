@@ -1,0 +1,7 @@
+{{- if .pages -}}
+<ul class="page-list">
+  {{- range .pages -}}
+  <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+  {{- end -}}
+</ul>
+{{- end -}}

@@ -1,0 +1,23 @@
+---
+title: User unique identifier
+layout: ontology_key
+
+draft: true
+params:
+  ontology:
+    key: identity.native.cloud/userUniqueIdentifier
+    exampleValues:
+      - "501"
+      - "alovelace@email-provider.example"
+      - "821633df-142a-411d-8af7-39a26becc078"
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: false
+      kubernetesTaint: false
+---
+
+This key identifies users by their unique identifier. The specific kind
+of identifier depends on the context where you use it. The overall idea
+is that this is an identifier that is or could be unique across your
+context: you wouldn't have two different identities who share the same
+`userUniqueIdentifier`.

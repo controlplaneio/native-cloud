@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{- $pages := .Pages -}}
+{{ if .Content }}
+<section class="content">
+     {{ partial "breadcrumbs.html" . }}
+     {{- partial "page-content.html" (dict "context" . "content" .Content) -}}
+</section>
+{{ end }}
+
+<section class="content page-list">
+    {{- partial "page-list.html" (dict "pages" $pages) -}}
+</section>
+{{ end }}
