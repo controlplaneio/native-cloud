@@ -3,7 +3,7 @@
   "hyperlinkColorDarkPages" .Site.Params.hyperlinkColorDarkPages
   "hyperlinkColorLightPages" .Site.Params.hyperlinkColorLightPages
 -}}
-{{- with resources.Get "css/site.css" -}}
+{{- with resources.Get "css/combined.css" -}}
   {{ $opts := dict
     "minify" (cond hugo.IsDevelopment false true)
     "sourceMap" (cond hugo.IsDevelopment "inline" "none")
