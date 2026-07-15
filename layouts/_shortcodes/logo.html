@@ -1,0 +1,6 @@
+{{- $png := resources.Get "images/ocno_icon.png" -}}
+{{- with ( $png.Filter images.Invert) -}}
+  <img src="{{ .RelPermalink }}" class="logo">
+{{- else -}}
+  {{- errorf "Problem rendering default OCNO logo icon" -}}
+{{- end }}

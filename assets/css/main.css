@@ -1,0 +1,95 @@
+/*
+ * Main styles
+ */
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: Canvas;
+  color: CanvasText;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+body, body > main section {
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+a:hover, a:focus-visible {
+  text-decoration: underline;
+}
+
+/* Breadcrumbs styles */
+.breadcrumbs {
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
+  background-color: transparent;
+  border-radius: 0.25rem;
+}
+
+.breadcrumbs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.breadcrumbs-item {
+  display: inline-flex;
+  align-items: center;
+}
+
+.breadcrumbs-item:not(:last-child)::after {
+  content: "/";
+  margin-left: 0.5rem;
+}
+
+.breadcrumbs-item a {
+  text-decoration: none;
+}
+
+.breadcrumbs-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumbs-current {
+  color: #666;
+  font-weight: 500;
+}
+
+/* About page logo */
+main img.logo {
+  display: block;
+  margin: 0 auto 0.5rem;
+  text-align: center;
+  height: 6em;
+}
+
+p.lead {
+  text-align: center;
+}
