@@ -1,5 +1,9 @@
 <!doctype html>
 <html lang="{{ .Site.Language.Lang }}" class="{{.Params.class}}">
+  {{ partialCached "validation/context-uses.html" . }}
+  {{ partialCached "validation/key-matches-path.html" . }}
+  {{ partialCached "validation/annotation-matches-path.html" . }}
+  {{ partialCached "validation/group-title-matches-param.html" . }}
   {{ partial "head.html" . }}
   <body class="{{ if hugo.IsProduction}}production-site {{ end }}{{ with .Page.Params.pageType }}{{ printf "pagetype-%s " (. | lower ) }}{{ end }}">
     <div class="page-wrapper">
