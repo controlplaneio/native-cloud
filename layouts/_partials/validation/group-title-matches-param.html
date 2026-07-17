@@ -1,0 +1,29 @@
+{{- /* Validate that title matches params.group for all ontology groups */ -}}
+
+{{- $groupsSection := site.GetPage "/groups" -}}
+{{- $warnings := slice -}}
+
+{{- if $groupsSection -}}
+  {{- /* Check all groups */ -}}
+  {{- range $groupsSection.Pages -}}
+    {{- $title := .Title -}}
+    {{- $groupParam := .Params.group -}}
+
+    {{- if $groupParam -}}
+      {{- if ne $title $groupParam -}}
+        {{- $warning := printf "Group title mismatch in file '%s': title is '%s' but params.group is '%s'" .File.Path $title $groupParam -}}
+        {{- $warnings = $warnings | append $warning -}}
+        {{- warnf $warning -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $warning := printf "Group file '%s' is missing params.group" .File.Path -}}
+      {{- $warnings = $warnings | append $warning -}}
+      {{- warnf $warning -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Error if there were any warnings */ -}}
+  {{- if gt (len $warnings) 0 -}}
+    {{- errorf "Found %d group title/param mismatches. See warnings above for details." (len $warnings) -}}
+  {{- end -}}
+{{- end -}}
