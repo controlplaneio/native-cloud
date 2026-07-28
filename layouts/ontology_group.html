@@ -13,8 +13,10 @@
     {{- $sortableIdentifiers := slice -}}
     {{- range . -}}
       {{- $key := .Params.ontology.key -}}
-      {{- if $key -}}
-        {{- $sortableIdentifiers = $sortableIdentifiers | append (dict "page" . "identifier" $key) -}}
+      {{- $isOciAnnotation := .Params.ontology.ociAnnotation -}}
+      {{- $identifier := or $key $isOciAnnotation -}}
+      {{- if $identifier -}}
+        {{- $sortableIdentifiers = $sortableIdentifiers | append (dict "page" . "identifier" $identifier) -}}
       {{- end -}}
     {{- end -}}
     {{- range sort $sortableIdentifiers "identifier" -}}

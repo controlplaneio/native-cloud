@@ -1,0 +1,39 @@
+{{- /* Find the common suffix across all keys */ -}}
+{{- /* Input: $keys - a slice of key strings */ -}}
+{{- /* Output: The common suffix string */ -}}
+{{- $keys := .keys -}}
+{{- if $keys -}}
+  {{- $firstKey := index $keys 0 -}}
+  {{- $firstParts := split $firstKey "." -}}
+  {{- $commonSuffix := "" -}}
+  {{- $suffixFound := false -}}
+  
+  {{- /* Try to find the longest common suffix */ -}}
+  {{- range seq (len $firstParts) -}}
+    {{- $suffixLen := . -}}
+    {{- $candidate := delimit (slice $firstParts (sub (len $firstParts) $suffixLen)) "." -}}
+    {{- $allMatch := true -}}
+    {{- range $keys -}}
+      {{- if not (hasSuffix . $candidate) -}}
+        {{- $allMatch = false -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $allMatch -}}
+      {{- $commonSuffix = $candidate -}}
+      {{- $suffixFound = true -}}
+    {{- end -}}
+  {{- end -}}
+  
+  {{- /* If no common suffix found, extract domain from first key */ -}}
+  {{- if not $suffixFound -}}
+    {{- if gt (len $firstParts) 1 -}}
+      {{- $commonSuffix = delimit (slice $firstParts 1) "." -}}
+    {{- else -}}
+      {{- $commonSuffix = $firstKey -}}
+    {{- end -}}
+  {{- end -}}
+  
+  {{- $commonSuffix -}}
+{{- else -}}
+  {{- "" -}}
+{{- end -}}

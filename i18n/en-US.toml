@@ -32,6 +32,10 @@ other = "Example values:"
 one = "{{ . }} key"
 other = "{{ . }} keys"
 
+[ontology_oci_annotation_count]
+one = "{{ . }} OCI annotation"
+other = "{{ . }} OCI annotations"
+
 [sponsor_level_1]
 other = "Gold"
 

@@ -1,20 +1,39 @@
 {{- $key := .key -}}
 {{- $contexts := .contexts -}}
-{{- $examples := slice -}}
+{{- $combined := slice -}}
+{{- $isOCI := (eq .type "ociAnnotation") -}}
 
-{{- $effectiveValues := .values -}}
-{{- if and (not .values) (not .snippets) (ge (len .allowedValues) 1) (le (len .allowedValues) 3) -}}
-  {{- $effectiveValues = .allowedValues -}}
+{{- if $isOCI -}}
+  {{- /* For OCI annotations, only use snippets */ -}}
+  {{- range .snippets -}}
+    {{- $combined = $combined | append . -}}
+  {{- end -}}
+{{- else -}}
+  {{- /* For ontology keys, use exampleValues with allowedValues fallback */ -}}
+  {{- $effectiveValues := .values -}}
+  {{- if and (not .values) (not .snippets) (ge (len .allowedValues) 1) (le (len .allowedValues) 3) -}}
+    {{- $effectiveValues = .allowedValues -}}
+  {{- end -}}
+  {{- /* Format exampleValues into display strings */ -}}
+  {{- range $effectiveValues -}}
+    {{- if and $contexts.kubernetesResourceClaim (not $contexts.kubernetesLabel) (not $contexts.kubernetesAnnotation) -}}
+      {{- $parts := split $key "/" -}}
+      {{- $combined = $combined | append (printf `device.attributes["%s"].%s == "%s"` (index $parts 0) (index $parts 1) .) -}}
+    {{- else -}}
+      {{- $hasQuote := in . "\"" -}}
+      {{- if $hasQuote -}}
+        {{- $combined = $combined | append (printf `%s: |<br>  %s` $key .) -}}
+      {{- else -}}
+        {{- $combined = $combined | append (printf `%s: "%s"` $key .) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- /* Add pre-formatted snippets */ -}}
+  {{- range .snippets -}}
+    {{- $combined = $combined | append . -}}
+  {{- end -}}
 {{- end -}}
-{{- /* Format exampleValues into display strings */ -}}
-{{- range $effectiveValues -}}
-  {{- $examples = $examples | append (printf `%s: "%s"` $key .) -}}
-{{- end -}}
-{{- /* Add pre-formatted snippets */ -}}
-{{- range .snippets -}}
-  {{- $examples = $examples | append . -}}
-{{- end -}}
-{{- with $examples | sort -}}
+{{- with $combined | sort -}}
 <div class="example-values">
   <label class="ontology-example-values">{{ T "ontology_example_values" }}</label>
   <ul>
