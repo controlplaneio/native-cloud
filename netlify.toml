@@ -1,6 +1,10 @@
 [build]
-  command = "hugo"
-  publish = "public"
+publish = "public"
+command = "hugo --gc --minify"
+timeout = 180
 
 [build.environment]
-  HUGO_VERSION = "0.150.0"
+HUGO_VERSION = "v0.162.1"
+
+[context.deploy-preview]
+command = "hugo --gc --minify --buildFuture"
