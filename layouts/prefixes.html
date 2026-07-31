@@ -20,11 +20,18 @@
           {{- if not (in $prefixes $groupName) -}}
             {{- $prefixes = $prefixes | append $groupName -}}
           {{- end -}}
+          {{- /* Store group data including pages, counting keys and annotations separately */ -}}
           {{- $keyCount := 0 -}}
+          {{- $annotationCount := 0 -}}
           {{- range .Pages -}}
-            {{- $keyCount = add $keyCount 1 -}}
+            {{- if .Params.ontology.key -}}
+              {{- $keyCount = add $keyCount 1 -}}
+            {{- end -}}
+            {{- if .Params.ontology.ociAnnotation -}}
+              {{- $annotationCount = add $annotationCount 1 -}}
+            {{- end -}}
           {{- end -}}
-          {{- $prefixData = merge $prefixData (dict $groupName (dict "keyCount" $keyCount "pages" .Pages "groupPage" .)) -}}
+          {{- $prefixData = merge $prefixData (dict $groupName (dict "keyCount" $keyCount "annotationCount" $annotationCount "pages" .Pages "groupPage" .)) -}}
         {{- end -}}
       {{- end -}}
       
@@ -35,19 +42,23 @@
           <li>
             <div class="prefix-item">
               <a href="/{{ . }}/" class="ontology-group">{{ . }}</a>
-              <span class="prefix-count">({{ if gt $data.keyCount 0 }}{{ T "ontology_key_count" $data.keyCount }}{{ end }})</span>
+              <span class="prefix-count">({{ if gt $data.keyCount 0 }}{{ T "ontology_key_count" $data.keyCount }}{{ end }}{{ if and (gt $data.keyCount 0) (gt $data.annotationCount 0) }}{{ T "list_separator"}}{{ end }}{{ if gt $data.annotationCount 0 }}{{ T "ontology_oci_annotation_count" $data.annotationCount }}{{ end }})</span>
             </div>
             {{- if $data.pages -}}
             <ul class="prefix-keys-list">
             {{- $sortedPages := slice -}}
             {{- range $data.pages -}}
               {{- $key := .Params.ontology.key -}}
-              {{- $sortedPages = $sortedPages | append (dict "page" . "key" $key) -}}
+              {{- $isOciAnnotation := .Params.ontology.ociAnnotation -}}
+              {{- $identifier := or $key $isOciAnnotation -}}
+              {{- if $identifier -}}
+                {{- $sortedPages = $sortedPages | append (dict "page" . "identifier" $identifier) -}}
+              {{- end -}}
             {{- end -}}
-            {{- range sort $sortedPages "key" -}}
+            {{- range sort $sortedPages "identifier" -}}
               {{- $page := .page -}}
-              {{- $key := .key -}}
-              <li><a href="{{ $data.groupPage.RelPermalink }}#{{ $key | safeURL }}" {{ with  $page.Title }}title="{{ . }}"{{ end }}>{{ $key }}</a></li>
+              {{- $identifier := .identifier -}}
+              <li><a href="{{ $data.groupPage.RelPermalink }}#{{ $identifier | safeURL }}" {{ with  $page.Title }}title="{{ . }}"{{ end }}>{{ $identifier }}</a></li>
             {{- end -}}
             </ul>
             {{- end -}}
