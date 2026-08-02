@@ -99,3 +99,8 @@ section = [ "HTML" ]
 [sitemap]
   filename = "sitemap.xml"
   priority = 0.9
+
+# Custom site parameters (exposed to templates via .Site.Params)
+[params]
+  hyperlinkColorDarkPages = "#6b9fff"
+  hyperlinkColorLightPages = "#044ea4"

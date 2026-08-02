@@ -1,0 +1,27 @@
+/*
+ * Calculated CSS values based on theme colors
+ */
+
+:root {
+  /* Footer background: black in dark mode */
+  --footerBackground: black;
+  --footerText: white;
+  /* Hyperlink color for dark pages */
+  --hyperlinkColor: var(--hyperlinkColorDarkPages);
+  /* Context key background: light gray in dark mode */
+  --contextKeyBackground: color-mix(in srgb, var(--text-color) 15%, white);
+  --contextKeyText: black;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Footer background: darker, tinted version of accent color in light mode */
+    --footerBackground: color-mix(in srgb, var(--accentColor) 10%, #2a2a2a);
+    --footerText: #e0e0e0;
+    /* Hyperlink color for light pages */
+    --hyperlinkColor: var(--hyperlinkColorLightPages);
+    /* Context key background: black in light mode */
+    --contextKeyBackground: black;
+    --contextKeyText: white;
+  }
+}

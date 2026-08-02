@@ -2,13 +2,40 @@
  * Main styles
  */
 
+
+/* dark mode by default, override to light mode in case of OS / browser preference */
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --nav-bg: black;
+  --nav-text: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #1a1a1a; /* unchanged */
+    --text-color: #e0e0e0; /* unchanged */
+    --nav-bg: black; /* unchanged */
+    --nav-text: white; /* unchanged */
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --nav-bg: black; /* unchanged */
+    --nav-text: white; /* unchanged */
+  }
+}
+
 body {
   margin: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: Canvas;
-  color: CanvasText;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .page-wrapper {
@@ -36,7 +63,12 @@ fieldset {
   padding: 0;
 }
 
-a:hover, a:focus-visible {
+a, a:visited {
+  text-decoration: none;
+  color: var(--hyperlinkColor);
+}
+
+a:hover {
   text-decoration: underline;
 }
 
@@ -83,13 +115,49 @@ a:hover, a:focus-visible {
 }
 
 /* About page logo */
-main img.logo {
+picture.about-logo {
   display: block;
   margin: 0 auto 0.5rem;
   text-align: center;
-  height: 6em;
 }
+
+picture.about-logo img, picture.about-logo source {
+  max-width: min(300px, 3cm, 15vw);
+  max-height: min(300px, 3cm, 15vw);
+}
+
+@media (prefers-color-scheme: dark) {
+  picture.about-logo img {
+    animation: logo-bloom-fade 0.75s cubic-bezier(0.8, 0, 1, 1) forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  picture.about-logo img {
+    animation: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  picture.about-logo img {
+    animation: logo-bloom-fade 0.75s cubic-bezier(0.8, 0, 1, 1) forwards;
+  }
+}
+
+@keyframes logo-bloom-fade {
+  0% {
+    filter:
+      drop-shadow(0 0 0.5em color-mix(in srgb, var(--accentColor) 40%, transparent))
+      drop-shadow(0 0 1em color-mix(in srgb, var(--accentColor) 30%, transparent))
+      drop-shadow(0 0 2em color-mix(in srgb, var(--accentColor) 20%, transparent));
+  }
+  100% {
+    filter: none;
+  }
+}
+
 
 p.lead {
   text-align: center;
 }
+
