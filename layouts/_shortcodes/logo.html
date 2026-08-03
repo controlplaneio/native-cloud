@@ -1,6 +1,13 @@
-{{- $png := resources.Get "images/ocno_icon.png" -}}
-{{- with ( $png.Filter images.Invert) -}}
-  <img src="{{ .RelPermalink }}" class="logo">
-{{- else -}}
-  {{- errorf "Problem rendering default OCNO logo icon" -}}
-{{- end }}
+{{- /* Shortcode to render the site logo.
+       
+       Usage:
+         {{< logo >}}                                    - default (white logo)
+         {{< logo scheme="auto" >}}                      - auto color scheme switching
+         {{< logo scheme="dark" >}}                      - dark/inverted logo
+         {{< logo scheme="light" >}}                     - light/white logo
+         {{< logo scheme="auto" class="about-logo" >}}   - with custom class
+*/ -}}
+{{- $scheme := .Get "scheme" | default "" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $id := .Get "id" | default "" -}}
+{{- partial "logo.html" (dict "scheme" $scheme "class" $class "id" $id) -}}

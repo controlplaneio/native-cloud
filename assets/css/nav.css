@@ -4,8 +4,8 @@
 
 body header > nav {
   font-family: "Montserrat", sans-serif;
-  background-color: black;
-  color: white;
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
   min-height: 6rem;
   margin: 0;
 
@@ -45,7 +45,7 @@ body header > nav .top-nav-menu > li {
   text-align: center;
   min-width: 1em;
   padding-right: 1rem;
-  border-right: 0.2em solid white;
+  border-right: 0.2em solid var(--nav-text);
 }
 
 body header > nav .top-nav-menu > li:last-child {
@@ -60,7 +60,7 @@ body header > nav .top-nav-menu > li.nav-filler {
 }
 
 body header > nav .top-nav-menu > li > a {
-  color: white;
+  color: var(--nav-text);
   font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   text-decoration: none;
@@ -71,5 +71,42 @@ body header > nav .nav-brand-text {
   font-weight: 600;
   margin-left: auto;
   text-align: right;
+}
+
+/* Bloom fade animation: reduces the text-shadow glow to 50% opacity over 750ms.
+   This creates a subtle fade effect in dark mode without being distracting.
+   Disabled in light mode where the bloom effect isn't needed. */
+@keyframes nav-bloom-fade {
+  0% {
+    text-shadow:
+      0 0 0.25em rgba(255, 255, 255, 0.2),
+      0 0 0.6em rgba(255, 255, 255, 0.7),
+      0 0 1.2em rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow:
+      0 0 0.25em rgba(255, 255, 255, 0.1),
+      0 0 0.6em rgba(255, 255, 255, 0.35),
+      0 0 1.2em rgba(255, 255, 255, 0.25);
+  }
+}
+
+body header > nav .top-nav-menu > li > a:hover,
+body header > nav .top-nav-menu > li > a:focus-visible {
+  border-bottom-color: var(--nav-text);
+  text-shadow:
+    0 0 0.25em rgba(255, 255, 255, 0.2),
+    0 0 0.6em rgba(255, 255, 255, 0.7),
+    0 0 1.2em rgba(255, 255, 255, 0.5);
+  /* Animate bloom fade (in dark mode) for a subtle, elegant effect */
+  animation: nav-bloom-fade 750ms ease-out forwards;
+}
+
+@media (prefers-color-scheme: light) {
+  body header > nav .top-nav-menu > li > a:hover,
+  body header > nav .top-nav-menu > li > a:focus-visible {
+    /* Keep bloom at full opacity in light mode, no fade animation */
+    animation: none;
+  }
 }
 
