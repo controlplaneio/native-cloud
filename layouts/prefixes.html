@@ -39,6 +39,7 @@
         <ul class="prefixes-list">
         {{- range sort $prefixes -}}
           {{- $data := index $prefixData . -}}
+          {{- if or (gt $data.keyCount 0) (gt $data.annotationCount 0) -}}
           <li>
             <div class="prefix-item">
               <a href="/{{ . }}/" class="ontology-group">{{ . }}</a>
@@ -63,7 +64,8 @@
             </ul>
             {{- end -}}
           </li>
-        {{- end -}}
+          {{- end -}}
+          {{- end -}}
         </ul>
       {{- else -}}
         {{- errorf "No prefixes found" -}}
