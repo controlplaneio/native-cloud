@@ -67,7 +67,8 @@ body header > nav .top-nav-menu > li > a {
 }
 
 body header > nav .nav-brand-text {
-  font-size: 1.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: max(1.6rem, 5mm);
   font-weight: 600;
   margin-left: auto;
   text-align: right;
@@ -110,3 +111,7 @@ body header > nav .top-nav-menu > li > a:focus-visible {
   }
 }
 
+body header > nav .top-nav-menu > li > a[aria-current="page"] {
+  color: var(--accentColor);
+  text-shadow: initial;
+}

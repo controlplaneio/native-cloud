@@ -102,5 +102,9 @@ section = [ "HTML" ]
 
 # Custom site parameters (exposed to templates via .Site.Params)
 [params]
+  # Accent color, passed into the CSS build (see layouts/_partials/css.html).
+  # Text contrast is calculated automatically at build time unless accentContrastingColor is set.
+  accentColor = "#fbb15b"
+  # accentContrastingColor = "#424242"
   hyperlinkColorDarkPages = "#6b9fff"
   hyperlinkColorLightPages = "#044ea4"

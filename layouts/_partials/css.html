@@ -1,5 +1,10 @@
+{{- /* Get accent color and calculate contrast */ -}}
+{{- $accentColors := partial "accent-color-contrast.html" . -}}
+
 {{- $vars := dict
   "production" hugo.IsProduction
+  "accentColor" $accentColors.accentColor
+  "accentContrastingColor" $accentColors.accentContrastingColor
   "hyperlinkColorDarkPages" .Site.Params.hyperlinkColorDarkPages
   "hyperlinkColorLightPages" .Site.Params.hyperlinkColorLightPages
 -}}
