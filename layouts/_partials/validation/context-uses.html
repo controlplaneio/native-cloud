@@ -24,10 +24,10 @@
       {{- if $uses -}}
         {{- $hasAtLeastOneUse := false -}}
         {{- range $useName, $useValue := $uses -}}
-          {{- $useNameLower := lower $useName -}}
+          {{- $useNameLower := ($useName | lower ) -}}
           {{- /* Check if this use is recognised (case-insensitive) */ -}}
           {{- if not (in $validContextUsesLower $useNameLower) -}}
-            {{- errorf "Key '%s' has unrecognised use '%s'. Valid context-uses are: %v" $identifier $useName $validContextUses -}}
+            {{- errorf "Key '%s' has unrecognised use '%s'. Valid context-uses (case insensitive) are: %v" $identifier $useName $validContextUses -}}
           {{- end -}}
 
           {{- /* Track if at least one use is true */ -}}

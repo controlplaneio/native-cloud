@@ -7,4 +7,4 @@ timeout = 180
 HUGO_VERSION = "v0.162.1"
 
 [context.deploy-preview]
-command = "hugo --gc --minify --buildFuture"
+command = "hugo --gc --minify --buildFuture --buildDrafts"
