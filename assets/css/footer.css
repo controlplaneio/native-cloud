@@ -4,9 +4,15 @@
 
 footer {
   padding: 2rem 1rem;
-  color: Canvas;
-  background-color: CanvasText;
-  border-top: 1px solid CanvasText;
+  background-color: var(--footerBackground);
+  border-top: 1px solid var(--accentColor);
+  color: var(--footerText);
+}
+
+@media (min-width: 15cm) or (min-height: 15cm) {
+  footer {
+    min-height: 40mm;
+  }
 }
 
 .footer-content {
@@ -26,6 +32,7 @@ footer {
   margin-top: 0;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accentColor);
   font-size: 1.125rem;
 }
 
@@ -57,12 +64,14 @@ footer {
 
 .footer-content a:hover {
   text-decoration: underline;
-  color: inherit;
+  color: var(--accentColor);
 }
 
 .footer-level {
   margin-left: 0.5rem;
   padding: 0.25rem 0.5rem;
+  background-color: var(--accentColor);
+  color: var(--accentContrastingColor);
   border-radius: 0.25rem;
   font-size: 0.875rem;
   font-weight: bold;
