@@ -36,6 +36,9 @@ other = "{{ . }} keys"
 one = "{{ . }} OCI annotation"
 other = "{{ . }} OCI annotations"
 
+[page_title]
+other = "native.cloud – {{ .title }}"
+
 [sponsor_level_1]
 other = "Gold"
 
