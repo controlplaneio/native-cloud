@@ -6,6 +6,9 @@
   inputs.devshell.url = "github:numtide/devshell";
   inputs.devshell.inputs.nixpkgs.follows = "nixpkgs";
 
+  # new hugo/gotmpl formatter, not in upstream nixpkgs yet
+  inputs.nixpkgs-gotmplfmt-hugo.url = "github:06kellyjac/nixpkgs/init/gotmplfmt-hugo";
+
   outputs =
     {
       self,
@@ -18,7 +21,6 @@
       let
         mkDevShell = inputs.devshell.legacyPackages.${system}.mkShell;
         pkgs = nixpkgs.legacyPackages.${system};
-
         nodejs = pkgs.nodejs_26;
 
         # it's quite painful to provide the right playwright browsers at the
@@ -27,14 +29,22 @@
         #
         # view the `contrib/nix/README.md` for commands to run playwright
         # inside a container
+        inherit (inputs.nixpkgs-gotmplfmt-hugo.legacyPackages.${system}) gotmplfmt-hugo;
       in
       {
         devShell = mkDevShell {
           devshell = {
             name = "native.cloud";
             motd = "";
-            packages = [
+            packages = with pkgs; [
               nodejs
+
+              # formatting
+              treefmt
+              gotmplfmt-hugo # hugo templates
+              nixfmt
+              prettier # css, js, yaml, etc.
+              taplo # toml
             ];
           };
         };

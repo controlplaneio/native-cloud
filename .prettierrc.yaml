@@ -1,0 +1,15 @@
+# indent size and type handled in `.editorconfig`
+printWidth: 100
+semi: true
+singleQuote: false
+trailingComma: all
+
+# keep existing wrapping in markdown
+proseWrap: preserve
+
+# HTML / Hugo templates - should be handled by `gotmplfmt` anyway
+bracketSameLine: false
+htmlWhitespaceSensitivity: css
+
+# `(var) => action`` instead of `var => action``
+arrowParens: always
