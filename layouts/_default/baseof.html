@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}" class="no-js" dir="{{ or .Site.Language.Direction `ltr` }}">
+  {{ partial "head.html" . }}
+  <body class="td-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }}">
+    <header>
+      {{ partial "top-nav.html" . }}
+    </header>
+    <div class="td-outer">
+      <div class="td-main">
+        <div class="td-layout">
+          <aside class="td-sidebar d-print-none">
+            {{ partial "sidebar-tree.html" . }}
+          </aside>
+
+          <aside class="td-sidebar-toc d-none d-xl-block d-print-none">
+            {{ partial "page-meta-links.html" . }}
+            {{ partial "toc.html" . }}
+          </aside>
+
+          <main class="td-content" role="main">
+            {{ block "main" . }}{{ end }}
+          </main>
+        </div>
+      </div>
+    </div>
+    {{ partial "footer.html" . }}
+  </body>
+</html>

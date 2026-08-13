@@ -2,7 +2,6 @@
  * Main styles
  */
 
-
 /* dark mode by default, override to light mode in case of OS / browser preference */
 :root {
   --bg-color: #1a1a1a;
@@ -49,12 +48,18 @@ main {
   padding: 2rem;
 }
 
-body, body > main section {
+body,
+body > main section {
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -63,7 +68,8 @@ fieldset {
   padding: 0;
 }
 
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
   color: var(--hyperlinkColor);
 }
@@ -194,7 +200,8 @@ picture.about-logo {
   text-align: center;
 }
 
-picture.about-logo img, picture.about-logo source {
+picture.about-logo img,
+picture.about-logo source {
   max-width: min(300px, 3cm, 15vw);
   max-height: min(300px, 3cm, 15vw);
 }
@@ -219,18 +226,287 @@ picture.about-logo img, picture.about-logo source {
 
 @keyframes logo-bloom-fade {
   0% {
-    filter:
-      drop-shadow(0 0 0.5em color-mix(in srgb, var(--accentColor) 40%, transparent))
-      drop-shadow(0 0 1em color-mix(in srgb, var(--accentColor) 30%, transparent))
-      drop-shadow(0 0 2em color-mix(in srgb, var(--accentColor) 20%, transparent));
+    filter: drop-shadow(
+        0 0 0.5em color-mix(in srgb, var(--accentColor) 40%, transparent)
+      )
+      drop-shadow(
+        0 0 1em color-mix(in srgb, var(--accentColor) 30%, transparent)
+      )
+      drop-shadow(
+        0 0 2em color-mix(in srgb, var(--accentColor) 20%, transparent)
+      );
   }
   100% {
     filter: none;
   }
 }
 
-
 p.lead {
   text-align: center;
 }
 
+/* ============================================================
+   Two-sidebar layout (inspired by docsy/kubernetes-website)
+   ============================================================ */
+
+.td-outer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.td-main {
+  flex: 1;
+}
+
+/* Three-column flexbox row */
+.td-layout {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+/* Left sidebar — 280px fixed width at desktop */
+.td-sidebar {
+  width: 280px;
+  min-width: 280px;
+  background-color: var(--bg-color);
+  border-right: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
+  padding: 1rem 0.75rem;
+  overflow-y: auto;
+  position: sticky;
+  top: 6rem;
+  max-height: calc(100vh - 6rem);
+  z-index: 5;
+}
+
+.td-sidebar__inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Nav tree */
+.td-sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.td-sidebar-nav__section {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.td-sidebar-nav__section .td-sidebar-nav__section {
+  margin-left: 1rem;
+}
+
+.td-sidebar-nav__section.with-child {
+  margin-top: 0.25rem;
+}
+
+.td-sidebar-link {
+  display: block;
+  padding: 0.2rem 0.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 0.25rem;
+}
+
+.td-sidebar-link:hover {
+  color: var(--accentColor);
+  background-color: color-mix(in srgb, var(--text-color) 8%, transparent);
+  text-decoration: none;
+}
+
+.td-sidebar-link.active {
+  color: var(--accentColor);
+  font-weight: 600;
+}
+
+.td-sidebar-link__page {
+  padding-left: 1.5rem !important;
+}
+
+.td-sidebar-link__section {
+  padding-left: 0.5rem !important;
+}
+
+.td-sidebar-nav__section-title .td-sidebar-nav__section {
+  margin-left: 1rem;
+}
+
+/* Foldable sections (checkbox-based) */
+.td-sidebar-nav input[type="checkbox"] {
+  display: none;
+}
+
+.td-sidebar-nav label {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.td-sidebar-nav label::before {
+  content: "\25BC";
+  font-size: 0.65rem;
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+
+.td-sidebar-nav input[type="checkbox"]:checked + label::before {
+  transform: rotate(-90deg);
+}
+
+.td-sidebar-nav ul.foldable {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.2s ease;
+}
+
+.td-sidebar-nav input[type="checkbox"]:checked ~ ul.foldable {
+  max-height: 5000px;
+}
+
+/* Right sidebar — sticky, order:2 to appear after main visually */
+@supports (position: sticky) {
+  .td-sidebar-toc {
+    position: sticky;
+    top: 4rem;
+    margin-top: 4rem;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+}
+
+.td-sidebar-toc {
+  display: none;
+  width: 280px;
+  min-width: 280px;
+  border-left: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
+  order: 2;
+  padding: 1rem 0.75rem;
+  vertical-align: top;
+}
+
+/* Main content — order:3 to appear third visually */
+main.td-content {
+  flex: 1;
+  min-width: 0;
+  order: 3;
+  padding: 2rem;
+}
+
+.td-page-meta {
+  margin-bottom: 1.5rem;
+}
+
+.td-page-meta a {
+  display: block;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.25rem 0;
+}
+
+.td-page-meta a:hover {
+  color: var(--accentColor);
+  text-decoration: underline;
+}
+
+.td-sidebar-toc nav#TableOfContents ul,
+.td-sidebar-toc div > ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.td-sidebar-toc nav#TableOfContents ul ul,
+.td-sidebar-toc div > ul > li > ul {
+  padding-left: 1rem;
+}
+
+.td-sidebar-toc a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: block;
+  padding: 0.15rem 0;
+}
+
+.td-sidebar-toc a:hover {
+  color: var(--accentColor);
+  text-decoration: underline;
+}
+
+/* YAML snippets — wrap long lines instead of overflowing */
+.yaml-snippet {
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  display: inline;
+}
+
+.td-page-title h6 {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Main content — fills remaining space, order:1 */
+main.td-content {
+  flex: 1;
+  min-width: 0;
+  order: 1;
+  padding: 2rem;
+}
+
+main.td-content > h1:first-child {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+/* Responsive visibility utilities */
+.d-none {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .d-xl-block {
+    display: block;
+  }
+}
+
+@media print {
+  .d-print-none {
+    display: none !important;
+  }
+}
+
+/* Tablet — left sidebar only */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .td-layout {
+    flex-wrap: nowrap;
+  }
+
+  .td-sidebar-toc {
+    display: none;
+  }
+
+  main.td-content {
+    padding-left: 2rem;
+  }
+}
+
+/* Mobile — no sidebars */
+@media (max-width: 767px) {
+  .td-sidebar {
+    display: none;
+  }
+
+  main.td-content {
+    padding: 1.5rem;
+  }
+}

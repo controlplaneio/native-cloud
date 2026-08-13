@@ -108,3 +108,15 @@ section = [ "HTML" ]
   # accentContrastingColor = "#424242"
   hyperlinkColorDarkPages = "#6b9fff"
   hyperlinkColorLightPages = "#044ea4"
+
+  # Sidebar and navigation settings (inspired by docsy)
+  github_repo = "https://github.com/controlplaneio/native-cloud"
+  github_branch = "main"
+
+  [params.ui]
+    sidebar_resizable = false
+    sidebar_menu_compact = false
+    ul_show = 3
+    sidebar_menu_foldable = true
+    sidebar_cache_limit = 2000
+    breadcrumb_disable = false

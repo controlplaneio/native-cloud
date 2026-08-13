@@ -1,0 +1,37 @@
+{{ $toc := .TableOfContents }}
+{{ $hasToc := false }}
+{{ if and $toc (gt (len $toc) 0) }}
+  {{/* Check if the TOC nav actually contains actual list items with links */}}
+  {{ if findRE `<li><a ` $toc }}
+    {{ $hasToc = true }}
+  {{ end }}
+{{ end }}
+
+{{ if $hasToc -}}
+<div class="td-page-title ms-2 pb-1 pt-2 mb-0">
+  <h6 class="text-uppercase text-muted mb-2">On this page</h6>
+</div>
+<div>
+  {{ $toc }}
+</div>
+{{ else if .Pages -}}
+{{/* Show child pages when there are no TOC headings */}}
+{{ $visibleChildren := slice }}
+{{ range .Pages }}
+  {{ if ne .Title "" }}
+    {{ $visibleChildren = $visibleChildren | append . }}
+  {{ end }}
+{{ end }}
+{{ if gt (len $visibleChildren) 0 }}
+<div class="td-page-title ms-2 pb-1 pt-2 mb-0">
+  <h6 class="text-uppercase text-muted mb-2">On this page</h6>
+</div>
+<div>
+  <ul>
+    {{ range $visibleChildren }}
+    <li><a href="{{ .RelPermalink }}">{{ with .Params.ontology.key }}{{ . }}{{ else }}{{ .Title }}{{ end }}</a></li>
+    {{ end }}
+  </ul>
+</div>
+{{ end -}}
+{{- end -}}
