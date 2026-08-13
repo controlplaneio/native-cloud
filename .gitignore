@@ -3,3 +3,8 @@
 /resources
 
 .DS_Store
+
+# people are welcome to use `direnv` but that'll be up to individuals to
+# configure locally
+.envrc
+.direnv/
