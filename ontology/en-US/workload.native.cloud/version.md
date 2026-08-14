@@ -28,6 +28,7 @@ and correlating runtime behavior with specific code versions.
 The value must be a valid Semantic Versioning 2.0.0 version string.
 
 The format is `MAJOR.MINOR.PATCH` with optional pre-release and build metadata:
+
 - `MAJOR.MINOR.PATCH` (e.g., `1.2.3`)
 - `MAJOR.MINOR.PATCH-prerelease` (e.g., `1.0.0-alpha.1`)
 - `MAJOR.MINOR.PATCH+build` (e.g., `1.0.0+20240605`)

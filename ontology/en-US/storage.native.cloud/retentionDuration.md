@@ -30,6 +30,7 @@ The value must be a valid duration string using a variant on the Kubernetes dura
 extended to include years.
 
 Valid units:
+
 - `y` - years
 - `d` - days
 - `h` - hours
@@ -39,6 +40,7 @@ Valid units:
 Units can be combined (e.g., `2y6m`, `90d12h`, `1h30m45s`).
 
 Examples:
+
 - `7y` - 7 years
 - `90d` - 90 days
 - `18m` - 18 minutes
@@ -46,4 +48,3 @@ Examples:
 
 Where feasible, you **should** define validation rules that enforce this duration format.
 {{% /ontology-validation %}}
-

@@ -31,4 +31,3 @@ performance or security reasons and are scheduled to _avoid_ virtualized nodes.
 If you are unsure whether a resource is virtualized: don't set this key at all.
 
 {{% ontology-validation-automatic %}}
-

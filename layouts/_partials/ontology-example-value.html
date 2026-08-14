@@ -10,10 +10,10 @@
 {{- $contexts := .contexts -}}
 {{- /* For ResourceClaims, format as CEL device attribute comparison */ -}}
 {{- if and $contexts.kubernetesResourceClaim (not $contexts.kubernetesLabel) (not $contexts.kubernetesAnnotation) -}}
-  {{- $parts := split $key "/" -}}
-  {{- $domain := index $parts 0 -}}
-  {{- $attr := index $parts 1 -}}
-  <tt class="yaml-snippet">device.attributes["{{ $domain }}"].{{ $attr }} == "{{ $value }}"</tt>
+	{{- $parts := split $key "/" -}}
+	{{- $domain := index $parts 0 -}}
+	{{- $attr := index $parts 1 -}}
+	<tt class="yaml-snippet">device.attributes["{{ $domain }}"].{{ $attr }} == "{{ $value }}"</tt>
 {{- else -}}
-  <tt class="yaml-snippet">{{ $key }}: "{{ $value }}"</tt>
+	<tt class="yaml-snippet">{{ $key }}: "{{ $value }}"</tt>
 {{- end -}}

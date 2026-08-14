@@ -31,6 +31,7 @@ The value must be a valid ISO 8601 timestamp with timezone information and
 precision to seconds.
 
 Valid formats:
+
 - `2027-01-01T00:00:00Z` (UTC)
 - `2027-01-01T00:00:00+00:00` (UTC with offset notation)
 - `2027-01-01T09:00:00-04:00` (with timezone offset)

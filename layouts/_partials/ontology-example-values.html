@@ -4,42 +4,42 @@
 {{- $isOCI := (eq .type "ociAnnotation") -}}
 
 {{- if $isOCI -}}
-  {{- /* For OCI annotations, only use snippets */ -}}
-  {{- range .snippets -}}
-    {{- $combined = $combined | append . -}}
-  {{- end -}}
+	{{- /* For OCI annotations, only use snippets */ -}}
+	{{- range .snippets -}}
+		{{- $combined = $combined | append . -}}
+	{{- end -}}
 {{- else -}}
-  {{- /* For ontology keys, use exampleValues with allowedValues fallback */ -}}
-  {{- $effectiveValues := .values -}}
-  {{- if and (not .values) (not .snippets) (ge (len .allowedValues) 1) (le (len .allowedValues) 3) -}}
-    {{- $effectiveValues = .allowedValues -}}
-  {{- end -}}
-  {{- /* Format exampleValues into display strings */ -}}
-  {{- range $effectiveValues -}}
-    {{- if and $contexts.kubernetesResourceClaim (not $contexts.kubernetesLabel) (not $contexts.kubernetesAnnotation) -}}
-      {{- $parts := split $key "/" -}}
-      {{- $combined = $combined | append (printf `device.attributes["%s"].%s == "%s"` (index $parts 0) (index $parts 1) .) -}}
-    {{- else -}}
-      {{- $hasQuote := in . "\"" -}}
-      {{- if $hasQuote -}}
-        {{- $combined = $combined | append (printf `%s: |<br>  %s` $key .) -}}
-      {{- else -}}
-        {{- $combined = $combined | append (printf `%s: "%s"` $key .) -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-  {{- /* Add pre-formatted snippets */ -}}
-  {{- range .snippets -}}
-    {{- $combined = $combined | append . -}}
-  {{- end -}}
+	{{- /* For ontology keys, use exampleValues with allowedValues fallback */ -}}
+	{{- $effectiveValues := .values -}}
+	{{- if and (not .values) (not .snippets) (ge (len .allowedValues) 1) (le (len .allowedValues) 3) -}}
+		{{- $effectiveValues = .allowedValues -}}
+	{{- end -}}
+	{{- /* Format exampleValues into display strings */ -}}
+	{{- range $effectiveValues -}}
+		{{- if and $contexts.kubernetesResourceClaim (not $contexts.kubernetesLabel) (not $contexts.kubernetesAnnotation) -}}
+			{{- $parts := split $key "/" -}}
+			{{- $combined = $combined | append (printf `device.attributes["%s"].%s == "%s"` (index $parts 0) (index $parts 1) .) -}}
+		{{- else -}}
+			{{- $hasQuote := in . "\"" -}}
+			{{- if $hasQuote -}}
+				{{- $combined = $combined | append (printf `%s: |<br>  %s` $key .) -}}
+			{{- else -}}
+				{{- $combined = $combined | append (printf `%s: "%s"` $key .) -}}
+			{{- end -}}
+		{{- end -}}
+	{{- end -}}
+	{{- /* Add pre-formatted snippets */ -}}
+	{{- range .snippets -}}
+		{{- $combined = $combined | append . -}}
+	{{- end -}}
 {{- end -}}
 {{- with $combined | sort -}}
-<div class="example-values">
-  <label class="ontology-example-values">{{ T "ontology_example_values" }}</label>
-  <ul>
-    {{- range . -}}
-      <li><tt class="yaml-snippet">{{ . | strings.TrimRight "\n " | replaceRE "\n" "<br><span class=\"leadingspace\"></span>" | safeHTML }}</tt></li>
-    {{- end -}}
-  </ul>
-</div>
+	<div class="example-values">
+		<label class="ontology-example-values">{{ T "ontology_example_values" }}</label>
+		<ul>
+			{{- range . -}}
+				<li><tt class="yaml-snippet">{{ . | strings.TrimRight "\n " | replaceRE "\n" "<br><span class=\"leadingspace\"></span>" | safeHTML }}</tt></li>
+			{{- end -}}
+		</ul>
+	</div>
 {{- end -}}

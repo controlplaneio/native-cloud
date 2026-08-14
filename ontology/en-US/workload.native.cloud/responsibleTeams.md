@@ -34,6 +34,7 @@ An empty array is not valid. Each team identifier must also be a non-empty strin
 The sorting order of the array is not significant.
 
 Example valid values:
+
 - `["platform-team"]`
 - `["platform-team", "security-team"]`
 

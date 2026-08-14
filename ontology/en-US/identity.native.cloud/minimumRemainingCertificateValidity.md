@@ -36,6 +36,7 @@ duration format, extended to include years. This also ensures that the value
 is a valid Kubernetes label value.
 
 Valid units:
+
 - `y` - years
 - `d` - days
 - `h` - hours
@@ -45,6 +46,7 @@ Valid units:
 Units can be combined (e.g., `1y30d`, `90d12h`).
 
 Examples:
+
 - `30d` - 30 days
 - `90d` - 90 days
 - `7d` - 7 days

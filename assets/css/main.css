@@ -2,7 +2,6 @@
  * Main styles
  */
 
-
 /* dark mode by default, override to light mode in case of OS / browser preference */
 :root {
   --bg-color: #1a1a1a;
@@ -49,12 +48,18 @@ main {
   padding: 2rem;
 }
 
-body, body > main section {
+body,
+body > main section {
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -63,7 +68,8 @@ fieldset {
   padding: 0;
 }
 
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
   color: var(--hyperlinkColor);
 }
@@ -194,7 +200,8 @@ picture.about-logo {
   text-align: center;
 }
 
-picture.about-logo img, picture.about-logo source {
+picture.about-logo img,
+picture.about-logo source {
   max-width: min(300px, 3cm, 15vw);
   max-height: min(300px, 3cm, 15vw);
 }
@@ -219,8 +226,7 @@ picture.about-logo img, picture.about-logo source {
 
 @keyframes logo-bloom-fade {
   0% {
-    filter:
-      drop-shadow(0 0 0.5em color-mix(in srgb, var(--accentColor) 40%, transparent))
+    filter: drop-shadow(0 0 0.5em color-mix(in srgb, var(--accentColor) 40%, transparent))
       drop-shadow(0 0 1em color-mix(in srgb, var(--accentColor) 30%, transparent))
       drop-shadow(0 0 2em color-mix(in srgb, var(--accentColor) 20%, transparent));
   }
@@ -229,8 +235,6 @@ picture.about-logo img, picture.about-logo source {
   }
 }
 
-
 p.lead {
   text-align: center;
 }
-
