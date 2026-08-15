@@ -114,6 +114,79 @@ a:hover {
   font-weight: 500;
 }
 
+/* Context uses cards grid */
+.context-uses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 240mm) {
+  .context-uses-grid {
+    grid-template-columns: 1fr;
+    max-width: min(40rem, 92vw);
+  }
+}
+
+@media (min-width: 50mm) and (max-width: 240mm) {
+  .context-uses-grid {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 240mm) {
+  .context-uses-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.context-use-card {
+  border: 1px solid var(--accentColor);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  background-color: color-mix(in srgb, var(--accentColor) 5%, transparent);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.context-use-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.context-use-card h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.25rem;
+  color: var(--accentColor);
+}
+
+.context-use-plural {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.context-use-description {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.context-use-link {
+  display: inline-block;
+  color: var(--hyperlinkColor);
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.context-use-link:hover {
+  text-decoration: underline;
+}
+
 /* About page logo */
 picture.about-logo {
   display: block;
