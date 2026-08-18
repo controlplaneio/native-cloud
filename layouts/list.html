@@ -1,13 +1,18 @@
 {{ define "main" }}
-{{- $pages := .Pages -}}
-{{ if .Content }}
-<section class="content">
-     {{ partial "breadcrumbs.html" . }}
-     {{- partial "page-content.html" (dict "context" . "content" .Content) -}}
-</section>
-{{ end }}
+<div class="dual-sidebar-layout">
+  {{ partial "sidebar-tree.html" . }}
+  <div class="main-content-with-sidebars">
+    {{ if .Content }}
+    <section class="content">
+         {{ partial "breadcrumbs.html" . }}
+         {{- partial "page-content.html" (dict "context" . "content" .Content) -}}
+    </section>
+    {{ end }}
 
-<section class="content page-list">
-    {{- partial "page-list.html" (dict "pages" $pages) -}}
-</section>
+    <section class="content page-list">
+        {{- partial "page-list.html" (dict "pages" .Pages) -}}
+    </section>
+  </div>
+  {{ partial "sidebar-right.html" . }}
+</div>
 {{ end }}

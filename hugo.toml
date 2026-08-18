@@ -85,8 +85,8 @@ weight = 0
      autoHeadingIDType = "blackfriday"
      [markup.goldmark.parser.attribute]
        block = true
-   [markup.goldmark.renderer]
-     unsafe = false
+      [markup.goldmark.renderer]
+      unsafe = true
 
 
 # Output formats
@@ -108,3 +108,4 @@ section = [ "HTML" ]
   # accentContrastingColor = "#424242"
   hyperlinkColorDarkPages = "#6b9fff"
   hyperlinkColorLightPages = "#044ea4"
+  githubRepo = "https://github.com/controlplaneio/native-cloud"

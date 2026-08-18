@@ -136,3 +136,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Sidebar TOC links: open <details> before scrolling to target
+document.addEventListener('DOMContentLoaded', function() {
+  var tocNav = document.querySelector('.sidebar-right .sidebar-toc');
+  if (!tocNav) return;
+
+  tocNav.querySelectorAll(':scope > li > a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      history.pushState(null, null, this.href);
+      var target = document.getElementById(this.hash.slice(1));
+      if (target) {
+        var dd = target.closest('dt').nextElementSibling;
+        var details = dd && dd.querySelector ? dd.querySelector('details') : null;
+        if (details && !details.open) {
+          details.open = true;
+        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+});

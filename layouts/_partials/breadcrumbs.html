@@ -1,7 +1,7 @@
 {{- if .Parent -}}
 {{- $homePage := site.GetPage "/" -}}
 {{- $homeTitle := $homePage.LinkTitle | default $homePage.Title -}}
-<nav class="breadcrumbs" aria-label="Breadcrumb">
+<nav class="breadcrumbs" aria-label="{{ T "aria_nav_breadcrumb" }}">
   <ol class="breadcrumbs-list">
     <li class="breadcrumbs-item">
       <a href="{{ "/" | relURL }}">{{ $homeTitle }}</a>

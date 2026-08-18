@@ -1,7 +1,15 @@
 {{- define "main" -}}
-<section class="content">
-  {{ partial "breadcrumbs.html" . }}
-  <h1>{{ .Title }}</h1>
-  {{- partial "page-content.html" (dict "context" . "content" .Content) -}}
-</section>
+<div class="dual-sidebar-layout">
+  {{ partial "sidebar-tree.html" . }}
+  <div class="main-content-with-sidebars">
+    <section class="content">
+      {{ partial "breadcrumbs.html" . }}
+      <h1>{{ .Title }}</h1>
+      {{- with .Content -}}
+        {{- partial "page-content.html" (dict "context" . "content" .) -}}
+      {{- end -}}
+    </section>
+  </div>
+  {{ partial "sidebar-right.html" . }}
+</div>
 {{- end -}}

@@ -1,5 +1,8 @@
 {{- if (gt (len .Page.Params.ontology.allowedValues) 0 ) -}}
-### {{ .Get "title" | default (T "header_ontology_allowed_values" ) }} {.allowed-values}
+{{- $key := .Page.Params.ontology.key | default "" -}}
+{{- $title := .Get "title" | default (T "header_ontology_allowed_values" ) -}}
+{{- $id := cond (ne $key "") (printf "%s-allowed-values" ($key | urlize)) "allowed-values" -}}
+<h3 id="{{ $id }}" class="allowed-values">{{ $title }}</h3>
 {{- printf "\n\n" -}}
 {{- range sort .Page.Params.ontology.allowedValues -}}
 - `{{ . }}`{{- printf "\n" -}}

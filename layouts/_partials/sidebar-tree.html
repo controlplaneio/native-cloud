@@ -1,0 +1,72 @@
+{{- /* Left sidebar: hierarchical page tree derived from menus + ontology groups */ -}}
+<input type="checkbox" id="sidebar-left-toggle" class="sidebar-left-toggle" aria-hidden="true">
+<label for="sidebar-left-toggle" class="sidebar-toggle-label"></label>
+<nav class="sidebar sidebar-left" aria-label="{{ T "aria_sidebar_page_tree" }}">
+  {{- $page := . -}}
+
+  <ul class="toc-list">
+    {{- $menuPages := slice -}}
+    {{- range sort .Site.Menus.sidebar "Weight" -}}
+      {{- with .Page -}}
+        {{- $menuPages = $menuPages | append .RelPermalink -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- $groupsSection := site.GetPage "/groups" -}}
+    {{- range sort .Site.Menus.sidebar "Weight" -}}
+      {{- $menuItem := . -}}
+      {{- with $menuItem.Page -}}
+        {{- $hasChildren := false -}}
+        {{- if eq .RelPermalink "/prefixes/" -}}
+          {{- with $groupsSection -}}
+            {{- if gt (len .Pages) 0 -}}
+              {{- $hasChildren = true -}}
+            {{- end -}}
+          {{- end -}}
+        {{- else if and .IsNode (.Pages) -}}
+          {{- range .Pages -}}
+            {{- $isInMenu := in $menuPages .RelPermalink -}}
+            {{- if and (ne .RelPermalink $.RelPermalink) (not $isInMenu) (not .Params.build.render) -}}
+              {{- $hasChildren = true -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        <li{{ if $hasChildren }} class="collapsible"{{ end }}>
+          {{- if $hasChildren -}}
+            <div class="collapsible-header">
+              {{- $itemPath := .RelPermalink | replaceRE "\\.html?$" "" | replaceRE "/+$" "" -}}
+              {{- $currentPagePath := $page.RelPermalink | replaceRE "\\.html?$" "" | replaceRE "/+$" "" -}}
+              {{- /* Always expanded: show group list on home page for easy access */ -}}
+              {{- $alwaysExpanded := eq .RelPermalink "/prefixes/" -}}
+              {{- /* Expanded when on a group page or its children */ -}}
+              {{- $groupPage := strings.HasPrefix $.RelPermalink "/groups/" -}}
+              {{- /* Expanded when current page matches or is under this item's path */ -}}
+              {{- $pathMatch := or (eq $currentPagePath $itemPath) (strings.HasPrefix $currentPagePath (printf "%s/" $itemPath)) -}}
+              <input type="checkbox" id="tree-toggle-{{ md5 .RelPermalink }}" class="tree-toggle" aria-hidden="true"{{ if or $alwaysExpanded $groupPage $pathMatch }} checked{{ end }}>
+              <label for="tree-toggle-{{ md5 .RelPermalink }}" class="tree-toggle-label" title="Toggle children"></label>
+              <a href="{{ .RelPermalink }}"{{ if eq . $page }} class="sidebar-active"{{ end }}>{{ .LinkTitle }}</a>
+            </div>
+          {{- else -}}
+            <a href="{{ .RelPermalink }}"{{ if eq . $page }} class="sidebar-active"{{ end }}>{{ .LinkTitle }}</a>
+          {{- end -}}
+
+          {{- /* Expand ontology groups under Keys */ -}}
+          {{- if eq .RelPermalink "/prefixes/" -}}
+            {{- partial "sidebar-tree-groups.html" (dict "page" $page "pageType" "prefixes" "groupsSection" $groupsSection) -}}
+          {{- else if and .IsNode (.Pages) -}}
+            {{- /* Expand children not already in sidebar menu */ -}}
+            <ul class="toc-list">
+              {{- $parentPermalink := .RelPermalink -}}
+              {{- range .Pages -}}
+                {{- $isInMenu := in $menuPages .RelPermalink -}}
+                {{- if and (ne .RelPermalink $parentPermalink) (not $isInMenu) (not .Params.build.render) -}}
+                <li><a href="{{ .RelPermalink }}"{{ if eq . $page }} class="sidebar-active"{{ end }}>{{ .LinkTitle }}</a></li>
+                {{- end -}}
+              {{- end -}}
+            </ul>
+          {{- end -}}
+        </li>
+      {{- end -}}
+    {{- end -}}
+  </ul>
+</nav>

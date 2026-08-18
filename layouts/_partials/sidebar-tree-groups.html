@@ -1,0 +1,31 @@
+{{- /* Render groups subtree under Keys — called from sidebar-tree.html */ -}}
+{{- $page := .page -}}
+{{- $pageType := .pageType -}}
+{{- $groupsSection := .groupsSection -}}
+
+{{- if $groupsSection -}}
+<ul class="toc-list">
+  {{- range sort $groupsSection.Pages "Params.group" -}}
+    {{- $groupPage := . -}}
+    {{- with .Params.group -}}
+      {{- $groupName := . -}}
+      <li>
+        <a href="{{ $groupPage.RelPermalink }}"{{ if eq $groupPage $page }} class="sidebar-active"{{ end }}>{{ $groupName }}</a>
+
+        {{- if and (eq $pageType "leaf") $page.Parent -}}
+          {{- /* Leaf pages: expand parent group, show sibling keys */ -}}
+          {{- if eq $groupPage.RelPermalink $page.Parent.RelPermalink -}}
+            <ul class="toc-list">
+              {{- range $groupPage.Pages -}}
+                {{- if and (or .Params.ontology.key .Params.ontology.ociAnnotation) (ne . $page) -}}
+                  <li><a href="{{ .RelPermalink }}">{{ with .Params.ontology.key }}<code>{{ replace . (printf "%s/" $groupName) "" 1 }}</code>{{ else }}<code>{{ .Params.ontology.ociAnnotation }}</code>{{ end }}</a></li>
+                {{- end -}}
+              {{- end -}}
+            </ul>
+          {{- end -}}
+        {{- end -}}
+      </li>
+    {{- end -}}
+  {{- end -}}
+</ul>
+{{- end -}}
