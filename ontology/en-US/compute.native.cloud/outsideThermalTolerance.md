@@ -1,0 +1,42 @@
+---
+title: Outside thermal tolerance
+layout: ontology_key
+
+draft: true
+params:
+  ontology:
+    key: compute.native.cloud/outsideThermalTolerance
+    allowedValues:
+      - TooCold
+      - TooHot
+    uses:
+      kubernetesAnnotation: false
+      kubernetesLabel: false
+      kubernetesTaint: true
+      kubernetesResourceClaim: false
+---
+
+This key indicates whether a compute resource isn't running within an acceptable
+temperature range.
+
+The most common example is when a server is unable to operate properly because it is too warm (and may need to shut down).
+
+For example, to apply the taint.
+```shell
+# Shedding load from the overheated server may allow it to cool.
+kubectl taint nodes node4 node5 node7 compute.native.cloud/outsideThermalTolerance=TooHot:NoExecute
+```
+
+If you want to ignore the taint, you can set a _toleration_ that applies whether the node is too
+cold or too hot:
+```yaml
+tolerations:
+- key: "compute.native.cloud/outsideThermalTolerance"
+  operator: "Exists"
+  effect: "NoSchedule"
+- key: "compute.native.cloud/outsideThermalTolerance"
+  operator: "Exists"
+  effect: "NoExecute"
+```
+
+For example, if you have thermal management software, that software should run regardless of node temperature.
