@@ -4,6 +4,7 @@ linkTitle: Advice
 weight: 50
 menus:
 - topNav
+- sidebar
 ---
 
 Advice and tips for using the `native.cloud` keys for your platform.

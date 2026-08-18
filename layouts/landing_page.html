@@ -1,18 +1,25 @@
-{{ define "main" -}}
-{{- $svg := resources.Get "images/ocno_icon.svg" -}}
-<section class="landing-page-highlight">
-<h1>{{ .Title }}<span class="landing-logo">
-{{- with $svg -}}
-{{- .Content | safeHTML -}}
-{{- end -}}
-</span></h1>
-{{- with .Page.Params.highlight -}}
-<div class="highlight">
-  {{- . | markdownify }}
+{{- define "main" -}}
+{{- /* Landing page uses dual-sidebar layout */ -}}
+<div class="dual-sidebar-layout">
+  {{ partial "sidebar-tree.html" . }}
+  <div class="main-content-with-sidebars">
+    <section class="landing-page-highlight">
+      <h1>{{ .Title }}<span class="landing-logo">
+      {{- $svg := resources.Get "images/ocno_icon.svg" -}}
+      {{- with $svg -}}
+      {{- .Content | safeHTML -}}
+      {{- end -}}
+      </span></h1>
+      {{- with .Page.Params.highlight -}}
+      <div class="highlight">
+        {{- . | markdownify }}
+      </div>
+      {{- end -}}
+    </section>
+    <section class="content landing-page-spiel">
+      {{- .Content -}}
+    </section>
+  </div>
+  {{ partial "sidebar-right.html" . }}
 </div>
-{{- end -}}
-</section>
-<section class="content landing-page-spiel">
-  {{- .Content -}}
-</section>
 {{- end -}}

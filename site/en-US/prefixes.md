@@ -7,6 +7,7 @@ pageType: prefixes
 weight: 30
 menus:
 - topNav
+- sidebar
 ---
 
 This page lists all DNS domain names (prefixes) that have keys defined for the `native.cloud` ontology.

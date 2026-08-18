@@ -47,3 +47,42 @@ other = "Silver"
 
 [sponsor_level_3]
 other = "Bronze"
+
+# Accessibility labels
+[aria_sidebar_page_tree]
+other = "Page tree"
+
+[aria_sidebar_page_actions]
+other = "Page actions"
+
+[aria_nav_breadcrumb]
+other = "Breadcrumb"
+
+[aria_sidebar_on_this_page]
+other = "On-page headings"
+
+[aria_sidebar_ontology_prefixes]
+other = "Ontology prefixes"
+
+# Right sidebar TOC headings
+[sidebar_toc_on_this_page]
+other = "On this page"
+
+[sidebar_toc_prefixes]
+other = "Prefixes"
+
+# Right sidebar actions
+[sidebar_action_edit]
+other = "Edit this page"
+
+[sidebar_action_edit_keys]
+other = "Edit keys"
+
+[sidebar_action_create_new_key]
+other = "Create new key"
+
+[sidebar_action_create_child_page]
+other = "Create child page"
+
+[sidebar_action_create_issue]
+other = "Create an issue"

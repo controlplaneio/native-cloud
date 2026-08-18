@@ -5,6 +5,7 @@ sitemap:
 weight: 20
 menus:
 - topNav
+- sidebar
 ---
 
 {{< logo scheme="auto" id="logo" class="about-logo" >}}

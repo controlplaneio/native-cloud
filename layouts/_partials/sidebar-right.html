@@ -1,0 +1,170 @@
+{{- /* Right sidebar: page actions and table of contents */ -}}
+<aside class="sidebar sidebar-right">
+  <nav class="sidebar-actions" aria-label="{{ T "aria_sidebar_page_actions" }}">
+    {{- $relPath := .RelPermalink | replaceRE "^/" "" | replaceRE "/+$" "" | replaceRE "\\.html?$" "" -}}
+    {{- $editPath := "" -}}
+    {{- if eq $relPath "prefixes" -}}
+      {{- $editPath = "site/en-US/prefixes.md" -}}
+    {{- else -}}
+      {{- /* Section pages (e.g. /compute.native.cloud/) point to _index.md */ -}}
+      {{- /* Leaf/Single pages (e.g. /compute.native.cloud/baseboardSerialNumber) point to *.md */ -}}
+      {{- if .IsNode -}}
+        {{- if eq $relPath "" -}}
+          {{- $editPath = printf "ontology/en-US/_index.md" -}}
+        {{- else -}}
+          {{- $editPath = printf "ontology/en-US/%s/_index.md" $relPath -}}
+        {{- end -}}
+      {{- else -}}
+        {{- $editPath = printf "ontology/en-US/%s.md" $relPath -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $repo := site.Params.githubRepo -}}
+    {{- $repo = strings.TrimSuffix "/" $repo -}}
+
+    {{- if $repo -}}
+    <ul class="sidebar-actions-list">
+      <li><a href="{{ printf "%s/edit/main/%s" $repo $editPath }}" class="action-edit">{{ T "sidebar_action_edit" }}</a></li>
+      {{- if and .IsNode .Params.group -}}
+        <li><a href="{{ printf "%s/tree/main/ontology/en-US/%s" $repo (replaceRE "/+$" "" $relPath) }}" class="action-edit-keys">{{ T "sidebar_action_edit_keys" }}</a></li>
+      {{- end -}}
+      {{- if .Params.enableNewPageButton | default true -}}
+        <li><a href="{{ printf "%s/new/main/%s" $repo (path.Dir $editPath) }}" class="action-create-child">{{ if and .IsNode .Params.group }}{{ T "sidebar_action_create_new_key" }}{{ else }}{{ T "sidebar_action_create_child_page" }}{{ end }}</a></li>
+      {{- end -}}
+      <li><a href="{{ printf "%s/issues/new" $repo }}" class="action-issue">{{ T "sidebar_action_create_issue" }}</a></li>
+    </ul>
+    {{- end -}}
+  </nav>
+
+  {{- /* Table of contents — fully server-rendered */ -}}
+  {{- if and .IsHome (eq .Page.Params.pageType "nativedotcloud") -}}
+    {{- /* Landing page TOC: group names under Key Groups heading */ -}}
+    <nav class="sidebar-toc" data-toc-source="server" aria-label="{{ T "aria_sidebar_on_this_page" }}">
+      <h3 id="on-this-page">{{ T "sidebar_toc_on_this_page" }}</h3>
+      <ul class="toc-list">
+        <li>
+          <a href="#key-groups">{{ i18n "ontology_groups_title" }}</a>
+          <ul class="toc-list">
+            {{- $groupsSection := site.GetPage "/groups" -}}
+            {{- if $groupsSection -}}
+              {{- range sort $groupsSection.Pages "Params.group" -}}
+                {{- $groupPage := . -}}
+                {{- with .Params.group -}}
+                <li><a href="{{ $groupPage.RelPermalink }}">{{ . }}</a></li>
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  {{- else if eq $relPath "prefixes" -}}
+    <nav class="sidebar-toc" aria-label="{{ T "aria_sidebar_ontology_prefixes" }}">
+      <h3 id="on-this-page">{{ T "sidebar_toc_prefixes" }}</h3>
+      <ul class="toc-list">
+        {{- $groupsSection := site.GetPage "/groups" -}}
+        {{- if $groupsSection -}}
+          {{- range sort $groupsSection.Pages "Params.group" -}}
+            {{- $groupPage := . -}}
+            {{- with .Params.group -}}
+              {{- $groupName := . -}}
+              {{- $hasKeys := false -}}
+              {{- range $groupPage.Pages -}}
+                {{- if or .Params.ontology.key .Params.ontology.ociAnnotation -}}
+                  {{- $hasKeys = true -}}
+                {{- end -}}
+              {{- end -}}
+              {{- if $hasKeys -}}
+            <li>
+              <a href="{{ $groupPage.RelPermalink }}">{{ $groupName }}</a>
+              <ul class="toc-list">
+                {{- range sort $groupPage.Pages "Params.ontology.key" -}}
+                  {{- $id := or .Params.ontology.key .Params.ontology.ociAnnotation -}}
+                  {{- if $id -}}
+                    {{- $label := replace $id (printf "%s/" ($groupPage.RelPermalink | replaceRE "^/" "" | replaceRE "/+$" "")) "" 1 -}}
+                    <li><a href="{{ $groupPage.RelPermalink }}#{{ $id | safeURL }}">{{ $label }}</a></li>
+                  {{- end -}}
+                {{- end -}}
+              </ul>
+            </li>
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      </ul>
+    </nav>
+  {{- else if and .IsNode .Params.group -}}
+    {{- /* Group page TOC: keys with sub-sections */ -}}
+    <nav class="sidebar-toc" data-toc-source="server" aria-label="{{ T "aria_sidebar_on_this_page" }}">
+      <h3 id="on-this-page">{{ T "sidebar_toc_on_this_page" }}</h3>
+      <ul class="toc-list">
+        {{- range .Pages -}}
+          {{- $identifier := or .Params.ontology.key .Params.ontology.ociAnnotation -}}
+          {{- if $identifier -}}
+            {{- $label := replace $identifier (printf "%s/" $relPath) "" 1 -}}
+            <li>
+              <a href="#{{ $identifier | safeURL }}">{{ $label }}</a>
+              <ul class="toc-list">
+                {{- if .Params.ontology.allowedValues -}}
+                  <li><a href="#{{ printf "%s-allowed-values" ($identifier | urlize) | safeURL }}">{{ T "header_ontology_allowed_values" }}</a></li>
+                {{- end -}}
+                {{- if strings.Contains (.Content | default "") "ontology-validation" -}}
+                  <li><a href="#{{ printf "%s-%s" ($identifier | urlize) "value-validation" | safeURL }}">{{ T "header_ontology_validation" }}</a></li>
+                {{- end -}}
+                {{- if .Params.ontology.uses -}}
+                  {{- $hasUses := false -}}
+                  {{- range $k, $v := .Params.ontology.uses -}}
+                    {{- if eq $v true -}}
+                      {{- $hasUses = true -}}
+                    {{- end -}}
+                  {{- end -}}
+                  {{- if $hasUses -}}
+                    <li><a href="#{{ printf "%s-%s" ($identifier | urlize) "where-used" | safeURL }}">{{ T "header_ontology_key_contexts" }}</a></li>
+                  {{- end -}}
+                {{- end -}}
+              </ul>
+            </li>
+          {{- end -}}
+        {{- end -}}
+      </ul>
+    </nav>
+  {{- else if .Params.ontology.key -}}
+    {{- /* Leaf page TOC: predictable sections based on params */ -}}
+    <nav class="sidebar-toc" data-toc-source="server" aria-label="{{ T "aria_sidebar_on_this_page" }}">
+      <h3 id="on-this-page">{{ T "sidebar_toc_on_this_page" }}</h3>
+      <ul class="toc-list">
+        {{- $key := .Params.ontology.key -}}
+        {{- if $key -}}
+          {{- $id := urlize $key -}}
+          {{- $label := replace $key (printf "%s/" (index (split $key "/") 0) "/") "" 1 -}}
+          <li><a href="#{{ $key | safeURL }}">{{ $label }}</a>
+          <ul class="toc-list">
+            {{- if .Params.ontology.allowedValues -}}
+              <li><a href="#{{ printf "%s-allowed-values" $id | safeURL }}">{{ T "header_ontology_allowed_values" }}</a></li>
+            {{- end -}}
+            {{- if strings.Contains (.RawContent | default "") "{{% ontology-validation" -}}
+              <li><a href="#{{ printf "%s-%s" $id "value-validation" | safeURL }}">{{ T "header_ontology_validation" }}</a></li>
+            {{- end -}}
+            {{- if .Params.ontology.uses -}}
+              {{- $hasUses := false -}}
+              {{- range $k, $v := .Params.ontology.uses -}}
+                {{- if eq $v true -}}
+                  {{- $hasUses = true -}}
+                {{- end -}}
+              {{- end -}}
+              {{- if $hasUses -}}
+                <li><a href="#{{ printf "%s-%s" $id "where-used" | safeURL }}">{{ T "header_ontology_key_contexts" }}</a></li>
+              {{- end -}}
+            {{- end -}}
+          </ul>
+          </li>
+        {{- end -}}
+      </ul>
+    </nav>
+  {{- else if .Content -}}
+    {{- /* Fallback: heading-based TOC for pages without ontology params */ -}}
+    <nav class="sidebar-toc" aria-label="{{ T "aria_sidebar_on_this_page" }}">
+      <h3 id="on-this-page">{{ T "sidebar_toc_on_this_page" }}</h3>
+      <div>{{ .TableOfContents }}</div>
+    </nav>
+  {{- end -}}
+</aside>

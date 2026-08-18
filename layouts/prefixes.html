@@ -1,13 +1,15 @@
 {{- define "main" -}}
-<section class="content">
-  {{ partial "breadcrumbs.html" . }}
-  <h1>{{ .Title }}</h1>
-  {{- with .Content -}}
-    {{- partial "page-content.html" (dict "context" . "content" .) -}}
-  {{- end -}}
-
-  </section>
-  <section class="prefixes">
+<div class="dual-sidebar-layout">
+  {{ partial "sidebar-tree.html" . }}
+  <div class="main-content-with-sidebars">
+    <section class="content">
+      {{ partial "breadcrumbs.html" . }}
+      <h1>{{ .Title }}</h1>
+      {{- with .Content -}}
+        {{- partial "page-content.html" (dict "context" . "content" .) -}}
+      {{- end -}}
+    </section>
+    <section class="prefixes">
     <h2>{{ T "header_ontology_prefixes"}}</h2>
     {{- $groupsSection := site.GetPage "/groups" -}}
     {{- if $groupsSection -}}
@@ -73,6 +75,8 @@
     {{- else -}}
       {{- errorf "No groups section found" -}}
     {{- end -}}
-  </section>
-</section>
+    </section>
+  </div>
+  {{ partial "sidebar-right.html" . }}
+</div>
 {{- end -}}

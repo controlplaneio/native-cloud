@@ -16,6 +16,7 @@ pageType: nativedotcloud
 weight: 10
 menus:
 - topNav
+- sidebar
 ---
 
 You can use the identifiers (_keys_) on this website to mark out details in
