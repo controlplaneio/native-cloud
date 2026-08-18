@@ -87,7 +87,10 @@ h6.allowed-values + ul {
   border-radius: 0.125rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.9em;
-  white-space: pre;
+  /* very long examples escape their containers without wrapping */
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .ontology-keys dl dt {
@@ -147,6 +150,10 @@ h6.allowed-values + ul {
 dd.ontology-type-key .leadingspace {
   display: inline-block;
   width: 2em;
+}
+
+ontology-type-key > code {
+  word-break: break-word;
 }
 
 dd.ontology-type-oci-annotation .leadingspace {
