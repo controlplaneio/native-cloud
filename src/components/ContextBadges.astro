@@ -1,0 +1,36 @@
+---
+interface Props {
+  annotation?: boolean;
+  label?: boolean;
+  taint?: boolean;
+  resourceClaim?: boolean;
+}
+
+const {
+  annotation = false,
+  label = false,
+  taint = false,
+  resourceClaim = false,
+} = Astro.props;
+---
+
+<div class="not-content" style="margin: 0.75rem 0 1.5rem 0;">
+  <div class="context-badges-grid">
+    <div class={`context-badge ${annotation ? 'enabled' : 'disabled'}`}>
+      <span>Kubernetes Annotation</span>
+      <span class="badge-status">{annotation ? '✓ Supported' : '—'}</span>
+    </div>
+    <div class={`context-badge ${label ? 'enabled' : 'disabled'}`}>
+      <span>Kubernetes Label</span>
+      <span class="badge-status">{label ? '✓ Supported' : '—'}</span>
+    </div>
+    <div class={`context-badge ${taint ? 'enabled' : 'disabled'}`}>
+      <span>Kubernetes Taint</span>
+      <span class="badge-status">{taint ? '✓ Supported' : '—'}</span>
+    </div>
+    <div class={`context-badge ${resourceClaim ? 'enabled' : 'disabled'}`}>
+      <span>ResourceClaim</span>
+      <span class="badge-status">{resourceClaim ? '✓ Supported' : '—'}</span>
+    </div>
+  </div>
+</div>

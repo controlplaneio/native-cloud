@@ -1,0 +1,55 @@
+---
+title: Source Code Repository URL
+params:
+  ontology:
+    key: workload.native.cloud/sourceCodeRepositoryURL
+    exampleValues:
+      - https://git.example.com/example-org/hello-world
+      - https://source.example.org/platform/api-gateway/main
+      - https://forge.example.net/projects/CORE/repos/acme-service
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: false
+      kubernetesTaint: false
+      kubernetesResourceClaim: false
+description: Specification for workload.native.cloud/sourceCodeRepositoryURL key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="workload.native.cloud/sourceCodeRepositoryURL" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={true}
+  label={false}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+Use this key to provide a URL to the source code repository for a workload.
+
+This URL should link to the primary repository containing the source code,
+configuration, or infrastructure-as-code that defines this workload. This
+helps developers and operators quickly locate the code for understanding
+implementation details, filing issues, or making changes.
+
+:::note[Validation Constraint]
+
+The value must be a valid URL.
+
+You can define validation rules that enforce URL format constraints.
+
+:::
+
+
+
+## Example Values
+
+<ExampleValues values={["https://git.example.com/example-org/hello-world","https://source.example.org/platform/api-gateway/main","https://forge.example.net/projects/CORE/repos/acme-service"]} />

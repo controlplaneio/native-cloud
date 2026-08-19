@@ -1,0 +1,55 @@
+---
+title: Deprecated offering (boolean)
+params:
+  ontology:
+    key: vendor.native.cloud/isDeprecated
+    allowedValues:
+      - 'true'
+      - 'false'
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: true
+      kubernetesTaint: false
+      kubernetesResourceClaim: false
+description: Specification for vendor.native.cloud/isDeprecated key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="vendor.native.cloud/isDeprecated" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={true}
+  label={true}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+This key indicates whether a vendor product or service is deprecated.
+To avoid doubt: you use this key to indicate that a product or service is deprecated; the key itself is _not_ deprecated!
+
+A value of `true` indicates the product or service is deprecated and may be removed
+in the future. A value of `false` indicates the product or service is current and
+actively supported.
+
+This key is useful for lifecycle management, migration planning, and operational
+awareness of upcoming changes.
+
+
+
+:::tip[Automatic Validation]
+Values for this key must conform to the allowed values specified above.
+:::
+
+## Allowed Values
+
+<AllowedValues values={["true","false"]} />
+
+

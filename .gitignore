@@ -1,10 +1,18 @@
+# Build artifacts
+dist/
+.astro/
+node_modules/
+/public/robots.txt
 .hugo_build.lock
-/public
-/resources
+/resources/
 
+# Testing artifacts
+playwright-report/
+test-results/
+
+# OS & Environment
 .DS_Store
-
-# people are welcome to use `direnv` but that'll be up to individuals to
-# configure locally
+Thumbs.db
 .envrc
 .direnv/
+.npm/

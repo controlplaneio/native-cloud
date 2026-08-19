@@ -1,10 +1,11 @@
 [build]
-publish = "public"
-command = "hugo --gc --minify"
+publish = "dist"
+command = "npm run build"
 timeout = 180
 
 [build.environment]
-HUGO_VERSION = "v0.162.1"
+NODE_VERSION = "20"
+ASTRO_TELEMETRY_DISABLED = "1"
 
 [context.deploy-preview]
-command = "hugo --gc --minify --buildFuture --buildDrafts"
+command = "npm run build"

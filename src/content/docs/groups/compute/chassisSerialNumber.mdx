@@ -1,0 +1,58 @@
+---
+title: Chassis Serial Number
+params:
+  ontology:
+    key: compute.native.cloud/chassisSerialNumber
+    exampleValues:
+      - ABCD1234567890
+      - SN-CH-2024-001234
+      - ExampleVendor-42 1a:3c:5d:6e:7f:8a:9b-c0:d1:e2:f3
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: false
+      kubernetesTaint: false
+      kubernetesResourceClaim: false
+description: Specification for compute.native.cloud/chassisSerialNumber key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="compute.native.cloud/chassisSerialNumber" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={true}
+  label={false}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+Use this key to record the chassis serial number of the physical or virtual
+hardware hosting a compute resource.
+
+The chassis serial number uniquely identifies the physical enclosure or frame
+that houses the computing components.
+
+Serial numbers **should** be unique globally.
+
+:::note[Validation Constraint]
+
+The value must not be an empty string. The format depends on the hardware
+manufacturer and may include alphanumeric characters, hyphens, and spaces.
+
+
+You can define validation rules that enforce this constraint.
+
+:::
+
+
+
+## Example Values
+
+<ExampleValues values={["ABCD1234567890","SN-CH-2024-001234","ExampleVendor-42 1a:3c:5d:6e:7f:8a:9b-c0:d1:e2:f3"]} />

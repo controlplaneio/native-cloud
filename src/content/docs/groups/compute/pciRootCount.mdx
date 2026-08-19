@@ -1,0 +1,61 @@
+---
+title: PCI Root Count
+params:
+  ontology:
+    key: compute.native.cloud/pciRootCount
+    exampleValues:
+      - '1'
+      - '2'
+      - '4'
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: true
+      kubernetesTaint: false
+      kubernetesResourceClaim: false
+description: Specification for compute.native.cloud/pciRootCount key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="compute.native.cloud/pciRootCount" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={true}
+  label={true}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+Use this key to indicate the number of PCI root complexes present in a compute
+resource.
+
+A PCI root complex is the hardware component that connects the CPU and memory
+subsystem to the PCIe fabric. Systems with multiple root complexes typically
+reflect a NUMA topology, where each CPU socket has its own PCIe hierarchy.
+
+This key is useful for workloads that are sensitive to PCIe topology, such as
+those using GPU passthrough, SR-IOV networking, or high-performance storage
+devices, where the placement of a device relative to a CPU socket affects
+latency and bandwidth.
+
+:::note[Validation Constraint]
+
+The value must be a natural number greater than zero (positive integer).
+Values such as `0`, negative numbers, or non-numeric strings are not valid.
+
+You can define validation rules that enforce these constraints.
+
+:::
+
+
+
+## Example Values
+
+<ExampleValues values={["1","2","4"]} />

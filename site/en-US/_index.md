@@ -19,7 +19,7 @@ menus:
 ---
 
 You can use the identifiers (_keys_) on this website to mark out details in
-your cloud-native infrastructure code. They work great with
+your cloud native infrastructure code. They work great with
 [Kubernetes](https://k8s.io/) and its ecosystem, and with other cloud native
 components that use the same kind of metadata.
 

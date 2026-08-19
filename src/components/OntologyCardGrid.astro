@@ -1,0 +1,53 @@
+---
+const domains = [
+  {
+    title: "compute.native.cloud",
+    slug: "/groups/compute/",
+    description: "Keys for physical hardware, microarchitectures, and virtualization topologies.",
+  },
+  {
+    title: "identity.native.cloud",
+    slug: "/groups/identity/",
+    description: "Keys describing operational identity, tenancy ownership, and human actors.",
+  },
+  {
+    title: "network.native.cloud",
+    slug: "/groups/network/",
+    description: "Network topology, ingress boundaries, MTU settings, and interface configs.",
+  },
+  {
+    title: "storage.native.cloud",
+    slug: "/groups/storage/",
+    description: "Storage tiering, media types, replication topology, and performance targets.",
+  },
+  {
+    title: "tenancy.native.cloud",
+    slug: "/groups/tenancy/",
+    description: "Workload isolation boundaries, multi-tenant boundaries, and compliance zones.",
+  },
+  {
+    title: "topology.native.cloud",
+    slug: "/groups/topology/",
+    description: "Physical location, rack positioning, data center, and regional fault domains.",
+  },
+  {
+    title: "vendor.native.cloud",
+    slug: "/groups/vendor/",
+    description: "Hardware manufacturer identifiers, driver tiers, and firmware baselines.",
+  },
+  {
+    title: "workload.native.cloud",
+    slug: "/groups/workload/",
+    description: "Workload class, SLA tiers, criticality, and lifecycle categorization.",
+  },
+];
+---
+
+<div class="ontology-domain-grid not-content">
+  {domains.map((dom) => (
+    <a href={dom.slug} class="ontology-domain-card">
+      <h3>{dom.title}</h3>
+      <p>{dom.description}</p>
+    </a>
+  ))}
+</div>

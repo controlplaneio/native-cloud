@@ -1,0 +1,60 @@
+---
+title: CPU Core Count
+params:
+  ontology:
+    key: compute.native.cloud/cpuCoreCount
+    exampleValues:
+      - '2'
+      - '4'
+      - '72'
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: true
+      kubernetesTaint: false
+description: Specification for compute.native.cloud/cpuCoreCount key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="compute.native.cloud/cpuCoreCount" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={true}
+  label={true}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+Use this key to indicate the number of CPU cores available to a compute resource.
+The value **should** be a positive integer representing the total number of physical or
+virtual CPU cores. Fractional values are not allowed; the key represents the number of
+different cores that tasks can be scheduled to, not fractional allocation.
+
+This key is useful for capacity planning, resource allocation, and workload scheduling decisions.
+
+:::note[Validation Constraint]
+
+The value must be a natural number greater than zero (positive integer).
+Values such as `0`, negative numbers, or non-numeric strings are not valid.
+
+You can define validation rules that enforce these constraints.
+
+:::
+
+
+
+CPU cores can be taken offline. This key represents the total number of cores that can be available, not the number of cores currently active. However, a hot-plug event or
+hot-unplug event can still lead to the number changing.
+
+
+
+## Example Values
+
+<ExampleValues values={["2","4","72"]} />

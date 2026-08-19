@@ -25,7 +25,7 @@ and platforms where multiple customers share the same pool of infrastructure
 while maintaining logical isolation.
 
 This key enables tenant isolation, resource quotas, and access control policies
-for cloud-native workloads and platforms.
+for cloud native workloads and platforms.
 
 The value **should** be a valid Kubernetes label value (alphanumeric characters,
 hyphens, underscores, and periods; maximum 63 characters). However, this is
