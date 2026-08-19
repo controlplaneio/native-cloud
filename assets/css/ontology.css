@@ -270,8 +270,15 @@ ul.prefixes-list > li + li {
 }
 
 .breadcrumbs-current {
-  color: #666;
+  color: #666666;
   font-weight: 500;
+}
+
+/* make brighter on darkmode */
+@media (prefers-color-scheme: dark) {
+  .breadcrumbs-current {
+    color: #939393;
+  }
 }
 
 /* Key contexts styles */
