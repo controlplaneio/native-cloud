@@ -13,7 +13,7 @@ body header > nav {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 0.8rem;
 
   padding: 0 1.5rem;
 }
@@ -24,7 +24,7 @@ body header > nav .nav-logo {
 
 body header > nav .nav-logo img {
   display: block;
-  height: 1.5em;
+  height: 2.7rem;
   width: auto;
 }
 
@@ -32,11 +32,24 @@ body header > nav .top-nav-menu {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  /* TODO investigate need for .nav-filler */
+  flex-wrap: wrap;
   gap: 1rem;
+  list-style: none;
 
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* separators */
+ul.top-nav-menu > li:not(:last-child)::after {
+  content: "";
+  display: inline-block;
+  height: 1.5em;
+  border-right: 0.15rem solid currentColor;
+  margin-left: 0.68rem;
+  color: white;
 }
 
 body header > nav .top-nav-menu > li {
@@ -44,8 +57,8 @@ body header > nav .top-nav-menu > li {
   align-items: center;
   text-align: center;
   min-width: 1em;
-  padding-right: 1rem;
-  border-right: 0.2em solid var(--nav-text);
+  /* padding-right: 1rem; */
+  /* border-right: 0.2em solid var(--nav-text); */
 }
 
 body header > nav .top-nav-menu > li:last-child {
@@ -72,6 +85,47 @@ body header > nav .nav-brand-text {
   font-weight: 600;
   margin-left: auto;
   text-align: right;
+}
+
+@media (max-width: 180mm) {
+  /* separators */
+  ul.top-nav-menu > li:not(:last-child)::after {
+    margin-left: 0.4rem;
+    border-right-width: 0.1rem;
+  }
+
+  body header > nav .nav-logo img {
+    height: 2.5rem;
+  }
+
+  body header > nav .top-nav-menu {
+    gap: 0.5rem;
+  }
+  body header > nav .top-nav-menu > li {
+    /* padding-right: 0.8rem; */
+  }
+
+  body header > nav .top-nav-menu > li > a {
+    font-size: 1.4rem;
+  }
+
+  .nav-brand-text {
+    display: none;
+  }
+}
+
+@media (max-width: 120mm) {
+  body header > nav .nav-logo img {
+    height: 2rem;
+  }
+
+  body header > nav .top-nav-menu > li {
+    /* padding-right: 0.6rem; */
+  }
+
+  body header > nav .top-nav-menu > li > a {
+    font-size: 1.2rem;
+  }
 }
 
 /* Bloom fade animation: reduces the text-shadow glow to 50% opacity over 750ms.

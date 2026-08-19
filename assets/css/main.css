@@ -2,7 +2,6 @@
  * Main styles
  */
 
-
 /* dark mode by default, override to light mode in case of OS / browser preference */
 :root {
   --bg-color: #1a1a1a;
@@ -46,7 +45,7 @@ body {
 
 main {
   flex: 1;
-  padding: 2rem;
+  padding: 0 0.2rem;
 }
 
 body, body > main section {
@@ -105,7 +104,9 @@ a:hover {
   border-radius: 0.5rem;
   padding: 1.5rem;
   background-color: color-mix(in srgb, var(--accentColor) 5%, transparent);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .context-use-card:hover {
