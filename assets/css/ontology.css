@@ -85,7 +85,9 @@ h6.allowed-values + ul {
   background-color: color-mix(in srgb, var(--accentColor) 25%, var(--bg-color));
   padding: 0.25rem 0.5rem;
   border-radius: 0.125rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   font-size: 0.9em;
   /* very long examples escape their containers without wrapping */
   white-space: pre-wrap;
@@ -128,14 +130,12 @@ h6.allowed-values + ul {
 }
 
 .ontology-groups-heading + ul li {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-}
-
-.ontology-groups-heading + ul li a {
-  text-decoration: none;
 }
 
 .ontology-groups-heading + ul li a {
@@ -161,8 +161,7 @@ dd.ontology-type-oci-annotation .leadingspace {
   width: 0.5rem;
 }
 
-
-  /* Prefixes page styles */
+/* Prefixes page styles */
 section.prefixes {
   display: flex;
   flex-direction: column;
@@ -188,15 +187,17 @@ ul.prefixes-list > li {
 }
 
 ul.prefixes-list > li a {
-  color: var(--text-color);
+  color: var(--hyperlinkColor);
   text-decoration: none;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   font-size: 1.125rem;
 }
 
 ul.prefixes-list > li a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--accentColor);
+  text-decoration-color: var(--hyperlinkColor);
 }
 
 ul.prefixes-list > li:has(:hover) {
@@ -221,13 +222,15 @@ ul.prefixes-list > li + li {
 .prefix-keys-list li a {
   color: var(--text-color);
   text-decoration: none;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
   font-size: 0.875rem;
 }
 
 .prefix-keys-list li a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--accentColor);
+  text-decoration-color: var(--hyperlinkColor);
 }
 
 /* Breadcrumbs styles */
@@ -306,7 +309,8 @@ ul.prefixes-list > li + li {
   display: inline-block;
 }
 
-.key-contexts-list li > a, .key-contexts-list li > span {
+.key-contexts-list li > a,
+.key-contexts-list li > span {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   margin-right: 0.05rem;
@@ -316,6 +320,10 @@ ul.prefixes-list > li + li {
   transition: background-color 0.2s ease;
   background: var(--contextKeyBackground);
   color: var(--contextKeyText);
+}
+/* Make links clearer */
+.key-contexts-list li > a {
+  text-decoration: underline;
 }
 
 .key-contexts-list li > a:hover {

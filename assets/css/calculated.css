@@ -8,6 +8,8 @@
   --footerText: white;
   /* Hyperlink color for dark pages */
   --hyperlinkColor: var(--hyperlinkColorDarkPages);
+  /* for hyperlinks only on dark backgrounds (separate from theming */
+  --hyperlinkColorDarkBG: var(--hyperlinkColorDarkPages);
   /* Context key background: light gray in dark mode */
   --contextKeyBackground: color-mix(in srgb, var(--text-color) 15%, white);
   --contextKeyText: black;
@@ -20,6 +22,8 @@
     --footerText: #e0e0e0;
     /* Hyperlink color for light pages */
     --hyperlinkColor: var(--hyperlinkColorLightPages);
+    /* for hyperlinks only on dark backgrounds (separate from theming */
+    --hyperlinkColorDarkBG: var(--hyperlinkColorDarkPages);
     /* Context key background: black in light mode */
     --contextKeyBackground: black;
     --contextKeyText: white;

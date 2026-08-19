@@ -46,9 +46,10 @@ footer {
   margin-bottom: 0.5rem;
 }
 
-.footer-content a {
+.footer-content a,
+.footer-content a:visited {
   color: inherit;
-  text-decoration: none;
+  text-decoration: underline;
   font-size: 1.08em;
   font-weight: 500;
 }
