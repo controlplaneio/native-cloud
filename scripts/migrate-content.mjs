@@ -62,7 +62,7 @@ function cleanFrontmatter(data, defaultTitle, defaultDesc) {
 
 // 1. Home Page
 const homeMdx = `---
-title: native.cloud
+title: Cloud Native Infrastructure Metadata Ontology
 description: Shared names for common ideas in cloud native infrastructure metadata.
 template: splash
 hero:
