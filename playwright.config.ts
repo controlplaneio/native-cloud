@@ -30,7 +30,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `npm run preview -- --port ${PORT}`,
+    command: `bun run preview -- --port ${PORT}`,
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',

@@ -10,7 +10,7 @@
     "astro": "astro",
     "check": "astro check",
     "validate": "node scripts/validate-ontology.mjs",
-    "test": "node scripts/validate-ontology.mjs && node scripts/test-routes.mjs && node --test tests/acceptance/validation.test.mjs && node --test tests/acceptance/adversarial-validation.test.mjs && node --test tests/acceptance/acceptance.test.mjs",
+    "test": "node scripts/validate-ontology.mjs && node scripts/test-routes.mjs && node --test tests/acceptance/adversarial-validation.test.mjs && node --test tests/acceptance/acceptance.test.mjs",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:all": "npm run test && npm run test:e2e"

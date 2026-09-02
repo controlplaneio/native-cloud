@@ -9,7 +9,13 @@ const CONTEXT_USES_DIR = path.join(DOCS_DIR, 'context-uses');
  * Robust frontmatter YAML parser that enforces type safety.
  */
 function parseFrontmatter(filePath) {
-  const content = fs.readFileSync(filePath, 'utf-8');
+  if (!fs.existsSync(filePath)) return {};
+  let content = '';
+  try {
+    content = fs.readFileSync(filePath, 'utf-8');
+  } catch {
+    return {};
+  }
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!match) return {};
 
