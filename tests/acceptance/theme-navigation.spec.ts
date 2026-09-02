@@ -76,6 +76,18 @@ test.describe('Theme & Auto Light / Dark Mode Detection', () => {
     expect(styles.outlineStyle).toBe('none');
     expect(styles.borderStyle).toBe('none');
   });
+
+  test('should render header with transparent inner container and unified outer header background', async ({ page }) => {
+    await page.goto('/');
+    const innerHeader = page.locator('header.header div.header, header.header > div');
+    if (await innerHeader.first().isVisible()) {
+      const innerBg = await innerHeader.first().evaluate((el) => {
+        return window.getComputedStyle(el).backgroundColor;
+      });
+      // Ensure inner header is rgba(0, 0, 0, 0) / transparent so it doesn't create nested box fade artifacts
+      expect(innerBg).toBe('rgba(0, 0, 0, 0)');
+    }
+  });
 });
 
 test.describe('Localisation & Language Settings', () => {

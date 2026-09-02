@@ -167,6 +167,38 @@ header .site-title img,
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
+/* ==========================================================================
+   Header Harmony: Transparent Inner Header & Unified Outer Header
+   ========================================================================== */
+
+/* Set galaxy header background variable to transparent across all themes */
+:root,
+[data-theme='dark'],
+[data-theme='light'],
+:root[data-theme='light'] {
+  --galaxy-header-bg-color: transparent !important;
+}
+
+/* Make inner header containers completely transparent so only outer header background applies */
+header .header,
+header div.header,
+header.header > div {
+  background: transparent !important;
+  background-color: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Ensure outer fixed header has clean background, blur, and border that transition smoothly */
+header.header {
+  background-color: var(--sl-color-bg-nav) !important;
+  border-bottom: 1px solid var(--sl-color-hairline) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
 /* Header Navbar & Footer Logo */
 .footer-logo {
   filter: drop-shadow(0 0 8px rgba(251, 177, 91, 0.45));
