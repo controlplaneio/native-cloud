@@ -19,7 +19,7 @@ test.describe('Landing Page & Visual Elements', () => {
     await expect(exploreCta).toBeVisible();
     await exploreCta.click();
     await expect(page).toHaveURL(/\/groups\/compute\/?/);
-    await expect(page.locator('h1')).toContainText('compute.native.cloud');
+    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('compute.native.cloud');
   });
 
   test('should render visual OntologyCardGrid with all 8 domains', async ({ page }) => {
@@ -46,11 +46,11 @@ test.describe('Landing Page & Visual Elements', () => {
     const storageCard = page.locator('.ontology-domain-card:has-text("storage.native.cloud")');
     await storageCard.click();
     await expect(page).toHaveURL(/\/groups\/storage\/?/);
-    await expect(page.locator('h1')).toContainText('storage.native.cloud');
+    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('storage.native.cloud');
   });
 
   test('should have GitHub social repository link', async ({ page }) => {
-    const githubLink = page.locator('a[href*="github.com/controlplaneio/native-cloud"]');
+    const githubLink = page.locator('footer a[href*="github.com/controlplaneio/native-cloud"]');
     await expect(githubLink.first()).toBeVisible();
   });
 });

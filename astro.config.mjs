@@ -18,6 +18,13 @@ export default defineConfig({
           href: 'https://github.com/controlplaneio/native-cloud',
         },
       ],
+      defaultLocale: 'root',
+      locales: {
+        root: {
+          label: 'English',
+          lang: 'en-US',
+        },
+      },
       customCss: [
         './src/styles/custom.css',
       ],
@@ -27,6 +34,7 @@ export default defineConfig({
       components: {
         Footer: './src/components/Footer.astro',
         PageSidebar: './src/components/PageSidebar.astro',
+        ThemeSelect: './src/components/ThemeSelect.astro',
       },
       tableOfContents: {
         minHeadingLevel: 2,

@@ -4,7 +4,7 @@ test.describe('Ontology Specifications & Custom Components', () => {
   test('should render group index page with GroupKeysTable', async ({ page }) => {
     await page.goto('/groups/compute/');
 
-    await expect(page.locator('h1')).toContainText('compute.native.cloud');
+    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('compute.native.cloud');
     
     // Check GroupKeysTable presence
     const table = page.locator('table');
@@ -39,7 +39,7 @@ test.describe('Ontology Specifications & Custom Components', () => {
     await expect(labelBadge).toHaveClass(/disabled/);
 
     // 3. Validation Constraint Aside
-    const aside = page.locator('.starlight-aside, aside');
+    const aside = page.locator('.starlight-aside, .sl-markdown-content aside, aside[aria-label]');
     await expect(aside.first()).toBeVisible();
 
     // 4. ExampleValues

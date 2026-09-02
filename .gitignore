@@ -16,3 +16,5 @@ Thumbs.db
 .envrc
 .direnv/
 .npm/
+.tmp/
+.bun/

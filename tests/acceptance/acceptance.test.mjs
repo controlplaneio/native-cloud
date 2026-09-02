@@ -103,7 +103,7 @@ test.describe('Astro Starlight Acceptance Suite', () => {
     assert.ok(keyHtml.includes('brand-col'), 'Brand column present on left');
     assert.ok(keyHtml.includes('sponsors-col'), 'Sponsors column present on right');
     assert.ok(keyHtml.includes('ControlPlane'), 'ControlPlane sponsor present');
-    assert.ok(keyHtml.includes('Level 2'), 'Level 2 sponsor badge present');
+    assert.ok(keyHtml.includes('Level 2') || keyHtml.includes('Silver'), 'Level 2 / Silver sponsor badge present');
     assert.ok(keyHtml.includes('https://control-plane.io'), 'ControlPlane link present');
     assert.ok(keyHtml.includes('Edit page'), 'Starlight edit page link present');
   });

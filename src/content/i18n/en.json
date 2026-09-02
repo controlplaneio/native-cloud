@@ -1,0 +1,22 @@
+{
+  "body_ontology_validation": "In your cloud native platform, you can use validating admission checks, such as ValidatingAdmissionPolicy, to warn about invalid values. You can even set up full blocking enforcement if that's what you need to do.",
+  "header_ontology_validation": "Value validation",
+  "header_ontology_allowed_values": "Allowed values",
+  "header_ontology_key_contexts": "Where used",
+  "header_ontology_prefixes": "Keys, grouped by prefix",
+  "label_ontology_allowed_values": "Allowed values:",
+  "ontology_groups_title": "Key groups",
+  "ontology_keys_title": "Keys",
+  "ontology_example_values": "Example values:",
+  "ontology_key_count": "keys",
+  "ontology_oci_annotation_count": "OCI annotations",
+  "page_title": "native.cloud",
+  "sponsor_level_1": "Gold",
+  "sponsor_level_2": "Silver",
+  "sponsor_level_3": "Bronze",
+  "footer.tagline": "Shared names for common ideas in cloud native infrastructure metadata. Public, vendor-neutral, and free to use.",
+  "footer.license": "Docs licensed under",
+  "footer.sponsors": "Sponsors",
+  "footer.sponsor_cta": "Interested in supporting open cloud native ontology standards?",
+  "footer.get_involved": "Get involved on GitHub"
+}

@@ -3,32 +3,32 @@ import { test, expect } from '@playwright/test';
 test.describe('Reference Guides, Mobile Responsive & 404 Handling', () => {
   test('should render about page with vision and history', async ({ page }) => {
     await page.goto('/about/');
-    await expect(page.locator('h1')).toContainText('About');
-    await expect(page.locator('body')).toContainText('The vision');
+    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('About');
+    await expect(page.locator('main')).toContainText('The vision');
   });
 
   test('should render prefixes reference page', async ({ page }) => {
     await page.goto('/prefixes/');
-    await expect(page.locator('h1')).toContainText('Prefixes');
-    await expect(page.locator('body')).toContainText('compute.native.cloud');
+    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('Prefixes');
+    await expect(page.locator('main')).toContainText('DNS domain names');
   });
 
   test('should render context uses guide pages', async ({ page }) => {
     await page.goto('/context-uses/kubernetesannotation/');
-    await expect(page.locator('h1')).toContainText('Kubernetes annotation');
-    await expect(page.locator('body')).toContainText('metadata.annotations');
+    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('Kubernetes annotation');
+    await expect(page.locator('main')).toContainText('metadata.annotations');
   });
 
   test('should render advice and tips pages', async ({ page }) => {
     await page.goto('/advice-tips/kyverno/');
-    await expect(page.locator('h1')).toContainText('Kyverno');
-    await expect(page.locator('body')).toContainText('ValidatingPolicy');
+    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('Kyverno');
+    await expect(page.locator('main')).toContainText('policy management tool');
   });
 
   test('should render 404 page when visiting non-existent path', async ({ page }) => {
     const response = await page.goto('/non-existent-page-path-12345/');
     expect(response?.status()).toBe(404);
-    await expect(page.locator('h1')).toContainText('404');
+    await expect(page.locator('main h1, [data-page-title], #_top').first()).toContainText('404');
   });
 
   test('should open mobile navigation drawer on small screens', async ({ page, isMobile }) => {

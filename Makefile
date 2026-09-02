@@ -37,11 +37,13 @@ preview:
 migrate:
 	@node scripts/migrate-content.mjs
 
-# ─── Verification & Testing ───────────────────────────────────────────────────
-
 ## check: Type-check Astro templates and TypeScript
 check:
 	@npm run check
+
+## validate: Validate ontology data integrity, paths, and constraints
+validate:
+	@npm run validate
 
 ## test: Run static route crawler and acceptance tests against build
 test: build test-routes test-acceptance
@@ -52,7 +54,7 @@ test-routes:
 
 ## test-acceptance: Run DOM and acceptance specification tests
 test-acceptance:
-	@node --test tests/acceptance/acceptance.test.mjs
+	@node --test tests/acceptance/validation.test.mjs tests/acceptance/acceptance.test.mjs
 
 ## test-e2e: Run Playwright browser acceptance tests against preview server
 test-e2e:
@@ -62,8 +64,8 @@ test-e2e:
 test-e2e-ui:
 	@npm run test:e2e:ui
 
-## test-all: Run check, route tests, acceptance tests, and e2e
-test-all: check build test-routes test-acceptance
+## test-all: Run check, validation, route tests, acceptance tests, and e2e
+test-all: check validate build test-routes test-acceptance test-e2e
 
 # ─── Cleanup ──────────────────────────────────────────────────────────────────
 
