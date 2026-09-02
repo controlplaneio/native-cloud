@@ -1,0 +1,54 @@
+---
+import Pagination from '@astrojs/starlight/components/Pagination.astro';
+import EditLink from '@astrojs/starlight/components/EditLink.astro';
+import LastUpdated from '@astrojs/starlight/components/LastUpdated.astro';
+import logoImage from '../assets/ocno_icon.svg';
+import { useI18n } from '../utils/i18n';
+
+const { t } = useI18n();
+---
+
+<footer class="sl-flex native-cloud-footer-wrapper not-content">
+  <div class="meta-row sl-flex">
+    <EditLink {...Astro.props} />
+    <LastUpdated {...Astro.props} />
+  </div>
+
+  <Pagination {...Astro.props} />
+
+  <div class="site-footer">
+    <div class="footer-content-two-col">
+      <div class="footer-col brand-col">
+        <div class="footer-logo-row">
+          <img src={logoImage.src} alt="native.cloud logo" class="footer-logo" width="28" height="28" />
+          <span class="footer-brand-title">native.cloud</span>
+        </div>
+        <p class="footer-tagline">
+          {t('footer.tagline', 'Shared names for common ideas in cloud native infrastructure metadata. Public, vendor-neutral, and free to use.')}
+        </p>
+        <p class="footer-license">
+          {t('footer.license', 'Docs licensed under')} <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+        </p>
+      </div>
+
+      <div class="footer-col sponsors-col">
+        <h3>{t('footer.sponsors', 'Sponsors')}</h3>
+        <ul class="sponsors-list">
+          <li>
+            <a href="https://control-plane.io" target="_blank" rel="noopener" class="sponsor-link">
+              <strong>ControlPlane</strong>
+              <span class="footer-level">{t('sponsor_level_2', 'Level 2')}</span>
+            </a>
+          </li>
+        </ul>
+        <p class="sponsor-desc">
+          {t('footer.sponsor_cta', 'Interested in supporting open cloud native ontology standards?')} <a href="https://github.com/controlplaneio/native-cloud" target="_blank" rel="noopener">{t('footer.get_involved', 'Get involved on GitHub')}</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <span>© {new Date().getFullYear()} native.cloud contributors. Sponsored by <a href="https://control-plane.io" target="_blank" rel="noopener">ControlPlane</a>.</span>
+    </div>
+  </div>
+</footer>

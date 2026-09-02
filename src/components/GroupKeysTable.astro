@@ -1,0 +1,39 @@
+---
+interface KeyItem {
+  name: string;
+  link: string;
+  description: string;
+}
+
+interface Props {
+  keys: KeyItem[];
+}
+
+const { keys = [] } = Astro.props;
+---
+
+<div class="not-content" style="margin: 2rem 0;">
+  <h2 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--sl-color-gray-1);">Keys in this Domain</h2>
+  <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--sl-color-gray-5);">
+          <th style="padding: 0.75rem; color: var(--sl-color-accent);">Key Name</th>
+          <th style="padding: 0.75rem; color: var(--sl-color-gray-2);">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {keys.map((k) => (
+          <tr style="border-bottom: 1px solid var(--sl-color-gray-5);">
+            <td style="padding: 0.75rem; font-family: var(--sl-font-mono, monospace);">
+              <a href={k.link} style="color: var(--sl-color-accent); text-decoration: none; font-weight: 500;">
+                {k.name}
+              </a>
+            </td>
+            <td style="padding: 0.75rem; color: var(--sl-color-gray-2);">{k.description}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>

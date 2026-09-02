@@ -1,0 +1,49 @@
+---
+title: Website
+params:
+  ontology:
+    key: vendor.native.cloud/website
+    exampleValues:
+      - https://www.example.com
+      - https://native.cloud
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: false
+      kubernetesTaint: false
+      kubernetesResourceClaim: false
+description: Specification for vendor.native.cloud/website key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="vendor.native.cloud/website" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={true}
+  label={false}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+Use this key to specify the official website URL for a vendor or organization.
+
+Providing the website URL allows users to easily find more information about the vendor, their products, services, and documentation.
+
+:::note[Validation Constraint]
+
+The value must be a valid URL. The URL **should** use the `https://` scheme.
+
+:::
+
+
+
+## Example Values
+
+<ExampleValues values={["https://www.example.com","https://native.cloud"]} />

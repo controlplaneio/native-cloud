@@ -1,0 +1,55 @@
+---
+title: USB Vendor ID
+params:
+  ontology:
+    key: vendor.native.cloud/usbVendorId
+    exampleSnippets:
+      - >
+        device.attributes["vendor.native.cloud"].usbVendorId == "1d6b" # Linux
+        Foundation
+    uses:
+      kubernetesAnnotation: false
+      kubernetesLabel: false
+      kubernetesTaint: false
+      kubernetesResourceClaim: true
+description: Specification for vendor.native.cloud/usbVendorId key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="vendor.native.cloud/usbVendorId" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={false}
+  label={false}
+  taint={false}
+  resourceClaim={true}
+/>
+
+## Description
+
+Use this key to specify the USB vendor ID for USB devices or virtualized USB devices.
+
+USB vendor IDs are 16-bit identifiers assigned by the [USB Implementers Forum](https://www.usb.org/) (USB-IF)
+to uniquely identify hardware manufacturers.
+These IDs are used to identify the manufacturer of USB devices such as keyboards, mice, storage devices, and network adapters.
+
+The value is specified in hexadecimal format (without any `0x` prefix).
+
+:::note[Validation Constraint]
+
+The value must be a valid 16-bit hexadecimal number representing a USB vendor ID,
+without any prefixes or suffixes.
+
+The value must be in lowercase hexadecimal format.
+
+:::
+
+
+
+

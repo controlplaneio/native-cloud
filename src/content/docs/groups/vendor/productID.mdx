@@ -1,0 +1,59 @@
+---
+title: Product ID
+params:
+  ontology:
+    key: vendor.native.cloud/productID
+    exampleValues:
+      - m5.large
+      - Standard_D2s_v3
+      - acmecorp:hosting.2xlarge
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: true
+      kubernetesTaint: false
+      kubernetesResourceClaim: false
+description: Specification for vendor.native.cloud/productID key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="vendor.native.cloud/productID" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={true}
+  label={true}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+Use this key to indicate the vendor-specific product identifier for a resource.
+
+The product ID is a vendor-defined identifier that specifies the exact product type,
+size, or configuration. This may include instance types, SKU codes, model numbers,
+or other product identifiers used by the vendor's catalog.
+
+This key is useful for cost tracking, capacity planning, and understanding the
+specific characteristics of resources deployed across different vendors or regions.
+
+:::note[Validation Constraint]
+
+The value must be a non-empty string. The string may contain any valid characters
+allowed by the vendor's product identification scheme.
+
+You can define validation rules that restrict values to a known set of product
+IDs in your organization.
+
+:::
+
+
+
+## Example Values
+
+<ExampleValues values={["m5.large","Standard_D2s_v3","acmecorp:hosting.2xlarge"]} />

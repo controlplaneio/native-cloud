@@ -1,0 +1,65 @@
+---
+title: Continent name
+params:
+  ontology:
+    key: topology.native.cloud/continentName
+    exampleValues:
+      - antartica
+      - north-america
+    allowedValues:
+      - africa
+      - antartica
+      - asia
+      - australasia
+      - europe
+      - north-america
+      - south-america
+    uses:
+      kubernetesAnnotation: false
+      kubernetesLabel: true
+      kubernetesTaint: false
+description: Specification for topology.native.cloud/continentName key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="topology.native.cloud/continentName" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={false}
+  label={true}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+A continent is a large landmass defined by _de facto_ use and by convention.
+
+Use this key to indicate that your infrastructure is on a particular continent
+of planet Earth.
+Use the common English name for the continent, all-lowercase. Replace spaces
+with `-` characters.
+
+
+
+Not all locations on Earth can map to a continent.
+This ontology doesn't define a mapping from countries to continents, nor from
+locations to continents.
+
+:::tip[Automatic Validation]
+Values for this key must conform to the allowed values specified above.
+:::
+
+## Allowed Values
+
+<AllowedValues values={["africa","antartica","asia","australasia","europe","north-america","south-america"]} />
+
+## Example Values
+
+<ExampleValues values={["antartica","north-america"]} />

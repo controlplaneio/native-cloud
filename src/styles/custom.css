@@ -1,0 +1,652 @@
+/* ==========================================================================
+   native.cloud Brand Styles & Theme Variables (Dark / Light)
+   ========================================================================== */
+
+:root,
+[data-theme='dark'] {
+  --sl-color-accent-low: #2c1b06;
+  --sl-color-accent: #fbb15b;
+  --sl-color-accent-high: #fedec2;
+  --sl-color-white: #ffffff;
+  --sl-color-black: #0f1117;
+  --sl-color-bg: #0f1117;
+  --sl-color-bg-sidebar: #13161c;
+  --sl-color-bg-nav: #13161c;
+  --sl-color-text: #e2e8f0;
+  --sl-color-hairline: #2d333f;
+  --sl-color-gray-1: #f3f4f6;
+  --sl-color-gray-2: #e5e7eb;
+  --sl-color-gray-3: #9ca3af;
+  --sl-color-gray-4: #6b7280;
+  --sl-color-gray-5: #374151;
+  --sl-color-gray-6: #1f2937;
+
+  /* Component specific theme tokens */
+  --nc-card-bg: #1a1d24;
+  --nc-card-border: #2d333f;
+  --nc-code-bg: #14171d;
+  --nc-code-text: #fbb15b;
+  --nc-badge-enabled-bg: rgba(16, 185, 129, 0.12);
+  --nc-badge-enabled-border: rgba(16, 185, 129, 0.35);
+  --nc-badge-enabled-text: #34d399;
+  --nc-badge-disabled-bg: rgba(107, 114, 128, 0.08);
+  --nc-badge-disabled-border: rgba(107, 114, 128, 0.2);
+  --nc-badge-disabled-text: #9ca3af;
+  --nc-table-header-bg: #161920;
+  --nc-table-row-hover: #1e222a;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --sl-color-accent-low: #fef3c7;
+    --sl-color-accent: #b45309;
+    --sl-color-accent-high: #78350f;
+    --sl-color-white: #0f172a;
+    --sl-color-black: #f8fafc;
+    --sl-color-bg: #f8fafc;
+    --sl-color-bg-sidebar: #f1f5f9;
+    --sl-color-bg-nav: #f1f5f9;
+    --sl-color-text: #1e293b;
+    --sl-color-hairline: #e2e8f0;
+    --sl-color-gray-1: #0f172a;
+    --sl-color-gray-2: #1e293b;
+    --sl-color-gray-3: #475569;
+    --sl-color-gray-4: #64748b;
+    --sl-color-gray-5: #cbd5e1;
+    --sl-color-gray-6: #f1f5f9;
+
+    /* Component specific theme tokens for light mode */
+    --nc-card-bg: #ffffff;
+    --nc-card-border: #e2e8f0;
+    --nc-code-bg: #f1f5f9;
+    --nc-code-text: #92400e;
+    --nc-badge-enabled-bg: #ecfdf5;
+    --nc-badge-enabled-border: #a7f3d0;
+    --nc-badge-enabled-text: #065f46;
+    --nc-badge-disabled-bg: #f8fafc;
+    --nc-badge-disabled-border: #e2e8f0;
+    --nc-badge-disabled-text: #64748b;
+    --nc-table-header-bg: #f1f5f9;
+    --nc-table-row-hover: #f8fafc;
+  }
+}
+
+[data-theme='light'] {
+  --sl-color-accent-low: #fef3c7;
+  --sl-color-accent: #b45309;
+  --sl-color-accent-high: #78350f;
+  --sl-color-white: #0f172a;
+  --sl-color-black: #f8fafc;
+  --sl-color-bg: #f8fafc;
+  --sl-color-bg-sidebar: #f1f5f9;
+  --sl-color-bg-nav: #f1f5f9;
+  --sl-color-text: #1e293b;
+  --sl-color-hairline: #e2e8f0;
+  --sl-color-gray-1: #0f172a;
+  --sl-color-gray-2: #1e293b;
+  --sl-color-gray-3: #475569;
+  --sl-color-gray-4: #64748b;
+  --sl-color-gray-5: #cbd5e1;
+  --sl-color-gray-6: #f1f5f9;
+
+  /* Component specific theme tokens for light mode */
+  --nc-card-bg: #ffffff;
+  --nc-card-border: #e2e8f0;
+  --nc-code-bg: #f1f5f9;
+  --nc-code-text: #92400e;
+  --nc-badge-enabled-bg: #ecfdf5;
+  --nc-badge-enabled-border: #a7f3d0;
+  --nc-badge-enabled-text: #065f46;
+  --nc-badge-disabled-bg: #f8fafc;
+  --nc-badge-disabled-border: #e2e8f0;
+  --nc-badge-disabled-text: #64748b;
+  --nc-table-header-bg: #f1f5f9;
+  --nc-table-row-hover: #f8fafc;
+}
+
+/* ==========================================================================
+   Smooth Theme Transitions & Outline Defenses
+   ========================================================================== */
+
+html,
+body,
+header,
+.header,
+#starlight__sidebar,
+.sidebar-pane,
+.right-sidebar,
+.main-frame,
+.sl-container,
+.site-footer,
+.key-header-card,
+.context-badge,
+.ontology-domain-card,
+.example-value-item,
+table,
+th,
+td,
+button,
+input,
+aside {
+  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Eliminate top-left logo and title transition artifacts and unwanted outline boxes */
+.site-title,
+.site-title:focus,
+.site-title:active,
+header .site-title,
+header .site-title:focus,
+header .site-title:active {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  text-decoration: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+header .site-title:focus-visible {
+  outline: 2px solid var(--sl-color-accent) !important;
+  outline-offset: 3px;
+  border-radius: 0.375rem;
+}
+
+header .site-title img,
+.site-title img {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 5px rgba(251, 177, 91, 0.4));
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* ==========================================================================
+   Header Harmony: Transparent Inner Header & Unified Outer Header
+   ========================================================================== */
+
+/* Set galaxy header background variable to transparent across all themes */
+:root,
+[data-theme='dark'],
+[data-theme='light'],
+:root[data-theme='light'] {
+  --galaxy-header-bg-color: transparent !important;
+}
+
+/* Make inner header containers completely transparent so only outer header background applies */
+header .header,
+header div.header,
+header.header > div {
+  background: transparent !important;
+  background-color: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Ensure outer fixed header has clean background, blur, and border that transition smoothly */
+header.header {
+  background-color: var(--sl-color-bg-nav) !important;
+  border-bottom: 1px solid var(--sl-color-hairline) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Header Navbar & Footer Logo */
+.footer-logo {
+  filter: drop-shadow(0 0 8px rgba(251, 177, 91, 0.45));
+}
+
+/* ==========================================================================
+   Right Sidebar (Table of Contents & Actions Panel)
+   ========================================================================== */
+
+.right-sidebar {
+  border-inline-start: 1px solid var(--nc-card-border) !important;
+}
+
+.right-sidebar starlight-toc {
+  font-size: 0.875rem;
+}
+
+.right-sidebar starlight-toc h2,
+.sidebar-actions-title {
+  font-size: var(--sl-text-sm) !important;
+  font-weight: 700 !important;
+  color: var(--sl-color-gray-2) !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.right-sidebar starlight-toc ul {
+  padding-inline-start: 0 !important;
+}
+
+.right-sidebar starlight-toc li {
+  margin: 0.15rem 0 !important;
+}
+
+.right-sidebar starlight-toc li > a {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  border-inline-start: 2px solid transparent !important;
+  border-radius: 0.25rem !important;
+  padding: 0.35rem 0.75rem !important;
+  margin-inline-start: 0 !important;
+  font-size: 0.8125rem !important;
+  color: var(--sl-color-gray-3) !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.right-sidebar starlight-toc li > a::before,
+.right-sidebar starlight-toc li > a::after {
+  display: none !important;
+  content: none !important;
+}
+
+.right-sidebar starlight-toc li > a:hover {
+  color: var(--sl-color-white) !important;
+  background-color: var(--nc-card-bg) !important;
+  border-inline-start-color: var(--sl-color-gray-4) !important;
+  transform: translateX(1px);
+}
+
+.right-sidebar starlight-toc li > a[aria-current='true'] {
+  color: var(--sl-color-accent) !important;
+  font-weight: 600 !important;
+  background-color: var(--nc-card-bg) !important;
+  border-inline-start: 3px solid var(--sl-color-accent) !important;
+  border-radius: 0 0.375rem 0.375rem 0 !important;
+  box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme='light'] .right-sidebar starlight-toc li > a:hover {
+  color: var(--sl-color-white) !important;
+  background-color: #e2e8f0 !important;
+}
+
+[data-theme='light'] .right-sidebar starlight-toc li > a[aria-current='true'] {
+  color: var(--sl-color-accent) !important;
+  background-color: #f1f5f9 !important;
+  border-inline-start-color: var(--sl-color-accent) !important;
+}
+
+/* Right Sidebar Community Actions Panel */
+.right-sidebar-actions {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--nc-card-border);
+}
+
+.sidebar-actions-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+}
+
+.sidebar-action-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-size: 0.8125rem !important;
+  font-weight: 500 !important;
+  color: var(--sl-color-gray-3) !important;
+  padding: 0.35rem 0.5rem !important;
+  border-radius: 0.375rem !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar-action-link:hover {
+  color: var(--sl-color-accent) !important;
+  background-color: var(--nc-card-bg) !important;
+  transform: translateX(2px) !important;
+}
+
+.sidebar-action-link svg {
+  flex-shrink: 0;
+  color: var(--sl-color-accent);
+}
+
+[data-theme='light'] .sidebar-action-link:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* ==========================================================================
+   KeyHeader Card & Top Quick Actions
+   ========================================================================== */
+
+.key-header-card {
+  border: 1px solid var(--nc-card-border);
+  background: var(--nc-card-bg);
+  border-radius: 0.5rem;
+  padding: 1.15rem 1.35rem;
+  margin: 1.25rem 0 1.75rem 0;
+  box-shadow: var(--sl-shadow-sm);
+  transition: border-color 0.2s ease;
+}
+
+.key-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.key-id-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.key-id-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--sl-color-gray-3);
+}
+
+.key-code-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.key-code {
+  font-family: var(--sl-font-mono, monospace);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--nc-code-text);
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.key-actions-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.key-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.375rem;
+  text-decoration: none !important;
+  border: 1px solid var(--nc-card-border);
+  background: var(--nc-code-bg);
+  color: var(--sl-color-gray-2);
+  transition: all 0.2s ease;
+}
+
+.key-action-btn:hover {
+  color: var(--sl-color-accent);
+  border-color: var(--sl-color-accent);
+  background: var(--nc-card-bg);
+  transform: translateY(-1px);
+  box-shadow: var(--sl-shadow-sm);
+}
+
+.key-action-btn.secondary {
+  color: var(--sl-color-gray-3);
+}
+
+.key-action-btn.secondary:hover {
+  color: var(--sl-color-white);
+  border-color: var(--sl-color-gray-3);
+}
+
+/* ==========================================================================
+   Persistent Site Footer (Clean 2-Column Layout: Brand Left, Sponsors Right)
+   ========================================================================== */
+
+.native-cloud-footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--nc-card-border);
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--sl-color-gray-3);
+}
+
+.site-footer {
+  width: 100%;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--nc-card-border);
+}
+
+.footer-content-two-col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 48rem) {
+  .footer-content-two-col {
+    grid-template-columns: 1.6fr 1.2fr;
+    justify-content: space-between;
+  }
+}
+
+.footer-col h3 {
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sl-color-white);
+  border-bottom: 2px solid var(--sl-color-accent);
+}
+
+[data-theme='light'] .footer-col h3 {
+  color: var(--sl-color-black);
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-col a {
+  color: var(--sl-color-gray-3);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-col a:hover {
+  color: var(--sl-color-accent);
+  text-decoration: underline;
+}
+
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-brand-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--sl-color-white);
+}
+
+[data-theme='light'] .footer-brand-title {
+  color: var(--sl-color-black);
+}
+
+.footer-tagline {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--sl-color-gray-3);
+  margin-bottom: 0.75rem;
+  max-width: 50ch;
+}
+
+.footer-license {
+  font-size: 0.8rem;
+  color: var(--sl-color-gray-4);
+}
+
+.sponsor-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem !important;
+}
+
+.footer-level {
+  padding: 0.15rem 0.5rem;
+  background-color: var(--sl-color-accent);
+  color: #111827;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.sponsor-desc {
+  margin-top: 0.85rem;
+  font-size: 0.825rem;
+  line-height: 1.4;
+  color: var(--sl-color-gray-4);
+}
+
+.footer-bottom-bar {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--nc-card-border);
+  text-align: center;
+  font-size: 0.825rem;
+  color: var(--sl-color-gray-4);
+}
+
+.footer-bottom-bar a {
+  color: var(--sl-color-accent);
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Context Badges & Examples
+   ========================================================================== */
+
+.context-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin: 0.5rem 0 1.25rem 0;
+}
+
+.context-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.85rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--nc-badge-disabled-border);
+  background: var(--nc-badge-disabled-bg);
+  color: var(--nc-badge-disabled-text);
+  transition: all 0.2s ease;
+}
+
+.context-badge.enabled {
+  border-color: var(--nc-badge-enabled-border);
+  background: var(--nc-badge-enabled-bg);
+  color: var(--nc-badge-enabled-text);
+}
+
+.badge-status {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.example-values-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1.25rem 0;
+}
+
+.example-value-item {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.85rem;
+  background: var(--nc-code-bg);
+  border: 1px solid var(--nc-card-border);
+  border-radius: 0.375rem;
+  font-family: var(--sl-font-mono, monospace);
+  font-size: 0.875rem;
+}
+
+.example-value-item.allowed-value {
+  border-left: 3px solid var(--sl-color-accent);
+}
+
+/* Ontology Grid for Home Page */
+.ontology-domain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.ontology-domain-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--nc-card-border);
+  background: var(--nc-card-bg);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.ontology-domain-card:hover {
+  border-color: var(--sl-color-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--sl-shadow);
+}
+
+.ontology-domain-card h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--nc-code-text);
+  font-size: 1.15rem;
+}
+
+.ontology-domain-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--sl-color-gray-2);
+}

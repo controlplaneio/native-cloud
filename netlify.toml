@@ -1,10 +1,29 @@
 [build]
-publish = "public"
-command = "hugo --gc --minify"
+publish = "dist"
+command = "npm run build"
 timeout = 180
 
 [build.environment]
-HUGO_VERSION = "v0.162.1"
+NODE_VERSION = "22"
+NPM_FLAGS = "--include=dev"
+ASTRO_TELEMETRY_DISABLED = "1"
+
+[context.production]
+command = "npm run build"
 
 [context.deploy-preview]
-command = "hugo --gc --minify --buildFuture --buildDrafts"
+command = "npm run build"
+
+[context.branch-deploy]
+command = "npm run build"
+
+# Cache immutable build assets for high performance
+[[headers]]
+for = "/_astro/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/pagefind/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"

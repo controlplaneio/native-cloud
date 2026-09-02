@@ -1,0 +1,51 @@
+---
+interface Props {
+  keyName: string;
+}
+
+const { keyName } = Astro.props;
+
+const [groupPart, keyPart] = keyName.includes('/') ? keyName.split('/') : ['', keyName];
+
+const editUrl = `https://github.com/controlplaneio/native-cloud/edit/main/ontology/en-US/${groupPart || 'compute.native.cloud'}/${keyPart}.md`;
+const issueUrl = `https://github.com/controlplaneio/native-cloud/issues/new?title=%5BKey+Feedback%5D+${encodeURIComponent(keyName)}&body=Feedback+or+suggestion+for+key+${encodeURIComponent(keyName)}%3A%0A%0A`;
+const newKeyUrl = `https://github.com/controlplaneio/native-cloud/issues/new?title=%5BNew+Key+Proposal%5D&body=Domain%3A+${encodeURIComponent(groupPart || 'compute.native.cloud')}%0ANew+Key+Name%3A+%0ADescription%3A+`;
+---
+
+<div class="key-header-card not-content">
+  <div class="key-title-row">
+    <div class="key-id-container">
+      <span class="key-id-label">Ontology Key Identifier</span>
+      <div class="key-code-wrapper">
+        <code class="key-code">{keyName}</code>
+      </div>
+    </div>
+
+    <div class="key-actions-toolbar">
+      <a href={editUrl} target="_blank" rel="noopener noreferrer" class="key-action-btn" title="Edit this key specification on GitHub">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+        </svg>
+        <span>Edit key</span>
+      </a>
+
+      <a href={issueUrl} target="_blank" rel="noopener noreferrer" class="key-action-btn" title="Create an issue for this key on GitHub">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>Create issue</span>
+      </a>
+
+      <a href={newKeyUrl} target="_blank" rel="noopener noreferrer" class="key-action-btn secondary" title="Propose a new key under this domain">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <span>New key</span>
+      </a>
+    </div>
+  </div>
+</div>

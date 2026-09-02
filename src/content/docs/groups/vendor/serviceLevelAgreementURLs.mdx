@@ -1,0 +1,62 @@
+---
+title: Service Level Agreement URLs
+params:
+  ontology:
+    key: vendor.native.cloud/serviceLevelAgreementURLs
+    exampleValues:
+      - '["https://example.com/sla"]'
+      - >-
+        {"standard": "https://example.com/sla-standard", "premium":
+        "https://example.com/sla-premium"}
+    uses:
+      kubernetesAnnotation: true
+      kubernetesLabel: false
+      kubernetesTaint: false
+      kubernetesResourceClaim: false
+description: Specification for vendor.native.cloud/serviceLevelAgreementURLs key.
+---
+
+import KeyHeader from '../../../../components/KeyHeader.astro';
+import ContextBadges from '../../../../components/ContextBadges.astro';
+import ExampleValues from '../../../../components/ExampleValues.astro';
+import AllowedValues from '../../../../components/AllowedValues.astro';
+
+<KeyHeader keyName="vendor.native.cloud/serviceLevelAgreementURLs" />
+
+## Applicable Contexts
+
+<ContextBadges 
+  annotation={true}
+  label={false}
+  taint={false}
+  resourceClaim={false}
+/>
+
+## Description
+
+Use this key to provide URLs to service level agreement (SLA) documentation for a vendor service.
+
+The value is a JSON document.
+
+This key is useful for compliance tracking, customer-facing documentation, and operational
+awareness of service guarantees.
+
+:::note[Validation Constraint]
+
+The value **must** be a valid JSON array or object. If the value is an array,
+each element **must** be a valid URL string. The array **must** contain at least one element.
+
+If the value is an object, each key **must** be a valid Kubernetes label value
+(alphanumeric, hyphens, underscores, dots). Each value **must** be a valid URL string. The object **must** also contain at least one key-value pair.
+
+You can define validation rules that enforce this validation. Because vendors
+are free to define their own keys, your validation should not narrow from the
+overall value schema.
+
+:::
+
+
+
+## Example Values
+
+<ExampleValues values={["[\"https://example.com/sla\"]","{\"standard\": \"https://example.com/sla-standard\", \"premium\": \"https://example.com/sla-premium\"}"]} />

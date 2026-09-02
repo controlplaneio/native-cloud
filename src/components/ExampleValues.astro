@@ -1,0 +1,19 @@
+---
+interface Props {
+  values?: string[];
+}
+
+const { values = [] } = Astro.props;
+---
+
+{values.length > 0 && (
+  <div class="not-content" style="margin: 0.75rem 0 1.5rem 0;">
+    <div class="example-values-list">
+      {values.map((val) => (
+        <div class="example-value-item">
+          <code>{val}</code>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
