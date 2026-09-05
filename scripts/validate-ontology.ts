@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const DOCS_DIR = path.resolve('./src/content/docs');
 const GROUPS_DIR = path.join(DOCS_DIR, 'groups');
-const CONTEXT_USES_DIR = path.join(DOCS_DIR, 'context-uses');
+const CONTEXT_USES_DIR = path.join(process.cwd(), 'src/data/contexts');
 
 function parseFrontmatter(filePath: string): Record<string, any> {
   if (!fs.existsSync(filePath)) return {};
@@ -126,13 +126,17 @@ export function validateOntology(): { passed: boolean; errors: string[]; stats: 
   const validContextUsesLower: string[] = [];
 
   if (fs.existsSync(CONTEXT_USES_DIR)) {
-    const contextFiles = fs.readdirSync(CONTEXT_USES_DIR);
-    for (const file of contextFiles) {
-      if (file.startsWith('_') || file === 'index.md' || file === 'index.mdx') continue;
-      const baseName = path.parse(file).name;
-      validContextUses.push(baseName);
-      validContextUsesLower.push(baseName.toLowerCase());
-      contextUseCount++;
+    const contextFiles = fs.readdirSync(CONTEXT_USES_DIR)
+      .filter((f) => f.endsWith('.mdx') || f.endsWith('.md'));
+    for (const contextFile of contextFiles) {
+      const contextPath = path.join(CONTEXT_USES_DIR, contextFile);
+      const frontmatter = parseFrontmatter(contextPath);
+      const contextId = frontmatter.id;
+      if (contextId) {
+        validContextUses.push(contextId);
+        validContextUsesLower.push(contextId.toLowerCase());
+        contextUseCount++;
+      }
     }
   } else {
     errors.push(`Context uses directory not found: ${CONTEXT_USES_DIR}`);

@@ -1,9 +1,15 @@
 ---
+import fs from 'node:fs';
+import path from 'node:path';
+import yaml from 'js-yaml';
+
 interface Props {
   annotation?: boolean;
   label?: boolean;
   taint?: boolean;
   resourceClaim?: boolean;
+  oci?: boolean;
+  contexts?: string[];
 }
 
 const {
@@ -11,26 +17,93 @@ const {
   label = false,
   taint = false,
   resourceClaim = false,
+  oci = false,
+  contexts = [],
 } = Astro.props;
+
+// Map simple prop names to context IDs
+const contextIdMap: Record<string, string> = {
+  'annotation': 'kubernetesAnnotation',
+  'label': 'kubernetesLabel',
+  'taint': 'kubernetesTaint',
+  'resourceClaim': 'kubernetesResourceClaim',
+  'oci': 'ociAnnotation',
+};
+
+// Read context files directly from filesystem
+const contextsDir = path.join(process.cwd(), 'src/data/contexts');
+const contextFiles = fs.readdirSync(contextsDir).filter(f => f.endsWith('.mdx') && !f.startsWith('_'));
+
+interface Context {
+  id: string;
+  title: string;
+  short: string;
+  moreInformation: string;
+}
+
+const contextUses: Context[] = [];
+
+for (const filename of contextFiles) {
+  const filepath = path.join(contextsDir, filename);
+  const content = fs.readFileSync(filepath, 'utf-8');
+  const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---/);
+  if (frontmatterMatch) {
+    const frontmatter = yaml.load(frontmatterMatch[1]) as {
+      id?: string;
+      title?: string;
+      short?: string;
+      moreInformation?: string;
+    };
+    if (frontmatter.id && frontmatter.title) {
+      contextUses.push({
+        id: frontmatter.id,
+        title: frontmatter.title,
+        short: frontmatter.short || frontmatter.title,
+        moreInformation: frontmatter.moreInformation || '#',
+      });
+    }
+  }
+}
+
+// If contexts array is provided, use it directly
+// Otherwise, build from boolean props
+let enabledContextIds: string[];
+if (contexts.length > 0) {
+  enabledContextIds = contexts.map(c => contextIdMap[c] || c);
+} else {
+  enabledContextIds = [];
+  if (annotation) enabledContextIds.push('kubernetesAnnotation');
+  if (label) enabledContextIds.push('kubernetesLabel');
+  if (taint) enabledContextIds.push('kubernetesTaint');
+  if (resourceClaim) enabledContextIds.push('kubernetesResourceClaim');
+  if (oci) enabledContextIds.push('ociAnnotation');
+}
+
+// Get the full context data for enabled ones
+const enabledContexts = contextUses.filter(c => enabledContextIds.includes(c.id));
+
+// Get all context uses for disabled ones
+const disabledContexts = contextUses.filter(c => !enabledContextIds.includes(c.id));
 ---
 
 <div class="not-content" style="margin: 0.75rem 0 1.5rem 0;">
   <div class="context-badges-grid">
-    <div class={`context-badge ${annotation ? 'enabled' : 'disabled'}`}>
-      <span>Kubernetes Annotation</span>
-      <span class="badge-status">{annotation ? '✓' : '—'}</span>
-    </div>
-    <div class={`context-badge ${label ? 'enabled' : 'disabled'}`}>
-      <span>Kubernetes Label</span>
-      <span class="badge-status">{label ? '✓' : '—'}</span>
-    </div>
-    <div class={`context-badge ${taint ? 'enabled' : 'disabled'}`}>
-      <span>Kubernetes Taint</span>
-      <span class="badge-status">{taint ? '✓' : '—'}</span>
-    </div>
-    <div class={`context-badge ${resourceClaim ? 'enabled' : 'disabled'}`}>
-      <span>ResourceClaim</span>
-      <span class="badge-status">{resourceClaim ? '✓' : '—'}</span>
-    </div>
+    {enabledContexts.map(context => (
+      <a 
+        href={context.moreInformation}
+        class={`context-badge enabled`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span>{context.short}</span>
+        <span class="badge-status">✓</span>
+      </a>
+    ))}
+    {disabledContexts.map(context => (
+      <div class={`context-badge disabled`}>
+        <span>{context.short}</span>
+        <span class="badge-status">—</span>
+      </div>
+    ))}
   </div>
 </div>

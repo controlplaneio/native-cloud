@@ -17,11 +17,11 @@ Cloud native ecosystems have grown rapidly, but with that growth comes fragmenta
 Based on an idea formed in 2020, and live since 2026, `native.cloud` is about helping
 people share common definitions for metadata across cloud native platforms and tools.
 
-This site defines a curated set of keys that can be used in various [contexts](/context-uses/), that include:
+This site defines a curated set of keys that can be used in various [contexts](/advice-tips/contexts/), that include:
 
-- [Annotations](/context-uses/kubernetesannotation/) - For storing arbitrary metadata
-- [Labels](/context-uses/kuberneteslabel/) - For identifying and selecting Kubernetes objects
-- [Taints](/context-uses/kubernetestaint/) - For controlling pod scheduling
+- [Annotations](/advice-tips/contexts/) - For storing arbitrary metadata
+- [Labels](/advice-tips/contexts/) - For identifying and selecting Kubernetes objects
+- [Taints](/advice-tips/contexts/) - For controlling pod scheduling
 
 Each key definition includes an explanation to help you use it correctly. Where it's relevant, there are also validation rules or example values.
 
