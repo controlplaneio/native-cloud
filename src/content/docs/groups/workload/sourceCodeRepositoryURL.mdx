@@ -15,16 +15,15 @@ params:
 description: Specification for workload.native.cloud/sourceCodeRepositoryURL key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="workload.native.cloud/sourceCodeRepositoryURL" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -48,8 +47,4 @@ You can define validation rules that enforce URL format constraints.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["https://git.example.com/example-org/hello-world","https://source.example.org/platform/api-gateway/main","https://forge.example.net/projects/CORE/repos/acme-service"]} />
+<Values frontmatter={frontmatter} />

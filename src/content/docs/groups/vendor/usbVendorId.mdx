@@ -3,11 +3,10 @@ title: USB Vendor ID
 params:
   ontology:
     key: vendor.native.cloud/usbVendorId
-    exampleValues:
-      - "1d6b"
-      - "046d"
-      - "045e"
-      - "8086"
+    exampleSnippets:
+      - >
+        device.attributes["vendor.native.cloud"].usbVendorId == "1d6b" # Linux
+        Foundation
     uses:
       kubernetesAnnotation: false
       kubernetesLabel: false
@@ -16,16 +15,15 @@ params:
 description: Specification for vendor.native.cloud/usbVendorId key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="vendor.native.cloud/usbVendorId" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={false}
   label={false}
   taint={false}
@@ -51,6 +49,4 @@ The value must be in lowercase hexadecimal format.
 
 :::
 
-## Example Values
-
-<ExampleValues values={["1d6b","046d","045e","8086"]} />
+<Values frontmatter={frontmatter} />

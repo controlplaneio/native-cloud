@@ -16,16 +16,15 @@ params:
 description: Specification for topology.native.cloud/countryCode key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="topology.native.cloud/countryCode" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={false}
   label={true}
   taint={false}
@@ -49,8 +48,4 @@ You are allowed to define validation rules that enforce these constraints.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["EC","GB","KG","TZ","UA"]} />
+<Values frontmatter={frontmatter} />

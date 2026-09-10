@@ -17,16 +17,15 @@ params:
 description: Specification for storage.native.cloud/retentionDuration key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="storage.native.cloud/retentionDuration" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={true}
   taint={false}
@@ -59,15 +58,10 @@ Examples:
 - `7y` - 7 years
 - `90d` - 90 days
 - `18m` - 18 minutes
-- `2y6m` - 2 years and 6 minutes
-- `30d12h` - 30 days and 12 hours
+- `2y6m` - 2 years and 6 months
 
 Where feasible, you **should** define validation rules that enforce this duration format.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["7y","90d","18m","2y6m","30d12h"]} />
+<Values frontmatter={frontmatter} />

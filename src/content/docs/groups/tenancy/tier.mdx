@@ -15,16 +15,15 @@ params:
 description: Specification for tenancy.native.cloud/tier key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="tenancy.native.cloud/tier" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={true}
   taint={false}
@@ -53,8 +52,4 @@ and add validation rules to ensure that only those values are used.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["free","basic","premium","enterprise"]} />
+<Values frontmatter={frontmatter} />

@@ -80,7 +80,7 @@ hero:
       variant: minimal
 ---
 
-import OntologyCardGrid from '../../components/OntologyCardGrid.astro';
+import OntologyCardGrid from '~/components/OntologyCardGrid.astro';
 
 ## What is native.cloud?
 
@@ -169,8 +169,6 @@ for (const dir of ontologyDirs) {
     const keyName = data.params?.ontology?.key || `${dir}/${file.replace('.md', '')}`;
     const cleanFm = cleanFrontmatter(data, keyName, `Specification for ${keyName} key.`);
 
-    const exampleValues = data.params?.ontology?.exampleValues || [];
-    const allowedValues = data.params?.ontology?.allowedValues || [];
     const uses = {
       annotation: Boolean(data.params?.ontology?.uses?.kubernetesAnnotation),
       label: Boolean(data.params?.ontology?.uses?.kubernetesLabel),
@@ -191,16 +189,15 @@ for (const dir of ontologyDirs) {
     const mdxContent = `---
 ${yaml.dump(cleanFm)}---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="${keyName}" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={${uses.annotation}}
   label={${uses.label}}
   taint={${uses.taint}}
@@ -211,9 +208,7 @@ import AllowedValues from '../../../../components/AllowedValues.astro';
 
 ${cleanBody}
 
-${allowedValues.length > 0 ? `## Allowed Values\n\n<AllowedValues values={${JSON.stringify(allowedValues)}} />` : ''}
-
-${exampleValues.length > 0 ? `## Example Values\n\n<ExampleValues values={${JSON.stringify(exampleValues)}} />` : ''}
+<Values frontmatter={frontmatter} />
 `;
 
     const targetFile = file.replace('.md', '.mdx');
@@ -231,7 +226,7 @@ ${exampleValues.length > 0 ? `## Example Values\n\n<ExampleValues values={${JSON
   const groupIndexContent = `---
 ${yaml.dump(cleanIndexFm)}---
 
-import GroupKeysTable from '../../../../components/GroupKeysTable.astro';
+import GroupKeysTable from '~/components/GroupKeysTable.astro';
 
 ## Domain Overview
 

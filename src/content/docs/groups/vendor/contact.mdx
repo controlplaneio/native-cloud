@@ -15,16 +15,15 @@ params:
 description: Specification for vendor.native.cloud/contact key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="vendor.native.cloud/contact" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -48,8 +47,4 @@ or `https://` for contact form URLs.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["mailto:support@example.com","tel:+12125554240","https://support.example.com/contact"]} />
+<Values frontmatter={frontmatter} />

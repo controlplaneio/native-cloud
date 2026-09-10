@@ -15,16 +15,15 @@ params:
 description: Specification for vendor.native.cloud/productID key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="vendor.native.cloud/productID" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={true}
   taint={false}
@@ -52,8 +51,4 @@ IDs in your organization.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["m5.large","Standard_D2s_v3","acmecorp:hosting.2xlarge"]} />
+<Values frontmatter={frontmatter} />

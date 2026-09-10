@@ -14,16 +14,15 @@ params:
 description: Specification for vendor.native.cloud/isDeprecated key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="vendor.native.cloud/isDeprecated" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={true}
   taint={false}
@@ -48,8 +47,4 @@ awareness of upcoming changes.
 Values for this key must conform to the allowed values specified above.
 :::
 
-## Allowed Values
-
-<AllowedValues values={["true","false"]} />
-
-
+<Values frontmatter={frontmatter} />

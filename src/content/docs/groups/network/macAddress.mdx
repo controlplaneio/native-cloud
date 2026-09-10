@@ -18,16 +18,15 @@ params:
 description: Specification for network.native.cloud/macAddress key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="network.native.cloud/macAddress" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -48,8 +47,4 @@ The value **must** use colon separators (e.g., `00:1A:2B:3C:4D:5E`). Hexadecimal
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["00:1A:2B:3C:4D:5E","52:54:00:12:34:56"]} />
+<Values frontmatter={frontmatter} />

@@ -15,16 +15,15 @@ params:
 description: Specification for workload.native.cloud/dashboardURL key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="workload.native.cloud/dashboardURL" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -51,8 +50,4 @@ optionally restrict URLs to approved dashboard platforms or domains.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["https://grafana.example.com/d/abc123/my-service","https://datadog.example.com/dashboard/xyz789","https://monitoring.example.com/workloads/payment-service"]} />
+<Values frontmatter={frontmatter} />

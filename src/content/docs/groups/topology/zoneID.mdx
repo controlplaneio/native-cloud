@@ -12,16 +12,15 @@ params:
 description: Specification for topology.native.cloud/zoneID key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="topology.native.cloud/zoneID" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={false}
   label={true}
   taint={false}
@@ -40,8 +39,4 @@ This key provides a standard way to refer to zones that works across different p
 You can use this key when you need to coordinate with other organizations about which
 availability zones to use, or to avoid.
 
-
-
-## Example Values
-
-<ExampleValues values={["antartica-42a-1"]} />
+<Values frontmatter={frontmatter} />

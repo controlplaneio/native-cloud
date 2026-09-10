@@ -12,16 +12,15 @@ params:
 description: Specification for identity.native.cloud/username key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="identity.native.cloud/username" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={true}
   taint={false}
@@ -37,8 +36,4 @@ are always included in the meaning of this key, but machine identities
 If your username format allows usernames that do not match Kubernetes' label
 values, you should use this key exclusively for annotations.
 
-
-
-## Example Values
-
-<ExampleValues values={["lovelaceada"]} />
+<Values frontmatter={frontmatter} />

@@ -16,16 +16,15 @@ params:
 description: Specification for compute.native.cloud/baseboardSerialNumber key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="compute.native.cloud/baseboardSerialNumber" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -54,8 +53,4 @@ You can define validation rules that enforce this constraint.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["EFGH9876543210","SN-BB-2024-005678","MB123456789ABC","9668d047-7280-42f3-96e0-4d28d431d4ba"]} />
+<Values frontmatter={frontmatter} />

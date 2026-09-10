@@ -16,16 +16,15 @@ params:
 description: Specification for vendor.native.cloud/serviceLevelAgreementURLs key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="vendor.native.cloud/serviceLevelAgreementURLs" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -55,8 +54,4 @@ overall value schema.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["[\"https://example.com/sla\"]","{\"standard\": \"https://example.com/sla-standard\", \"premium\": \"https://example.com/sla-premium\"}"]} />
+<Values frontmatter={frontmatter} />

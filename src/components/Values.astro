@@ -1,0 +1,30 @@
+---
+import ExampleValues from '~/components/ExampleValues.astro';
+import AllowedValues from '~/components/AllowedValues.astro';
+interface Props {
+  frontmatter: Frontmatter;
+}
+
+const { frontmatter } = Astro.props;
+
+const {
+  allowedValues = [],
+  exampleValues = [],
+} = frontmatter.params?.ontology ?? {};
+---
+
+{allowedValues.length > 0 && (
+  <>
+    <h2>Allowed Values</h2>
+
+    <AllowedValues values={allowedValues} />
+  </>
+)}
+
+{exampleValues.length > 0 && (
+  <>
+    <h2>Example Values</h2>
+
+    <ExampleValues values={exampleValues} />
+  </>
+)}
