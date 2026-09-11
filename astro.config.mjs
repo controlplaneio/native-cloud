@@ -55,23 +55,47 @@ export default defineConfig({
         },
         {
           label: 'Context Uses',
-          autogenerate: { directory: 'context-uses' },
+          items: [{ autogenerate: { directory: 'context-uses' } }],
         },
         {
           label: 'Advice & Tips',
-          autogenerate: { directory: 'advice-tips' },
+          items: [{ autogenerate: { directory: 'advice-tips' } }],
         },
         {
           label: 'Ontology Domains',
           items: [
-            { label: 'Compute', autogenerate: { directory: 'groups/compute' } },
-            { label: 'Identity', autogenerate: { directory: 'groups/identity' } },
-            { label: 'Network', autogenerate: { directory: 'groups/network' } },
-            { label: 'Storage', autogenerate: { directory: 'groups/storage' } },
-            { label: 'Tenancy', autogenerate: { directory: 'groups/tenancy' } },
-            { label: 'Topology', autogenerate: { directory: 'groups/topology' } },
-            { label: 'Vendor', autogenerate: { directory: 'groups/vendor' } },
-            { label: 'Workload', autogenerate: { directory: 'groups/workload' } },
+            {
+              label: 'Compute',
+              items: [{ autogenerate: { directory: 'groups/compute' } }],
+            },
+            {
+              label: 'Identity',
+              items: [{ autogenerate: { directory: 'groups/identity' } }],
+            },
+            {
+              label: 'Network',
+              items: [{ autogenerate: { directory: 'groups/network' } }],
+            },
+            {
+              label: 'Storage',
+              items: [{ autogenerate: { directory: 'groups/storage' } }],
+            },
+            {
+              label: 'Tenancy',
+              items: [{ autogenerate: { directory: 'groups/tenancy' } }],
+            },
+            {
+              label: 'Topology',
+              items: [{ autogenerate: { directory: 'groups/topology' } }],
+            },
+            {
+              label: 'Vendor',
+              items: [{ autogenerate: { directory: 'groups/vendor' } }],
+            },
+            {
+              label: 'Workload',
+              items: [{ autogenerate: { directory: 'groups/workload' } }],
+            },
           ],
         },
       ],
