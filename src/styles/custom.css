@@ -167,6 +167,27 @@ header .site-title img,
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
+/* same as above but bigger drop shadow for bigger image/svg */
+.hero-logo-svg {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 50px rgba(251, 177, 91, 0.4));
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* by default search on mobile/tablet sits central, this shifts it over */
+header.header > div.header {
+  justify-content: flex-end;
+}
+header.header > div.header > .title-wrapper {
+  margin-right: auto;
+}
+
 /* ==========================================================================
    Header Harmony: Transparent Inner Header & Unified Outer Header
    ========================================================================== */
@@ -465,7 +486,7 @@ header.header {
 }
 
 [data-theme='light'] .footer-col h3 {
-  color: var(--sl-color-black);
+  color: var(--sl-color-text);
 }
 
 .footer-col ul {
@@ -503,7 +524,7 @@ header.header {
 }
 
 [data-theme='light'] .footer-brand-title {
-  color: var(--sl-color-black);
+  color: var(--sl-color-text);
 }
 
 .footer-tagline {
@@ -519,7 +540,8 @@ header.header {
   color: var(--sl-color-gray-4);
 }
 
-.sponsor-link {
+/* don't want to hit ublock origin css */
+.spsr-link {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;

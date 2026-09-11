@@ -18,19 +18,19 @@ const {
   <div class="context-badges-grid">
     <div class={`context-badge ${annotation ? 'enabled' : 'disabled'}`}>
       <span>Kubernetes Annotation</span>
-      <span class="badge-status">{annotation ? '✓ Supported' : '—'}</span>
+      <span class="badge-status">{annotation ? '✓' : '—'}</span>
     </div>
     <div class={`context-badge ${label ? 'enabled' : 'disabled'}`}>
       <span>Kubernetes Label</span>
-      <span class="badge-status">{label ? '✓ Supported' : '—'}</span>
+      <span class="badge-status">{label ? '✓' : '—'}</span>
     </div>
     <div class={`context-badge ${taint ? 'enabled' : 'disabled'}`}>
       <span>Kubernetes Taint</span>
-      <span class="badge-status">{taint ? '✓ Supported' : '—'}</span>
+      <span class="badge-status">{taint ? '✓' : '—'}</span>
     </div>
     <div class={`context-badge ${resourceClaim ? 'enabled' : 'disabled'}`}>
       <span>ResourceClaim</span>
-      <span class="badge-status">{resourceClaim ? '✓ Supported' : '—'}</span>
+      <span class="badge-status">{resourceClaim ? '✓' : '—'}</span>
     </div>
   </div>
 </div>
