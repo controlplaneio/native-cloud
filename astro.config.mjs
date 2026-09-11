@@ -8,6 +8,7 @@ export default defineConfig({
     starlight({
       title: 'native.cloud',
       description: 'Shared names for common ideas in cloud native infrastructure metadata.',
+      routeMiddleware: './src/routeData.ts',
       logo: {
         src: './src/assets/ocno_icon.svg',
       },

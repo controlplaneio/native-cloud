@@ -39,8 +39,8 @@ test.describe('Ontology Specifications & Custom Components', () => {
     await expect(labelBadge).toHaveClass(/disabled/);
 
     // 3. Validation Constraint Aside
-    const aside = page.locator('.starlight-aside, .sl-markdown-content aside, aside[aria-label]');
-    await expect(aside.first()).toBeVisible();
+    const aside = page.locator('aside.starlight-aside');
+    await expect(aside).toBeVisible();
 
     // 4. ExampleValues
     const exampleValues = page.locator('.example-values-list');

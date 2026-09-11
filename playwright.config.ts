@@ -1,7 +1,19 @@
 import { defineConfig, devices } from '@playwright/test';
+import { execFileSync } from 'node:child_process';
 
 const PORT = process.env.PORT || 4321;
 const BASE_URL = `http://localhost:${PORT}`;
+
+function checkForBun() {
+  try {
+    execFileSync('bun', ['--version'], { stdio: 'ignore' });
+    return true
+  } catch {
+    return false
+  }
+}
+
+const hasBun = checkForBun()
 
 export default defineConfig({
   testDir: './tests/acceptance',
@@ -30,7 +42,7 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: `bun run preview -- --port ${PORT}`,
+    command: `${hasBun ? "bun" : "npm"} run preview -- --port ${PORT}`,
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',
