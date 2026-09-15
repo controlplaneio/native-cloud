@@ -29,3 +29,20 @@ $ echo "use flake ./contrib/nix" > .envrc
 # approve the `.envrc` if you're happy
 $ direnv allow
 ```
+
+## Playwright
+
+To run playwright tests it's best to use a container.
+
+It can be difficult to match versions via nix with playwright in `package-lock.json`
+
+```sh
+# adjust version to match or use `jq` to extract it
+export PW_VERSION="$(jq < package-lock.json '.packages."node_modules/playwright-core".version')"
+
+# to just run headless:
+docker run --rm -it -v "$PWD:/app" -w /app "mcr.microsoft.com/playwright:v$VERSION-noble" npm run test:e2e
+
+# to run in ui mode over HTTP:
+docker run --rm -it -p 9323:9323 -v "$PWD:/app" -w /app "mcr.microsoft.com/playwright:v$VERSION-noble" npm run test:e2e:ui -- --ui-host=0.0.0.0 --ui-port=9323
+```

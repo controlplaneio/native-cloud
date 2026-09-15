@@ -14,16 +14,15 @@ params:
 description: Specification for tenancy.native.cloud/tenantID key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="tenancy.native.cloud/tenantID" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={true}
   taint={true}
@@ -62,8 +61,4 @@ metadata:
     kubernetes.io/description: "Namespace for tenant-12345 (ACME Corporation)"
 ```
 
-
-
-## Example Values
-
-<ExampleValues values={["tenant-12345","org-acme-corp","customer-uuid-a1b2c3d4"]} />
+<Values frontmatter={frontmatter} />

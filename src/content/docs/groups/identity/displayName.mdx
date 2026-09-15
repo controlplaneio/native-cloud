@@ -14,16 +14,15 @@ params:
 description: Specification for identity.native.cloud/displayName key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="identity.native.cloud/displayName" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -53,8 +52,4 @@ constraints appropriate for your organization.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["Ada Lovelace","CI/CD Pipeline Runner antartica-7245ec4f6781","张伟"]} />
+<Values frontmatter={frontmatter} />

@@ -16,16 +16,15 @@ params:
 description: Specification for workload.native.cloud/version key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="workload.native.cloud/version" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -59,8 +58,4 @@ You can define validation rules that enforce SemVer 2.0.0 version numbering.
 Because SemVer 2.0.0 allows characters (such as `+`) that are not valid in
 Kubernetes label values, this key can only be used as an annotation.
 
-
-
-## Example Values
-
-<ExampleValues values={["1.0.0","2.3.4-alpha.1","0.1.0-beta+20240605","3.2.1+build.123"]} />
+<Values frontmatter={frontmatter} />

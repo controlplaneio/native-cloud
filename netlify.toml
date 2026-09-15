@@ -17,6 +17,16 @@ command = "npm run build"
 [context.branch-deploy]
 command = "npm run build"
 
+# Global security headers
+[[headers]]
+for = "/*"
+[headers.values]
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
 # Cache immutable build assets for high performance
 [[headers]]
 for = "/_astro/*"

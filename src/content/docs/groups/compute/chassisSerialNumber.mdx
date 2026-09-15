@@ -15,16 +15,15 @@ params:
 description: Specification for compute.native.cloud/chassisSerialNumber key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="compute.native.cloud/chassisSerialNumber" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -51,8 +50,4 @@ You can define validation rules that enforce this constraint.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["ABCD1234567890","SN-CH-2024-001234","ExampleVendor-42 1a:3c:5d:6e:7f:8a:9b-c0:d1:e2:f3"]} />
+<Values frontmatter={frontmatter} />

@@ -14,16 +14,15 @@ params:
 description: Specification for compute.native.cloud/outsideThermalTolerance key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="compute.native.cloud/outsideThermalTolerance" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={false}
   label={false}
   taint={true}
@@ -57,8 +56,4 @@ tolerations:
 
 For example, if you have thermal management software, that software should run regardless of node temperature.
 
-## Allowed Values
-
-<AllowedValues values={["TooCold","TooHot"]} />
-
-
+<Values frontmatter={frontmatter} />

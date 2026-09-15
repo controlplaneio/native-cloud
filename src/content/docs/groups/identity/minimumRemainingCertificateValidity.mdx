@@ -17,16 +17,15 @@ description: >-
   key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="identity.native.cloud/minimumRemainingCertificateValidity" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={false}
   label={true}
   taint={false}
@@ -73,8 +72,4 @@ Where feasible, you **should** define validation rules that enforce this duratio
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["30d","90d","7d","1y"]} />
+<Values frontmatter={frontmatter} />

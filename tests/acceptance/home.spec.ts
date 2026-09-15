@@ -8,7 +8,7 @@ test.describe('Landing Page & Visual Elements', () => {
   test('should render hero title, tagline, and brand identity', async ({ page }) => {
     await expect(page).toHaveTitle(/native\.cloud/);
     const heroHeading = page.locator('.hero h1');
-    await expect(heroHeading).toContainText('native.cloud');
+    await expect(heroHeading).toContainText('Cloud Native Infrastructure Metadata Ontology');
 
     const tagline = page.locator('.hero .tagline');
     await expect(tagline).toContainText('Shared names for common ideas');
@@ -49,8 +49,8 @@ test.describe('Landing Page & Visual Elements', () => {
     await expect(page.locator('main h1, [data-page-title]').first()).toContainText('storage.native.cloud');
   });
 
-  test('should have GitHub social repository link', async ({ page }) => {
-    const githubLink = page.locator('footer a[href*="github.com/controlplaneio/native-cloud"]');
-    await expect(githubLink.first()).toBeVisible();
+  test('should have GitHub social repository link', async ({ page, isMobile }) => {
+    const githubLink = page.locator(isMobile ? '.sponsor-desc' : 'header').locator('a[href*="github.com/controlplaneio/native-cloud"]');
+    await expect(githubLink).toBeVisible();
   });
 });

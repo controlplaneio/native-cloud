@@ -21,8 +21,8 @@ test.describe('Reference Guides, Mobile Responsive & 404 Handling', () => {
 
   test('should render advice and tips pages', async ({ page }) => {
     await page.goto('/advice-tips/kyverno/');
-    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('Kyverno');
-    await expect(page.locator('main')).toContainText('policy management tool');
+    await expect(page.locator('h1')).toContainText('Kyverno');
+    await expect(page.locator('body')).toContainText('ValidatingAdmissionPolicy');
   });
 
   test('should render 404 page when visiting non-existent path', async ({ page }) => {

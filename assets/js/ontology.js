@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
     dtElements.forEach(function(dt) {
       dt.style.cursor = 'pointer';
 
-      dt.addEventListener('click', function(event) {
+      dt.addEventListener('click', function(e) {
+        e.preventDefault();
         const keyId = dt.id;
         if (keyId) {
           const currentFragment = window.location.hash.substring(1);

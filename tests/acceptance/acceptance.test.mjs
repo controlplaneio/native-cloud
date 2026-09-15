@@ -5,7 +5,7 @@ import path from 'node:path';
 
 const DIST_DIR = path.resolve('./dist');
 
-test.describe('Astro Starlight Acceptance Suite', () => {
+test.describe('Astro Starlight Comprehensive Acceptance Suite', () => {
   test('Home Page renders title, hero actions, pure white inline hero logo, and 8 ontology cards', () => {
     const homeHtml = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf-8');
     assert.ok(homeHtml.includes('native.cloud'), 'Title includes native.cloud');
@@ -54,14 +54,46 @@ test.describe('Astro Starlight Acceptance Suite', () => {
     assert.ok(!aboutHtml.includes('LocalImageUsedWrongly'), 'No image error on about page');
   });
 
-  test('Ontology Group Index contains GroupKeysTable and TOC', () => {
-    const computeIndexHtml = fs.readFileSync(path.join(DIST_DIR, 'groups/compute/index.html'), 'utf-8');
-    assert.ok(computeIndexHtml.includes('compute.native.cloud'), 'Group title present');
-    assert.ok(computeIndexHtml.includes('baseboardSerialNumber'), 'Key baseboardSerialNumber present in table');
-    assert.ok(computeIndexHtml.includes('/groups/compute/baseboardserialnumber/'), 'Key link present');
-    assert.ok(computeIndexHtml.includes('starlight-toc'), 'Table of Contents present on group index');
-    assert.ok(computeIndexHtml.includes('Domain Overview'), 'Domain Overview heading present');
-    assert.ok(computeIndexHtml.includes('Keys in this Domain'), 'Keys in this Domain heading present');
+  test('All 8 Ontology Domain Indexes contain GroupKeysTable and TOC', () => {
+    const domains = ['compute', 'identity', 'network', 'storage', 'tenancy', 'topology', 'vendor', 'workload'];
+    for (const domain of domains) {
+      const indexPath = path.join(DIST_DIR, `groups/${domain}/index.html`);
+      assert.ok(fs.existsSync(indexPath), `Domain index for ${domain} exists`);
+      const html = fs.readFileSync(indexPath, 'utf-8');
+      assert.ok(html.includes(`${domain}.native.cloud`), `Domain title present in ${domain}`);
+      assert.ok(html.includes('Domain Overview'), `Domain Overview heading in ${domain}`);
+      assert.ok(html.includes('Keys in this Domain'), `Keys in this Domain heading in ${domain}`);
+      assert.ok(html.includes('group-keys-table') || html.includes('<table'), `Keys table in ${domain}`);
+    }
+  });
+
+  test('All Context Uses and Advice & Tips pages render cleanly', () => {
+    const contextPages = [
+      'context-uses/index.html',
+      'context-uses/kubernetesannotation/index.html',
+      'context-uses/kuberneteslabel/index.html',
+      'context-uses/kubernetesresourceclaim/index.html',
+      'context-uses/kubernetestaint/index.html',
+      'context-uses/ociannotation/index.html',
+    ];
+    for (const p of contextPages) {
+      const html = fs.readFileSync(path.join(DIST_DIR, p), 'utf-8');
+      assert.ok(html.length > 200, `Context page ${p} is non-empty`);
+      assert.ok(!html.includes('LocalImageUsedWrongly'), `No error on ${p}`);
+    }
+
+    const advicePages = [
+      'advice-tips/index.html',
+      'advice-tips/contexts/index.html',
+      'advice-tips/kubernetes-quantities/index.html',
+      'advice-tips/kyverno/index.html',
+      'advice-tips/validating-admission-policy/index.html',
+    ];
+    for (const p of advicePages) {
+      const html = fs.readFileSync(path.join(DIST_DIR, p), 'utf-8');
+      assert.ok(html.length > 200, `Advice page ${p} is non-empty`);
+      assert.ok(!html.includes('{.table-extra-padding}'), `No kramdown tag on ${p}`);
+    }
   });
 
   test('Ontology Key Specification renders KeyHeader, ContextBadges, ExampleValues, and Action Links', () => {

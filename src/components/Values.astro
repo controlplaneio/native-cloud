@@ -1,0 +1,42 @@
+---
+import AnchorHeading from '@astrojs/starlight/components/AnchorHeading.astro';
+import ExampleValues from '~/components/ExampleValues.astro';
+import AllowedValues from '~/components/AllowedValues.astro';
+
+type Frontmatter =
+  typeof Astro.locals.starlightRoute.entry.data;
+
+interface Props {
+  frontmatter: Frontmatter;
+}
+
+const { frontmatter } = Astro.props;
+
+const {
+  allowedValues = [],
+  exampleValues = [],
+} = frontmatter.params?.ontology ?? {};
+
+// when changing these conditionally added headings also update `src/routeData.ts`
+// where we attach the headings to the ToC
+---
+
+{allowedValues.length > 0 && (
+  <>
+    <AnchorHeading level={2} id="allowed-values">
+      Allowed Values
+    </AnchorHeading>
+
+    <AllowedValues values={allowedValues} />
+  </>
+)}
+
+{exampleValues.length > 0 && (
+  <>
+    <AnchorHeading level={2} id="example-values">
+      Example Values
+    </AnchorHeading>
+
+    <ExampleValues values={exampleValues} />
+  </>
+)}

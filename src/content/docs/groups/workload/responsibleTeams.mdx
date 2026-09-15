@@ -15,16 +15,15 @@ params:
 description: Specification for workload.native.cloud/responsibleTeams key.
 ---
 
-import KeyHeader from '../../../../components/KeyHeader.astro';
-import ContextBadges from '../../../../components/ContextBadges.astro';
-import ExampleValues from '../../../../components/ExampleValues.astro';
-import AllowedValues from '../../../../components/AllowedValues.astro';
+import KeyHeader from '~/components/KeyHeader.astro';
+import ContextBadges from '~/components/ContextBadges.astro';
+import Values from '~/components/Values.astro';
 
 <KeyHeader keyName="workload.native.cloud/responsibleTeams" />
 
 ## Applicable Contexts
 
-<ContextBadges 
+<ContextBadges
   annotation={true}
   label={false}
   taint={false}
@@ -59,8 +58,4 @@ restrict team identifiers to a known set of team names in your organization.
 
 :::
 
-
-
-## Example Values
-
-<ExampleValues values={["[\"platform-team\"]","[\"platform-team-antartica\", \"security-team-global\"]","[\"frontend\", \"backend\", \"sre\"]"]} />
+<Values frontmatter={frontmatter} />
