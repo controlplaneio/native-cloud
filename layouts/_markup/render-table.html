@@ -1,102 +1,100 @@
 {{- $isFooterTable := false -}}
 {{- with .Attributes.class -}}
-  {{- range (split . " ") -}}
-    {{- if (hasPrefix . "footer-" ) -}}
-      {{- $isFooterTable = true -}}
-    {{- end -}}
-  {{- end -}}
+	{{- range (split . " ") -}}
+		{{- if (hasPrefix . "footer-") -}}
+			{{- $isFooterTable = true -}}
+		{{- end -}}
+	{{- end -}}
 {{- end -}}
 {{- /* Validate that tables in the footer must have a footer- class */ -}}
 {{- $isFooterPage := eq .Page.Layout "footer" -}}
 {{- if $isFooterPage -}}
-  {{- if not $isFooterTable -}}
-    {{- warnf "%s Page: %s" "Expected to see a footer- class attribute on this table; see https://gohugo.io/content-management/markdown-attributes/" .Page.Path -}}
-    {{- errorf "Footer contains a table without a footer- class. Footer page tables must have a custom class declared." -}}
-  {{- end -}}
+	{{- if not $isFooterTable -}}
+		{{- warnf "%s Page: %s" "Expected to see a footer- class attribute on this table; see https://gohugo.io/content-management/markdown-attributes/" .Page.Path -}}
+		{{- errorf "Footer contains a table without a footer- class. Footer page tables must have a custom class declared." -}}
+	{{- end -}}
 {{- end -}}
 {{- if $isFooterTable -}}
-<div class="{{ .Attributes.class }}">
-  {{- with .THead }}
-  {{- range first 1 . }}
-  <h3>{{ (index . 0).Text }}</h3>
-  {{- end }}
-  {{- end }}
-  <ul>
-  {{- $tbody := .TBody -}}
-  {{- $isSponsorsTable := in .Attributes.class "footer-sponsors" -}}
-  {{- $prevLevel := -1 -}}
-  {{- $maxLevel := -1 -}}
-  {{- range $tbody }}
-    {{- if eq (len .) 2 -}}
-      {{- /* 2-column table: text and URL */ -}}
-      <li>
-        <a href="{{ (index . 1).Text | plainify | safeURL }}">{{ (index . 0).Text }}</a>
-      </li>
-    {{- else if eq (len .) 3 -}}
-      {{- /* 3-column table: name, URL, level */ -}}
-      {{- $levelNum := (index . 2).Text -}}
-      {{- $levelInt := int $levelNum -}}
-      {{- if $isSponsorsTable -}}
-        {{- if lt $levelInt $prevLevel -}}
-          {{- errorf "Sponsor levels must be in numerically ascending order. Found level %s after level %d" $levelNum $prevLevel -}}
-        {{- end -}}
-        {{- $prevLevel = $levelInt -}}
-        {{- if gt $levelInt $maxLevel -}}
-          {{- $maxLevel = $levelInt -}}
-        {{- end -}}
-      {{- end -}}
-      {{- $levelKey := printf "sponsor_level_%s" $levelNum -}}
-      {{- $levelText := T $levelKey -}}
-      {{- if eq $levelText "" -}}
-        {{- errorf "Sponsor level '%s' has no translation defined (key: %s)" $levelNum $levelKey -}}
-      {{- end -}}
-      <li>
-        <a href="{{ (index . 1).Text | plainify | safeURL }}">{{ (index . 0).Text }}</a>
-        <span class="footer-level footer-level-{{ $levelNum }}">{{ $levelText }}</span>
-      </li>
-    {{- else -}}
-      {{- /* Fallback: render all cells */ -}}
-      <li>{{ .Text }}</li>
-    {{- end -}}
-  {{- end }}
-  </ul>
-</div>
+	<div class="{{ .Attributes.class }}">
+		{{- with .THead }}
+			{{- range first 1 . }}
+				<h3>{{ (index . 0).Text }}</h3>
+			{{- end }}
+		{{- end }}
+		<ul>
+			{{- $tbody := .TBody -}}
+			{{- $isSponsorsTable := in .Attributes.class "footer-sponsors" -}}
+			{{- $prevLevel := -1 -}}
+			{{- $maxLevel := -1 -}}
+			{{- range $tbody }}
+				{{- if eq (len .) 2 -}}
+					{{- /* 2-column table: text and URL */ -}}
+					<li>
+						<a href="{{ (index . 1).Text | plainify | safeURL }}">{{ (index . 0).Text }}</a>
+					</li>
+				{{- else if eq (len .) 3 -}}
+					{{- /* 3-column table: name, URL, level */ -}}
+					{{- $levelNum := (index . 2).Text -}}
+					{{- $levelInt := int $levelNum -}}
+					{{- if $isSponsorsTable -}}
+						{{- if lt $levelInt $prevLevel -}}
+							{{- errorf "Sponsor levels must be in numerically ascending order. Found level %s after level %d" $levelNum $prevLevel -}}
+						{{- end -}}
+						{{- $prevLevel = $levelInt -}}
+						{{- if gt $levelInt $maxLevel -}}
+							{{- $maxLevel = $levelInt -}}
+						{{- end -}}
+					{{- end -}}
+					{{- $levelKey := printf "sponsor_level_%s" $levelNum -}}
+					{{- $levelText := T $levelKey -}}
+					{{- if eq $levelText "" -}}
+						{{- errorf "Sponsor level '%s' has no translation defined (key: %s)" $levelNum $levelKey -}}
+					{{- end -}}
+					<li>
+						<a href="{{ (index . 1).Text | plainify | safeURL }}">{{ (index . 0).Text }}</a>
+						<span class="footer-level footer-level-{{ $levelNum }}">{{ $levelText }}</span>
+					</li>
+				{{- else -}}
+					{{- /* Fallback: render all cells */ -}}
+					<li>{{ .Text }}</li>
+				{{- end -}}
+			{{- end }}
+		</ul>
+	</div>
 {{- else -}}
-<table
-  {{- range $k, $v := .Attributes }}
-    {{- if $v }}
-      {{- printf " %s=%q" $k $v | safeHTMLAttr }}
-    {{- end }}
-  {{- end }}>
-  <thead>
-    {{- range .THead }}
-      <tr>
-        {{- range . }}
-          <th
-            {{- with .Alignment }}
-              {{- printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}
-            {{- end -}}
-          >
-            {{- .Text -}}
-          </th>
-        {{- end }}
-      </tr>
-    {{- end }}
-  </thead>
-  <tbody>
-    {{- range .TBody }}
-      <tr>
-        {{- range . }}
-          <td
-            {{- with .Alignment }}
-              {{- printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}
-            {{- end -}}
-          >
-            {{- .Text -}}
-          </td>
-        {{- end }}
-      </tr>
-    {{- end }}
-  </tbody>
-</table>
+	<table
+		{{- range $k, $v := .Attributes }}
+			{{- if $v }}
+			{{- printf " %s=%q" $k $v | safeHTMLAttr }}
+			{{- end }}
+		{{- end }}>
+		<thead>
+			{{- range .THead }}
+				<tr>
+					{{- range . }}
+						<th
+							{{- with .Alignment }}
+							{{- printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}
+							{{- end -}}>
+							{{- .Text -}}
+						</th>
+					{{- end }}
+				</tr>
+			{{- end }}
+		</thead>
+		<tbody>
+			{{- range .TBody }}
+				<tr>
+					{{- range . }}
+						<td
+							{{- with .Alignment }}
+							{{- printf " style=%q" (printf "text-align: %s" .) | safeHTMLAttr }}
+							{{- end -}}>
+							{{- .Text -}}
+						</td>
+					{{- end }}
+				</tr>
+			{{- end }}
+		</tbody>
+	</table>
 {{- end -}}

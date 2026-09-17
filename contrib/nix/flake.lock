@@ -70,12 +70,29 @@
         "type": "github"
       }
     },
+    "nixpkgs-gotmplfmt-hugo": {
+      "locked": {
+        "lastModified": 1786535422,
+        "narHash": "sha256-dWJfPRfeLB5kngEpKifQSuu5zyr23eQ9ciPKiXtRTVE=",
+        "owner": "06kellyjac",
+        "repo": "nixpkgs",
+        "rev": "b1649408ea369a277667ce5862a828a0b32d4e08",
+        "type": "github"
+      },
+      "original": {
+        "owner": "06kellyjac",
+        "ref": "init/gotmplfmt-hugo",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "devshell": "devshell",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-gotmplfmt-hugo": "nixpkgs-gotmplfmt-hugo"
       }
     },
     "systems": {

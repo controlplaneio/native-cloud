@@ -18,11 +18,9 @@ params:
       kubernetesTaint: false
 ---
 
-
 Use this key to indicate that infrastructure is located within the borders of
 a country.
 Use the 2-letter ISO 3166 code for the country, all-uppercase.
-
 
 {{% ontology-validation %}}
 You should not set values for this key to a code not defined by ISO 3166,

@@ -4,36 +4,36 @@
 {{- $warnings := slice -}}
 
 {{- if $groupsSection -}}
-  {{- /* Check all annotations in all groups */ -}}
-  {{- range $groupsSection.Pages -}}
-    {{- $groupName := .Params.group -}}
-    {{- if $groupName -}}
-      {{- /* Transform group name to OCI annotation format (reverse domain) */ -}}
-      {{- $parts := split $groupName "." -}}
-      {{- $reversed := slice -}}
-      {{- $len := len $parts -}}
-      {{- range seq $len -}}
-        {{- $idx := sub $len . -}}
-        {{- $reversed = $reversed | append (index $parts $idx) -}}
-      {{- end -}}
-      {{- $annotationPrefix := delimit $reversed "." -}}
-      {{- range .Pages -}}
-        {{- $actualAnnotation := .Params.ontology.ociAnnotation -}}
-        {{- if $actualAnnotation -}}
-          {{- $expectedAnnotation := printf "%s.%s" $annotationPrefix .File.TranslationBaseName -}}
-          {{- if ne $actualAnnotation $expectedAnnotation -}}
-            {{- $warning := printf "Annotation mismatch in file '%s': expected '%s' but found '%s'" .File.Path $expectedAnnotation $actualAnnotation -}}
-            {{- $warnings = $warnings | append $warning -}}
-            {{- warnf $warning -}}
-          {{- else -}}
-          {{- end -}}
-        {{- end -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
+	{{- /* Check all annotations in all groups */ -}}
+	{{- range $groupsSection.Pages -}}
+		{{- $groupName := .Params.group -}}
+		{{- if $groupName -}}
+			{{- /* Transform group name to OCI annotation format (reverse domain) */ -}}
+			{{- $parts := split $groupName "." -}}
+			{{- $reversed := slice -}}
+			{{- $len := len $parts -}}
+			{{- range seq $len -}}
+				{{- $idx := sub $len . -}}
+				{{- $reversed = $reversed | append (index $parts $idx) -}}
+			{{- end -}}
+			{{- $annotationPrefix := delimit $reversed "." -}}
+			{{- range .Pages -}}
+				{{- $actualAnnotation := .Params.ontology.ociAnnotation -}}
+				{{- if $actualAnnotation -}}
+					{{- $expectedAnnotation := printf "%s.%s" $annotationPrefix .File.TranslationBaseName -}}
+					{{- if ne $actualAnnotation $expectedAnnotation -}}
+						{{- $warning := printf "Annotation mismatch in file '%s': expected '%s' but found '%s'" .File.Path $expectedAnnotation $actualAnnotation -}}
+						{{- $warnings = $warnings | append $warning -}}
+						{{- warnf $warning -}}
+					{{- else -}}
+					{{- end -}}
+				{{- end -}}
+			{{- end -}}
+		{{- end -}}
+	{{- end -}}
 
-  {{- /* Error if there were any warnings */ -}}
-  {{- if gt (len $warnings) 0 -}}
-    {{- errorf "Found %d annotation path mismatches. See warnings above for details." (len $warnings) -}}
-  {{- end -}}
+	{{- /* Error if there were any warnings */ -}}
+	{{- if gt (len $warnings) 0 -}}
+		{{- errorf "Found %d annotation path mismatches. See warnings above for details." (len $warnings) -}}
+	{{- end -}}
 {{- end -}}

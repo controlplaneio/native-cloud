@@ -10,13 +10,22 @@ layout: footer
 # The order you list the tables determines the order of the columns in the footer.
 ---
 
-| Links | URL / text                                             |
-|--------------|-------------------------------------------------|
-| GitHub       | https://github.com/controlplaneio/native-cloud/ |
+<!--
+  hugo enforcestables must have a class
+  https://gohugo.io/content-management/markdown-attributes/
+  prettier puts a newline between those tables and classes
+
+  if you adjust the tables you can temporarily remove the ignore, remove the
+  newlines and re-add the ignores
+-->
+<!-- prettier-ignore-start -->
+| Links  | URL / text                                      |
+| ------ | ----------------------------------------------- |
+| GitHub | https://github.com/controlplaneio/native-cloud/ |
 {.footer-socials}
 
-| Sponsors     | URL / text                     | Level    |
-|--------------|--------------------------------|----------|
-| ControlPlane | https://control-plane.io       | 2        |
+| Sponsors     | URL / text               | Level |
+| ------------ | ------------------------ | ----- |
+| ControlPlane | https://control-plane.io | 2     |
 {.footer-sponsors}
-
+<!-- prettier-ignore-end -->

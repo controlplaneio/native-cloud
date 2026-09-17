@@ -1,17 +1,17 @@
 {{- /* Render ontology key content with checkbox-based disclosure for content after <!-- more --> */ -}}
 {{- if .Truncated -}}
-  {{- /* Content has <!-- more --> marker */ -}}
-  <div class="more-wrapper">
-    <input type="checkbox" id="more-{{ .File.UniqueID }}" class="more-toggle">
-    <div class="summary-only">
-      {{- .Summary -}}
-      <label for="more-{{ .File.UniqueID }}" class="more-label">{{ T "show_more_details" }}</label>
-    </div>
-    <div class="more-text">
-      {{- .Content -}}
-    </div>
-  </div>
+	{{- /* Content has <!-- more --> marker */ -}}
+	<div class="more-wrapper">
+		<input type="checkbox" id="more-{{ .File.UniqueID }}" class="more-toggle">
+		<div class="summary-only">
+			{{- .Summary -}}
+			<label for="more-{{ .File.UniqueID }}" class="more-label">{{ T "show_more_details" }}</label>
+		</div>
+		<div class="more-text">
+			{{- .Content -}}
+		</div>
+	</div>
 {{- else -}}
-  {{- /* No <!-- more --> marker, show all content */ -}}
-  {{- .Content -}}
+	{{- /* No <!-- more --> marker, show all content */ -}}
+	{{- .Content -}}
 {{- end -}}

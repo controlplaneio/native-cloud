@@ -4,19 +4,19 @@
 {{- $groupsSection := site.GetPage "/groups" -}}
 {{- $discoveredGroups := slice -}}
 {{- range $groupsSection.Pages -}}
-  {{- $groupName := path.Base .File.Dir -}}
-  {{- if not (in $discoveredGroups $groupName) -}}
-    {{- $discoveredGroups = $discoveredGroups | append $groupName -}}
-  {{- end -}}
+	{{- $groupName := path.Base .File.Dir -}}
+	{{- if not (in $discoveredGroups $groupName) -}}
+		{{- $discoveredGroups = $discoveredGroups | append $groupName -}}
+	{{- end -}}
 {{- end -}}
 
 {{- if $discoveredGroups -}}
-## {{ i18n "ontology_groups_title" }} {.ontology-groups-heading}
-{{ printf "\n" }}
-{{- range $discoveredGroups -}}
-- [{{ . | lower }}](/{{ . }})
-{{ end }}
-{.ontology-groups-list}
+	## {{ i18n "ontology_groups_title" }} {.ontology-groups-heading}
+	{{ printf "\n" }}
+	{{- range $discoveredGroups -}}
+		- [{{ . | lower }}](/{{ . }})
+	{{ end }}
+	{.ontology-groups-list}
 {{- else -}}
-{{- errorf "No groups found in ontology" -}}
+	{{- errorf "No groups found in ontology" -}}
 {{- end -}}

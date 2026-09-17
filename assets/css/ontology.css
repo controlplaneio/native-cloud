@@ -85,7 +85,9 @@ h6.allowed-values + ul {
   background-color: color-mix(in srgb, var(--accentColor) 25%, var(--bg-color));
   padding: 0.25rem 0.5rem;
   border-radius: 0.125rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
   font-size: 0.9em;
   white-space: pre;
 }
@@ -125,7 +127,9 @@ h6.allowed-values + ul {
 }
 
 .ontology-groups-heading + ul li {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
@@ -154,8 +158,7 @@ dd.ontology-type-oci-annotation .leadingspace {
   width: 0.5rem;
 }
 
-
-  /* Prefixes page styles */
+/* Prefixes page styles */
 section.prefixes {
   display: flex;
   flex-direction: column;
@@ -183,7 +186,9 @@ ul.prefixes-list > li {
 ul.prefixes-list > li a {
   color: var(--text-color);
   text-decoration: none;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
   font-size: 1.125rem;
 }
 
@@ -214,7 +219,9 @@ ul.prefixes-list > li + li {
 .prefix-keys-list li a {
   color: var(--text-color);
   text-decoration: none;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
   font-size: 0.875rem;
 }
 
@@ -292,7 +299,8 @@ ul.prefixes-list > li + li {
   display: inline-block;
 }
 
-.key-contexts-list li > a, .key-contexts-list li > span {
+.key-contexts-list li > a,
+.key-contexts-list li > span {
   display: inline-block;
   padding: 0.25rem 0.75rem;
   margin-right: 0.05rem;

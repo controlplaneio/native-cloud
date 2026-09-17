@@ -1,0 +1,50 @@
+on-unmatched = "warn"
+allow-missing-formatter = true
+
+# separate from `.gitignore`
+excludes = [
+  ".editorconfig",
+  ".envrc",
+  ".gitignore",
+  "*.lock",
+
+  ".direnv/**",
+  "node_modules/**",
+  # images
+  "*.{avif,png,svg,jpg,jpeg,webp}",
+  # build output
+  "public/**",
+]
+
+[formatter.gotmplfmt]
+  command = "gotmplfmt"
+  options = [ "-w" ]
+  includes = [ "*.html", "*.xml" ]
+
+[formatter.nixfmt]
+  command = "nixfmt"
+  options = [  ]
+  includes = [ "*.nix" ]
+
+[formatter.prettier]
+  command = "prettier"
+  options = [ "--write" ]
+  includes = [
+    # "*.html", # handled by gotmplfmt
+    "*.css",
+    "*.scss",
+    "*.js",
+    "*.jsx",
+    "*.ts",
+    "*.tsx",
+    "*.json",
+    "*.yaml",
+    "*.yml",
+    "*.md",
+    "*.mdx",
+  ]
+
+[formatter.taplo]
+  command = "taplo"
+  options = [ "format" ]
+  includes = [ "*.toml" ]

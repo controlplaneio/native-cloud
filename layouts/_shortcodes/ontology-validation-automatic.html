@@ -1,7 +1,7 @@
-### {{ .Get "title" | default (T "header_ontology_validation" ) }}
+### {{ .Get "title" | default (T "header_ontology_validation") }}
 
 {{- with site.GetPage "includes/automatic-validation" -}}
-  {{ .RenderShortcodes }}
+	{{ .RenderShortcodes }}
 {{- else -}}
-  {{ errorf "Could not find include page for automatic validation" }}
+	{{ errorf "Could not find include page for automatic validation" }}
 {{- end -}}

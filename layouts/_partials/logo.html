@@ -19,26 +19,26 @@
 {{- $pngInverted := "" -}}
 {{- with $png }}{{- $pngInverted = .Filter images.Invert -}}{{- end -}}
 <picture class="{{ $class }}">
-{{- if eq $scheme "dark" -}}
-  {{- with $pngInverted }}
-  <img src="{{ .RelPermalink }}" alt="{{ T "logo_alt_text" }}">
-  {{- end }}
-{{- else if eq $scheme "auto" -}}
-  {{- with $pngInverted }}
-  <source srcset="{{ .RelPermalink }}" media="(prefers-color-scheme: light)">
-  {{- end }}
-  {{- with $avif }}
-  <source srcset="{{ .RelPermalink }}" type="image/avif">
-  {{- end }}
-  {{- with $png }}
-  <img src="{{ .RelPermalink }}" alt="{{ T "logo_alt_text" }}">
-  {{- end }}
-{{- else -}}
-  {{- with $avif }}
-  <source srcset="{{ .RelPermalink }}" type="image/avif">
-  {{- end }}
-  {{- with $png }}
-  <img src="{{ .RelPermalink }}" alt="{{ T "logo_alt_text" }}">
-  {{- end }}
-{{- end -}}
+	{{- if eq $scheme "dark" -}}
+		{{- with $pngInverted }}
+			<img src="{{ .RelPermalink }}" alt="{{ T "logo_alt_text" }}">
+		{{- end }}
+	{{- else if eq $scheme "auto" -}}
+		{{- with $pngInverted }}
+			<source srcset="{{ .RelPermalink }}" media="(prefers-color-scheme: light)">
+		{{- end }}
+		{{- with $avif }}
+			<source srcset="{{ .RelPermalink }}" type="image/avif">
+		{{- end }}
+		{{- with $png }}
+			<img src="{{ .RelPermalink }}" alt="{{ T "logo_alt_text" }}">
+		{{- end }}
+	{{- else -}}
+		{{- with $avif }}
+			<source srcset="{{ .RelPermalink }}" type="image/avif">
+		{{- end }}
+		{{- with $png }}
+			<img src="{{ .RelPermalink }}" alt="{{ T "logo_alt_text" }}">
+		{{- end }}
+	{{- end -}}
 </picture>

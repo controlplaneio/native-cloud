@@ -19,7 +19,7 @@ params:
 ---
 
 Use this key to record the baseboard serial number of the physical
-or virtual hardware hosting a compute resource. A baseboard is also known as 
+or virtual hardware hosting a compute resource. A baseboard is also known as
 a motherboard.
 
 The baseboard serial number uniquely identifies the main circuit board that

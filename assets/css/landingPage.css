@@ -3,13 +3,17 @@
  */
 
 main section.landing-page-highlight {
-  font-family: Montserrat, system-ui, "segoe ui", Roboto, Helvetica, Arial, sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol";
+  font-family:
+    Montserrat, system-ui, "segoe ui", Roboto, Helvetica, Arial, sans-serif, "apple color emoji",
+    "segoe ui emoji", "segoe ui symbol";
 }
 
 main section.landing-page-highlight h1 {
   margin-left: 0;
   margin-right: 0;
-  font-family: Montserrat, system-ui, "segoe ui", Roboto, Helvetica, Arial, sans-serif, "apple color emoji", "segoe ui emoji", "segoe ui symbol";
+  font-family:
+    Montserrat, system-ui, "segoe ui", Roboto, Helvetica, Arial, sans-serif, "apple color emoji",
+    "segoe ui emoji", "segoe ui symbol";
   text-align: center;
 }
 
@@ -43,5 +47,3 @@ main section.landing-page-highlight h1 {
 .landing-page-spiel h2 {
   font-weight: normal;
 }
-
-

@@ -10,19 +10,29 @@ resource amounts such as memory, storage, and CPU.
 
 Quantities use either binary (power-of-two) or decimal (power-of-ten) suffixes:
 
-| Suffix | Meaning | Example |
-|--------|---------|---------|
-| `m` | milli- | `100m` = 0.1 |
-| `Ki` | kibi- | `1Ki` = 1024 |
-| `Mi` | mebi- | `24Mi` = 25165824 |
-| `Gi` | gibi- | `1Gi` = 1073741824 |
-| `Ti` | tebi- | `4Ti` = 4398046511104 |
-| `Ei` | exbi- | `1Ei` = 1152921504606846976 |
-| `k` | kilo- | `1k` = 1000 |
-| `M` | mega- | `1M` = 1000000 |
-| `T` | tera- | `5T` = 5000000000000 |
-| `P` | peta- | `1P` = 1000000000000000 |
+<!--
+  hugo enforcestables must have a class
+  https://gohugo.io/content-management/markdown-attributes/
+  prettier puts a newline between those tables and classes
+
+  if you adjust the tables you can temporarily remove the ignore, remove the
+  newlines and re-add the ignores
+-->
+<!-- prettier-ignore-start -->
+| Suffix | Meaning | Example                     |
+| ------ | ------- | --------------------------- |
+| `m`    | milli-  | `100m` = 0.1                |
+| `Ki`   | kibi-   | `1Ki` = 1024                |
+| `Mi`   | mebi-   | `24Mi` = 25165824           |
+| `Gi`   | gibi-   | `1Gi` = 1073741824          |
+| `Ti`   | tebi-   | `4Ti` = 4398046511104       |
+| `Ei`   | exbi-   | `1Ei` = 1152921504606846976 |
+| `k`    | kilo-   | `1k` = 1000                 |
+| `M`    | mega-   | `1M` = 1000000              |
+| `T`    | tera-   | `5T` = 5000000000000        |
+| `P`    | peta-   | `1P` = 1000000000000000     |
 {.table-extra-padding}
+<!-- prettier-ignore-end -->
 
 A plain integer with no suffix is interpreted as a count of the base unit
 (e.g. bytes for memory).
@@ -36,4 +46,3 @@ while `1Gi` is 1073741824.
 
 Some quantities don't make sense to have less than 1 of them, so you wouldn't
 use `m` as a suffix. Take care not to confuse `m` (milli-) with `M` (mega-).
-

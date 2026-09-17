@@ -29,6 +29,5 @@ Serial numbers **should** be unique globally.
 The value must not be an empty string. The format depends on the hardware
 manufacturer and may include alphanumeric characters, hyphens, and spaces.
 
-
 You can define validation rules that enforce this constraint.
 {{% /ontology-validation %}}
