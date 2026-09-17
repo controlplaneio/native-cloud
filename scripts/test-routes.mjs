@@ -15,6 +15,7 @@ const REQUIRED_ROUTES = [
   'prefixes/index.html',
   'advice-tips/index.html',
   'advice-tips/contexts/index.html',
+  'advice-tips/ease-of-adoption/index.html',
   'advice-tips/kubernetes-quantities/index.html',
   'advice-tips/kyverno/index.html',
   'advice-tips/validating-admission-policy/index.html',
