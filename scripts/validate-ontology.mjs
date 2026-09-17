@@ -1,9 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import yaml from 'js-yaml';
 
 const DOCS_DIR = path.resolve('./src/content/docs');
 const GROUPS_DIR = path.join(DOCS_DIR, 'groups');
-const CONTEXT_USES_DIR = path.join(DOCS_DIR, 'context-uses');
+const CONTEXT_USES_DIR = path.join(process.cwd(), 'src/data/contexts');
 
 /**
  * Robust frontmatter YAML parser that enforces type safety.
@@ -129,18 +130,22 @@ export function validateOntology() {
     return { passed: false, errors, stats: { domainCount, keyCount, contextUseCount } };
   }
 
-  // 1. Collect valid context uses from context-uses directory
+  // 1. Collect valid context uses from context MDX files
   const validContextUses = [];
   const validContextUsesLower = [];
 
   if (fs.existsSync(CONTEXT_USES_DIR)) {
-    const contextFiles = fs.readdirSync(CONTEXT_USES_DIR);
-    for (const file of contextFiles) {
-      if (file.startsWith('_') || file === 'index.md' || file === 'index.mdx') continue;
-      const baseName = path.parse(file).name;
-      validContextUses.push(baseName);
-      validContextUsesLower.push(baseName.toLowerCase());
-      contextUseCount++;
+    const contextFiles = fs.readdirSync(CONTEXT_USES_DIR)
+      .filter((f) => f.endsWith('.mdx') || f.endsWith('.md'));
+    for (const contextFile of contextFiles) {
+      const contextPath = path.join(CONTEXT_USES_DIR, contextFile);
+      const frontmatter = parseFrontmatter(contextPath);
+      const contextId = frontmatter.id;
+      if (contextId) {
+        validContextUses.push(contextId);
+        validContextUsesLower.push(contextId.toLowerCase());
+        contextUseCount++;
+      }
     }
   } else {
     errors.push(`Context uses directory not found: ${CONTEXT_USES_DIR}`);

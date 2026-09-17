@@ -47,10 +47,7 @@ test.describe('Astro Starlight Comprehensive Acceptance Suite', () => {
     const aboutHtml = fs.readFileSync(path.join(DIST_DIR, 'about/index.html'), 'utf-8');
     assert.ok(aboutHtml.includes('This is for anyone.'), 'Lead sentence present');
     assert.ok(!aboutHtml.includes('{.lead}'), 'No unrendered {.lead} tag on about page');
-    assert.ok(aboutHtml.includes('/context-uses/'), 'Valid context-uses link present');
-    assert.ok(aboutHtml.includes('/context-uses/kubernetesannotation/'), 'Valid annotation link present');
-    assert.ok(aboutHtml.includes('/context-uses/kuberneteslabel/'), 'Valid label link present');
-    assert.ok(aboutHtml.includes('/context-uses/kubernetestaint/'), 'Valid taint link present');
+    assert.ok(aboutHtml.includes('/advice-tips/contexts/'), 'Valid contexts link present');
     assert.ok(!aboutHtml.includes('LocalImageUsedWrongly'), 'No image error on about page');
   });
 
@@ -67,21 +64,7 @@ test.describe('Astro Starlight Comprehensive Acceptance Suite', () => {
     }
   });
 
-  test('All Context Uses and Advice & Tips pages render cleanly', () => {
-    const contextPages = [
-      'context-uses/index.html',
-      'context-uses/kubernetesannotation/index.html',
-      'context-uses/kuberneteslabel/index.html',
-      'context-uses/kubernetesresourceclaim/index.html',
-      'context-uses/kubernetestaint/index.html',
-      'context-uses/ociannotation/index.html',
-    ];
-    for (const p of contextPages) {
-      const html = fs.readFileSync(path.join(DIST_DIR, p), 'utf-8');
-      assert.ok(html.length > 200, `Context page ${p} is non-empty`);
-      assert.ok(!html.includes('LocalImageUsedWrongly'), `No error on ${p}`);
-    }
-
+  test('All Advice & Tips pages render cleanly', () => {
     const advicePages = [
       'advice-tips/index.html',
       'advice-tips/contexts/index.html',
@@ -156,8 +139,8 @@ test.describe('Astro Starlight Comprehensive Acceptance Suite', () => {
     const prefixesHtml = fs.readFileSync(path.join(DIST_DIR, 'prefixes/index.html'), 'utf-8');
     assert.ok(prefixesHtml.includes('Domain Prefixes') || prefixesHtml.includes('compute.native.cloud'), 'Prefixes present');
 
-    const annotationHtml = fs.readFileSync(path.join(DIST_DIR, 'context-uses/kubernetesannotation/index.html'), 'utf-8');
-    assert.ok(annotationHtml.includes('metadata.annotations'), 'Annotations guide present');
+    const contextsHtml = fs.readFileSync(path.join(DIST_DIR, 'advice-tips/contexts/index.html'), 'utf-8');
+    assert.ok(contextsHtml.includes('metadata.annotations'), 'Annotations guide present in contexts');
   });
 
   test('Pagefind search index and sitemap are generated and non-empty', () => {

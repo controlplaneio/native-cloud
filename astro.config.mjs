@@ -55,10 +55,6 @@ export default defineConfig({
           ],
         },
         {
-          label: 'Context Uses',
-          items: [{ autogenerate: { directory: 'context-uses' } }],
-        },
-        {
           label: 'Advice & Tips',
           items: [{ autogenerate: { directory: 'advice-tips' } }],
         },

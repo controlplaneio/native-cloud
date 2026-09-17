@@ -13,12 +13,6 @@ test.describe('Reference Guides, Mobile Responsive & 404 Handling', () => {
     await expect(page.locator('main')).toContainText('DNS domain names');
   });
 
-  test('should render context uses guide pages', async ({ page }) => {
-    await page.goto('/context-uses/kubernetesannotation/');
-    await expect(page.locator('main h1, [data-page-title]').first()).toContainText('Kubernetes annotation');
-    await expect(page.locator('main')).toContainText('metadata.annotations');
-  });
-
   test('should render advice and tips pages', async ({ page }) => {
     await page.goto('/advice-tips/kyverno/');
     await expect(page.locator('h1')).toContainText('Kyverno');
