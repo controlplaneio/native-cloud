@@ -32,7 +32,7 @@ test.describe('Ontology Specifications & Custom Components', () => {
     await expect(badges).toBeVisible();
     
     // Annotation enabled, Label disabled
-    const annotationBadge = badges.locator('.context-badge:has-text("Annotation")');
+    const annotationBadge = badges.locator('.context-badge:has-text("Annotation"):not(:has-text("OCI"))');
     await expect(annotationBadge).toHaveClass(/enabled/);
 
     const labelBadge = badges.locator('.context-badge:has-text("Label")');
