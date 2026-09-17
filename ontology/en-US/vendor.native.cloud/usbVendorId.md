@@ -5,6 +5,11 @@ layout: ontology_key
 params:
   ontology:
     key: vendor.native.cloud/usbVendorId
+    exampleValues:
+      - "1d6b"
+      - "046d"
+      - "045e"
+      - "8086"
     exampleSnippets:
       - |
         device.attributes["vendor.native.cloud"].usbVendorId == "1d6b" # Linux Foundation
