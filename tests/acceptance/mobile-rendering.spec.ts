@@ -125,4 +125,29 @@ test.describe('Mobile Phone Viewport Rendering & Layout Defenses', () => {
     // Close drawer
     await menuBtn.first().click();
   });
+
+  test('should render domain index GroupKeysTable stacked vertically on mobile without horizontal scroll', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/groups/workload/');
+
+    const table = page.locator('.group-keys-table');
+    await expect(table).toBeVisible();
+
+    // Verify thead is hidden on mobile
+    const thead = table.locator('thead');
+    await expect(thead).toBeHidden();
+
+    // Verify first row key name and description are stacked vertically (key above desc)
+    const firstRow = table.locator('.group-key-row').first();
+    const nameBox = await firstRow.locator('.group-key-name').boundingBox();
+    const descBox = await firstRow.locator('.group-key-desc').boundingBox();
+    expect(nameBox).not.toBeNull();
+    expect(descBox).not.toBeNull();
+    expect(nameBox!.y).toBeLessThan(descBox!.y);
+
+    // Verify scroll container has zero horizontal scroll overflow
+    const scrollContainer = page.locator('.group-keys-scroll');
+    const isOverflowing = await scrollContainer.evaluate((el) => el.scrollWidth > el.clientWidth + 1);
+    expect(isOverflowing).toBe(false);
+  });
 });
