@@ -94,9 +94,9 @@ test.describe('Mobile Phone Viewport Rendering & Layout Defenses', () => {
     const text = await page.locator('main').textContent();
     // Ensure no raw Kramdown ': :' artifacts remain
     expect(text).not.toContain(': :');
-    expect(text).toContain('dedicated — Infrastructure is dedicated');
-    expect(text).toContain('pooled — Infrastructure is shared');
-    expect(text).toContain('hybrid — A mix of dedicated');
+    expect(text).toContain('dedicated: Infrastructure is dedicated');
+    expect(text).toContain('pooled: Infrastructure is shared');
+    expect(text).toContain('hybrid: A mix of dedicated');
   });
 
   test('should render retentionDuration with correct unit minutes definition and combined examples', async ({ page }) => {

@@ -1,0 +1,37 @@
+---
+title: Ease of Adoption
+description: Best practices and practical strategies for adopting native.cloud keys across your infrastructure.
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+Adopting `native.cloud` does not have to mean extra work. Think of it like the [12 Factor App](https://12factor.net/) principles: guidance, not bureaucracy. You can adopt it gradually, selectively, and in ways that fit your existing workflow.
+
+## Core Adoption Strategies
+
+### As a Reference Guide
+When designing a new service or resource, consult the keys that apply. No process change required: just a better starting point. Using standard names upfront eliminates future migration debt.
+
+### Incremental Rollout
+You do not need to label or annotate every resource on day one:
+1. **Start with high-value domains:** Storage retention (`storage.native.cloud/retentionDuration`) and tenancy boundaries (`tenancy.native.cloud/tier`) often yield immediate operational value.
+2. **Apply to new infrastructure first:** Enforce standard keys on newly provisioned clusters and services before backporting to legacy workloads.
+3. **Automate in templates:** Bake `native.cloud` keys into your Helm charts, Terraform modules, and CI/CD pipelines so teams adopt them effortlessly.
+
+## Assisted Adoption Tooling
+
+We are building tools to accelerate discovery and simplify integration with your development workflows.
+
+### Interactive Questionnaire CLI <Badge text="In Development" variant="note" />
+
+A lightweight command-line tool designed to guide platform teams through the ontology and pinpoint the keys that provide the greatest immediate benefit.
+
+- **Guided Questions Mode:** Step through structured decision prompts about your infrastructure stack, multi-tenancy model, and compliance goals.
+- **Conversational AI Mode:** Describe your platform requirements in natural language and receive tailored key recommendations with example manifests.
+
+### AI Agent Skills & Harness Integration <Badge text="In Development" variant="note" />
+
+For teams using modern AI coding agents (Claude Code, Antigravity, Copilot), dedicated skills provide turnkey ontology support:
+
+- **Requirements & Discovery Skill:** Analyzes architecture docs, Helm charts, or Kubernetes manifests and suggests appropriate `native.cloud` keys.
+- **Ontology Context & Rules Skill:** Provides LLMs with real-time access to key schemas, allowed values, validation constraints, and syntax rules directly within your coding session.
