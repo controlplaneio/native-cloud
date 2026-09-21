@@ -48,6 +48,18 @@ test.describe('Ontology Specifications & Custom Components', () => {
     await expect(exampleValues.locator('.example-value-item').first()).toBeVisible();
   });
 
+  test('should render ContextBadges in consistent canonical order across different keys', async ({ page }) => {
+    await page.goto('/groups/compute/baseboardserialnumber/');
+    const badges1 = page.locator('.context-badges-grid .context-badge > span:first-child');
+    const texts1 = await badges1.allTextContents();
+    expect(texts1).toEqual(['Annotation', 'Label', 'Taint', 'ResourceClaim', 'OCI annotation']);
+
+    await page.goto('/groups/storage/retentionduration/');
+    const badges2 = page.locator('.context-badges-grid .context-badge > span:first-child');
+    const texts2 = await badges2.allTextContents();
+    expect(texts2).toEqual(['Annotation', 'Label', 'Taint', 'ResourceClaim', 'OCI annotation']);
+  });
+
   test('should render AllowedValues component for enumerated keys', async ({ page }) => {
     await page.goto('/groups/compute/virtualized/');
 

@@ -65,6 +65,25 @@ for (const filename of contextFiles) {
   }
 }
 
+// Canonical fixed order for consistent comparison across all key pages
+const CANONICAL_CONTEXT_ORDER = [
+  'kubernetesAnnotation',
+  'kubernetesLabel',
+  'kubernetesTaint',
+  'kubernetesResourceClaim',
+  'ociAnnotation',
+];
+
+// Sort contextUses according to canonical order
+contextUses.sort((a, b) => {
+  const indexA = CANONICAL_CONTEXT_ORDER.indexOf(a.id);
+  const indexB = CANONICAL_CONTEXT_ORDER.indexOf(b.id);
+  const posA = indexA !== -1 ? indexA : 999;
+  const posB = indexB !== -1 ? indexB : 999;
+  if (posA !== posB) return posA - posB;
+  return a.title.localeCompare(b.title);
+});
+
 // If contexts array is provided, use it directly
 // Otherwise, build from boolean props
 let enabledContextIds: string[];
@@ -78,32 +97,28 @@ if (contexts.length > 0) {
   if (resourceClaim) enabledContextIds.push('kubernetesResourceClaim');
   if (oci) enabledContextIds.push('ociAnnotation');
 }
-
-// Get the full context data for enabled ones
-const enabledContexts = contextUses.filter(c => enabledContextIds.includes(c.id));
-
-// Get all context uses for disabled ones
-const disabledContexts = contextUses.filter(c => !enabledContextIds.includes(c.id));
 ---
 
 <div class="not-content" style="margin: 0.75rem 0 1.5rem 0;">
   <div class="context-badges-grid">
-    {enabledContexts.map(context => (
-      <a 
-        href={context.moreInformation}
-        class={`context-badge enabled`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>{context.short}</span>
-        <span class="badge-status">✓</span>
-      </a>
-    ))}
-    {disabledContexts.map(context => (
-      <div class={`context-badge disabled`}>
-        <span>{context.short}</span>
-        <span class="badge-status">—</span>
-      </div>
-    ))}
+    {contextUses.map(context => {
+      const isEnabled = enabledContextIds.includes(context.id);
+      return isEnabled ? (
+        <a 
+          href={context.moreInformation}
+          class="context-badge enabled"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span>{context.short}</span>
+          <span class="badge-status">✓</span>
+        </a>
+      ) : (
+        <div class="context-badge disabled">
+          <span>{context.short}</span>
+          <span class="badge-status">—</span>
+        </div>
+      );
+    })}
   </div>
 </div>
