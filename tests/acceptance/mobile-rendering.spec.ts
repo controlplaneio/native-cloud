@@ -104,8 +104,9 @@ test.describe('Mobile Phone Viewport Rendering & Layout Defenses', () => {
     await page.goto('/groups/storage/retentionduration/');
 
     const bodyText = await page.locator('main').textContent();
-    expect(bodyText).toContain('2y6m - 2 years and 6 minutes');
     expect(bodyText).toContain('30d12h - 30 days and 12 hours');
+    expect(bodyText).toContain('1h30m - 1 hour and 30 minutes');
+    expect(bodyText).toContain('months are not supported');
     expect(bodyText).not.toContain('2 years and 6 months');
   });
 

@@ -8,10 +8,10 @@ params:
     key: storage.native.cloud/retentionDuration
     exampleValues:
       - "7y"
+      - "1y"
       - "90d"
-      - "18m"
-      - "2y6m"
       - "30d12h"
+      - "1h30m"
     uses:
       kubernetesAnnotation: true
       kubernetesLabel: true
@@ -27,7 +27,8 @@ an absolute deadline - it doesn't specify when retention starts or ends.
 
 {{% ontology-validation %}}
 The value must be a valid duration string using a variant on the Kubernetes duration format,
-extended to include years.
+extended to include years. Month units are not supported due to variable month lengths;
+use days (e.g., `30d`, `90d`, `180d`) or years instead.
 
 Valid units:
 
@@ -37,15 +38,15 @@ Valid units:
 - `m` - minutes
 - `s` - seconds
 
-Units can be combined (e.g., `2y6m`, `90d12h`, `1h30m45s`).
+Units can be combined (e.g., `1y180d`, `90d12h`, `1h30m`).
 
 Examples:
 
 - `7y` - 7 years
+- `1y` - 1 year
 - `90d` - 90 days
-- `18m` - 18 minutes
-- `2y6m` - 2 years and 6 minutes
 - `30d12h` - 30 days and 12 hours
+- `1h30m` - 1 hour and 30 minutes
 
 Where feasible, you **should** define validation rules that enforce this duration format.
 {{% /ontology-validation %}}
