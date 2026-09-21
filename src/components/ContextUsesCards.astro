@@ -3,6 +3,7 @@ interface ContextModule {
   frontmatter: {
     id: string;
     title: string;
+    short?: string;
     moreInformation?: string;
   };
   Content: any;
@@ -10,28 +11,49 @@ interface ContextModule {
 
 const contextModules = import.meta.glob<ContextModule>('../data/contexts/*.mdx', { eager: true });
 
+const CANONICAL_ORDER = [
+  'kubernetesAnnotation',
+  'kubernetesLabel',
+  'kubernetesTaint',
+  'kubernetesResourceClaim',
+  'ociAnnotation',
+];
+
 const contextUses = Object.values(contextModules)
   .map(mod => ({
     id: mod.frontmatter.id,
     title: mod.frontmatter.title,
+    short: mod.frontmatter.short || mod.frontmatter.title,
     moreInformation: mod.frontmatter.moreInformation || '#',
     Content: mod.Content,
   }))
   .filter(c => c.id && c.title)
-  .sort((a, b) => a.title.localeCompare(b.title));
+  .sort((a, b) => {
+    const idxA = CANONICAL_ORDER.indexOf(a.id);
+    const idxB = CANONICAL_ORDER.indexOf(b.id);
+    const posA = idxA !== -1 ? idxA : 999;
+    const posB = idxB !== -1 ? idxB : 999;
+    if (posA !== posB) return posA - posB;
+    return a.title.localeCompare(b.title);
+  });
 ---
 
-<div class="context-uses-cards">
+<div class="context-uses-cards not-content">
   <div class="context-uses-grid">
-    {contextUses.map(({ title, moreInformation, Content }) => (
+    {contextUses.map(({ title, moreInformation, Content, id }) => (
       <div class="context-use-card">
-        <h3 class="context-use-title">{title}</h3>
+        <div class="context-use-card-header">
+          <span class="context-use-tag">{id.startsWith('oci') ? 'OCI Spec' : 'Kubernetes'}</span>
+          <h3 class="context-use-title">{title}</h3>
+        </div>
         <div class="context-use-description">
           <Content />
         </div>
-        <a href={moreInformation} class="context-use-link" target="_blank" rel="noopener noreferrer">
-          Learn more
-        </a>
+        <div class="context-use-card-footer">
+          <a href={moreInformation} class="context-use-link" target="_blank" rel="noopener noreferrer">
+            Learn more &rarr;
+          </a>
+        </div>
       </div>
     ))}
   </div>
@@ -40,50 +62,83 @@ const contextUses = Object.values(contextModules)
 <style>
   .context-uses-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 1.25rem;
     margin: 1.5rem 0;
   }
 
   .context-use-card {
-    border: 2px solid var(--sl-color-accent);
-    border-radius: 8px;
-    padding: 1.25rem;
-    transition: outline 0.2s ease, transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--nc-card-border);
+    background: var(--nc-card-bg);
+    border-radius: 0.5rem;
+    padding: 1.25rem 1.35rem;
+    box-shadow: var(--sl-shadow-sm);
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .context-use-card:has(.context-use-link:hover)  {
-    outline: 2px solid var(--sl-color-accent);
-    outline-offset: 2px;
+  .context-use-card:hover {
+    border-color: var(--sl-color-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--sl-shadow-md);
+  }
+
+  .context-use-card-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .context-use-tag {
+    display: inline-block;
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--sl-color-accent);
+    margin-bottom: 0.35rem;
   }
 
   .context-use-title {
-    margin: 0 0 1rem 0;
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
     color: var(--sl-color-text);
   }
 
   .context-use-description {
-    margin: 0 0 1.25rem 0;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--sl-color-gray-2);
+    margin-bottom: 1.25rem;
   }
 
-  .context-use-description p {
-    margin: 0;
+  .context-use-description :global(p) {
+    margin: 0 0 0.5rem 0;
+  }
+
+  .context-use-description :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .context-use-card-footer {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--nc-card-border);
   }
 
   .context-use-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
     color: var(--sl-color-accent);
     text-decoration: none;
-    font-weight: 600;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+    transition: color 0.15s ease, transform 0.15s ease;
   }
 
   .context-use-link:hover {
-    background-color: var(--sl-color-accent);
-    color: var(--sl-color-bg);
+    color: var(--sl-color-text-accent);
+    transform: translateX(2px);
   }
 </style>

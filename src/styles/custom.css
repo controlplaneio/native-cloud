@@ -392,6 +392,9 @@ header.header {
   color: var(--nc-code-text);
   background: transparent !important;
   padding: 0 !important;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .key-actions-toolbar {
@@ -672,3 +675,55 @@ header.header {
   font-size: 0.9rem;
   color: var(--sl-color-gray-2);
 }
+
+/* ==========================================================================
+   Responsive Defenses (Mobile & Small Screens)
+   ========================================================================== */
+
+@media (max-width: 48rem) {
+  .key-header-card {
+    padding: 0.85rem 1rem;
+  }
+
+  .key-code {
+    font-size: clamp(0.9rem, 3.8vw, 1.15rem);
+    line-height: 1.4;
+  }
+
+  .key-actions-toolbar {
+    gap: 0.4rem;
+  }
+
+  .key-action-btn {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .sl-markdown-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sl-markdown-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .sl-markdown-content :not(pre) > code,
+  .example-value-item,
+  .example-value-item code {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 360px) {
+  .context-badges-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+

@@ -12,27 +12,135 @@ interface Props {
 const { keys = [] } = Astro.props;
 ---
 
-<div class="not-content" style="margin: 1.5rem 0 2rem 0;">
-  <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+<div class="not-content group-keys-container">
+  <div class="group-keys-scroll">
+    <table class="group-keys-table">
       <thead>
-        <tr style="border-bottom: 2px solid var(--sl-color-gray-5);">
-          <th style="padding: 0.75rem; color: var(--sl-color-accent);">Key Name</th>
-          <th style="padding: 0.75rem; color: var(--sl-color-gray-2);">Description</th>
+        <tr>
+          <th class="col-name">Key Name</th>
+          <th class="col-desc">Description</th>
         </tr>
       </thead>
       <tbody>
         {keys.map((k) => (
-          <tr style="border-bottom: 1px solid var(--sl-color-gray-5);">
-            <td style="padding: 0.75rem; font-family: var(--sl-font-mono, monospace);">
-              <a href={k.link} style="color: var(--sl-color-accent); text-decoration: none; font-weight: 500;">
+          <tr class="group-key-row">
+            <td class="group-key-name">
+              <a href={k.link} class="group-key-link">
                 {k.name}
               </a>
             </td>
-            <td style="padding: 0.75rem; color: var(--sl-color-gray-2);">{k.description}</td>
+            <td class="group-key-desc">{k.description}</td>
           </tr>
         ))}
       </tbody>
     </table>
   </div>
 </div>
+
+<style>
+  .group-keys-container {
+    margin: 1.5rem 0 2rem 0;
+  }
+
+  .group-keys-scroll {
+    overflow-x: auto;
+  }
+
+  .group-keys-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .group-keys-table thead tr {
+    border-bottom: 2px solid var(--sl-color-gray-5);
+  }
+
+  .col-name {
+    padding: 0.75rem;
+    color: var(--sl-color-accent);
+    width: 45%;
+  }
+
+  .col-desc {
+    padding: 0.75rem;
+    color: var(--sl-color-gray-2);
+  }
+
+  .group-key-row {
+    border-bottom: 1px solid var(--sl-color-gray-5);
+    transition: background-color 0.15s ease;
+  }
+
+  .group-key-row:hover {
+    background-color: var(--sl-color-gray-6);
+  }
+
+  .group-key-name {
+    padding: 0.75rem;
+    font-family: var(--sl-font-mono, monospace);
+  }
+
+  .group-key-link {
+    color: var(--sl-color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+  }
+
+  .group-key-link:hover {
+    text-decoration: underline;
+  }
+
+  .group-key-desc {
+    padding: 0.75rem;
+    color: var(--sl-color-gray-2);
+    line-height: 1.5;
+  }
+
+  /* Responsive: Stack key name above description on mobile so no horizontal scroll is needed */
+  @media (max-width: 48rem) {
+    .group-keys-scroll {
+      overflow-x: visible;
+    }
+
+    .group-keys-table,
+    .group-keys-table tbody,
+    .group-keys-table tr,
+    .group-keys-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .group-keys-table thead {
+      display: none;
+    }
+
+    .group-key-row {
+      margin-bottom: 0.85rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 0.5rem;
+      background: var(--sl-color-gray-6);
+    }
+
+    .group-key-row:hover {
+      background: var(--sl-color-gray-6);
+    }
+
+    .group-key-name {
+      padding: 0 0 0.35rem 0;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .group-key-desc {
+      padding: 0;
+      font-size: 0.85rem;
+      color: var(--sl-color-gray-2);
+      line-height: 1.45;
+    }
+  }
+</style>

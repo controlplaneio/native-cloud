@@ -10,7 +10,7 @@ export BUN_TMPDIR := $(shell pwd)/.tmp
 
 ## help: Show this list of targets (default)
 help:
-	@echo "native.cloud (Astro + Starlight Galaxy) — make targets:"
+	@echo "native.cloud (Astro + Starlight Galaxy) make targets:"
 	@grep -E '^## [a-zA-Z0-9_-]+:' $(MAKEFILE_LIST) | sed 's/^## //' \
 	  | awk -F': ' '{printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
 

@@ -32,7 +32,7 @@ test.describe('Ontology Specifications & Custom Components', () => {
     await expect(badges).toBeVisible();
     
     // Annotation enabled, Label disabled
-    const annotationBadge = badges.locator('.context-badge:has-text("Annotation")');
+    const annotationBadge = badges.locator('.context-badge:has-text("Annotation"):not(:has-text("OCI"))');
     await expect(annotationBadge).toHaveClass(/enabled/);
 
     const labelBadge = badges.locator('.context-badge:has-text("Label")');
@@ -46,6 +46,18 @@ test.describe('Ontology Specifications & Custom Components', () => {
     const exampleValues = page.locator('.example-values-list');
     await expect(exampleValues).toBeVisible();
     await expect(exampleValues.locator('.example-value-item').first()).toBeVisible();
+  });
+
+  test('should render ContextBadges in consistent canonical order across different keys', async ({ page }) => {
+    await page.goto('/groups/compute/baseboardserialnumber/');
+    const badges1 = page.locator('.context-badges-grid .context-badge > span:first-child');
+    const texts1 = await badges1.allTextContents();
+    expect(texts1).toEqual(['Annotation', 'Label', 'Taint', 'ResourceClaim', 'OCI annotation']);
+
+    await page.goto('/groups/storage/retentionduration/');
+    const badges2 = page.locator('.context-badges-grid .context-badge > span:first-child');
+    const texts2 = await badges2.allTextContents();
+    expect(texts2).toEqual(['Annotation', 'Label', 'Taint', 'ResourceClaim', 'OCI annotation']);
   });
 
   test('should render AllowedValues component for enumerated keys', async ({ page }) => {

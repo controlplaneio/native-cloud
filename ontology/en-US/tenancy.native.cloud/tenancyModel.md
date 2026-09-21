@@ -18,14 +18,9 @@ params:
 
 Use this key to indicate the tenancy model of a multi-tenant environment.
 
-`dedicated`:
-: infrastructure is dedicated to a single tenant, with hard physical or logical isolation from other tenants. In this model, each instance of storage or compute is assigned to exactly one tenant.
-
-`pooled`:
-: infrastructure is shared across multiple tenants, with isolation achieved within application code. A single instance of the application is used to serve multiple tenants.
-
-`hybrid`:
-: a mix of dedicated and pooled infrastructure, where some resources or services are dedicated while others are shared.
+- **`dedicated`**: Infrastructure is dedicated to a single tenant, with hard physical or logical isolation from other tenants. In this model, each instance of storage or compute is assigned to exactly one tenant.
+- **`pooled`**: Infrastructure is shared across multiple tenants, with isolation achieved within application code. A single instance of the application is used to serve multiple tenants.
+- **`hybrid`**: A mix of dedicated and pooled infrastructure, where some resources or services are dedicated while others are shared.
 
 This key is useful for security policies, compliance tracking, capacity planning,
 and cost allocation. Different tenancy models have different implications for
