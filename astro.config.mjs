@@ -56,42 +56,42 @@ export default defineConfig({
         },
         {
           label: 'Advice & Tips',
-          items: [{ autogenerate: { directory: 'advice-tips' } }],
+          autogenerate: { directory: 'advice-tips' },
         },
         {
           label: 'Ontology Domains',
           items: [
             {
               label: 'Compute',
-              items: [{ autogenerate: { directory: 'groups/compute' } }],
+              autogenerate: { directory: 'groups/compute' },
             },
             {
               label: 'Identity',
-              items: [{ autogenerate: { directory: 'groups/identity' } }],
+              autogenerate: { directory: 'groups/identity' },
             },
             {
               label: 'Network',
-              items: [{ autogenerate: { directory: 'groups/network' } }],
+              autogenerate: { directory: 'groups/network' },
             },
             {
               label: 'Storage',
-              items: [{ autogenerate: { directory: 'groups/storage' } }],
+              autogenerate: { directory: 'groups/storage' },
             },
             {
               label: 'Tenancy',
-              items: [{ autogenerate: { directory: 'groups/tenancy' } }],
+              autogenerate: { directory: 'groups/tenancy' },
             },
             {
               label: 'Topology',
-              items: [{ autogenerate: { directory: 'groups/topology' } }],
+              autogenerate: { directory: 'groups/topology' },
             },
             {
               label: 'Vendor',
-              items: [{ autogenerate: { directory: 'groups/vendor' } }],
+              autogenerate: { directory: 'groups/vendor' },
             },
             {
               label: 'Workload',
-              items: [{ autogenerate: { directory: 'groups/workload' } }],
+              autogenerate: { directory: 'groups/workload' },
             },
           ],
         },
