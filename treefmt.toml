@@ -16,11 +16,6 @@ excludes = [
   "public/**",
 ]
 
-[formatter.gotmplfmt]
-  command = "gotmplfmt"
-  options = [ "-w" ]
-  includes = [ "*.html", "*.xml" ]
-
 [formatter.nixfmt]
   command = "nixfmt"
   options = [  ]
@@ -30,7 +25,7 @@ excludes = [
   command = "prettier"
   options = [ "--write" ]
   includes = [
-    # "*.html", # handled by gotmplfmt
+    "*.html",
     "*.css",
     "*.scss",
     "*.js",
