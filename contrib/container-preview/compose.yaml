@@ -1,0 +1,41 @@
+---
+name: native-cloud
+
+x-base: &base
+  build:
+    context: ../..
+    dockerfile: contrib/container-preview/Containerfile
+  working_dir: /app
+  volumes:
+    # mount the website source read only
+    - ../..:/app:ro
+    # writable state lives in container-only volumes
+    - dist:/app/dist
+    - astro_cache:/app/.astro
+    - node_modules:/app/node_modules
+  cap_drop: [ALL]
+  security_opt:
+    - no-new-privileges:true
+  ports:
+    # loopback only; not reachable from other machines
+    - "127.0.0.1:${PORT:-4321}:4321"
+
+services:
+  # live-reloading dev server
+  dev:
+    <<: *base
+    command: npx astro dev --host 0.0.0.0 --port 4321
+
+  # Simulated production build (written to the dist volume)
+  # and then served by `astro preview`
+  preview:
+    <<: *base
+    profiles: ["preview"]
+    command: >
+      sh -c "npm run build &&
+             npx astro preview --host 0.0.0.0 --port 4321"
+
+volumes:
+  dist:
+  astro_cache:
+  node_modules:

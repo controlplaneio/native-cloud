@@ -4,6 +4,7 @@ command = "npm run build"
 timeout = 180
 
 [build.environment]
+# If changing NODE_VERSION, ideally also bump version pins inside contrib
 NODE_VERSION = "22"
 NPM_FLAGS = "--include=dev"
 ASTRO_TELEMETRY_DISABLED = "1"

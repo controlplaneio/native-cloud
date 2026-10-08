@@ -6,5 +6,8 @@ considered official.
 
 Within this folder there is currently:
 
+- [`container-preview`](./container-preview/)
+  - Tooling for previewing the site locally without installing Node.js.
+    This works with either Docker (`docker-compose`) or Podman.
 - [`nix`](./nix/)
   - Holds a `flake.nix`/`shell.nix` that provides a development shell with required dependencies.
