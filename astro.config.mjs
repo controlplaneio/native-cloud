@@ -9,6 +9,15 @@ export default defineConfig({
       title: 'native.cloud',
       description: 'Shared names for common ideas in cloud native infrastructure metadata.',
       routeMiddleware: './src/routeData.ts',
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: '/scripts/ga-consent.js',
+            defer: true,
+          },
+        },
+      ],
       logo: {
         src: './src/assets/ocno_icon.svg',
       },
@@ -17,6 +26,9 @@ export default defineConfig({
           icon: 'github',
           label: 'GitHub',
           href: 'https://github.com/controlplaneio/native-cloud',
+          // can't set attrs for open in new tab
+          // overriding the component below until supported
+          // https://github.com/withastro/starlight/discussions/3715#discussioncomment-16233668
         },
       ],
       defaultLocale: 'root',
@@ -37,6 +49,7 @@ export default defineConfig({
         PageSidebar: './src/components/PageSidebar.astro',
         SiteTitle: './src/components/SiteTitle.astro',
         ThemeSelect: './src/components/ThemeSelect.astro',
+        SocialIcons: "./src/components/StarlightSocialIcons.astro",
       },
       tableOfContents: {
         minHeadingLevel: 2,

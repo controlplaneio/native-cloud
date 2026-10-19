@@ -1,3 +1,0 @@
-{{- /* Renders ontology allowed values as a comma-separated list of <tt> elements.
-       Context: a slice of allowed values strings. */ -}}
-{{- range $i, $v := . }}{{ if $i }}, {{ end }}<tt class="ontology-allowed-value">{{ $v }}</tt>{{- end -}}

@@ -2,6 +2,17 @@
    native.cloud Brand Styles & Theme Variables (Dark / Light)
    ========================================================================== */
 
+:root {
+  --gold-bg: #F5D76E;
+  --gold-fg: #493600;
+
+  --silver-bg: #D8DEE8;
+  --silver-fg: #303846;
+
+  --bronze-bg: #E6B08A;
+  --bronze-fg: #512B16;
+}
+
 :root,
 [data-theme='dark'] {
   --sl-color-accent-low: #2c1b06;
@@ -370,6 +381,7 @@ header.header {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  max-width: 100%;
 }
 
 .key-id-label {
@@ -392,9 +404,23 @@ header.header {
   color: var(--nc-code-text);
   background: transparent !important;
   padding: 0 !important;
-  word-break: break-all;
-  overflow-wrap: anywhere;
-  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* wrap a max of 3 lines */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@media (max-width: 22rem) {
+  .key-code {
+    /* avoid just a / on it's own line on very small screens */
+    word-break: break-all;
+  }
+  /* hide the site name when it's really small */
+  .title-wrapper > a > span {
+    display: none;
+  }
 }
 
 .key-actions-toolbar {
@@ -558,6 +584,21 @@ header.header {
   border-radius: 0.25rem;
   font-size: 0.75rem;
   font-weight: 700;
+}
+
+.footer-level-1 {
+  background-color: var(--gold-bg);
+  color: var(--gold-fg);
+}
+
+.footer-level-2 {
+  background-color: var(--silver-bg);
+  color: var(--silver-fg);
+}
+
+.footer-level-3 {
+  background-color: var(--bronze-bg);
+  color: var(--bronze-fg);
 }
 
 .sponsor-desc {

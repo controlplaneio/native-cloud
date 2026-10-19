@@ -1,0 +1,19 @@
+---
+import Default from "@astrojs/starlight/components/SocialIcons.astro";
+---
+
+<Default {...Astro.props}><slot /></Default>
+
+<script>
+  // use this fix until supports arbitrary attrs upstream
+  // https://github.com/withastro/starlight/discussions/3715#discussioncomment-16233668
+  // Add title attributes and target=_blank to social links
+  document.querySelectorAll(".social-icons a").forEach((link) => {
+    const label = link.getAttribute("aria-label");
+    if (label) {
+      link.setAttribute("title", label);
+    }
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
+  });
+</script>
