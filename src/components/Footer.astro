@@ -3,7 +3,6 @@ import Pagination from '@astrojs/starlight/components/Pagination.astro';
 import EditLink from '@astrojs/starlight/components/EditLink.astro';
 import LastUpdated from '@astrojs/starlight/components/LastUpdated.astro';
 import logoImage from '../assets/ocno_icon.svg';
-import logoImageDark from '../assets/ocno_icon_dark.svg';
 import { useI18n } from '../utils/i18n';
 
 const { t } = useI18n();
@@ -21,8 +20,7 @@ const { t } = useI18n();
     <div class="footer-content-two-col">
       <div class="footer-col brand-col">
         <div class="footer-logo-row">
-          <img src={logoImageDark.src} alt="native.cloud logo" class="footer-logo dark:sl-hidden" width="28" height="28" />
-          <img src={logoImage.src} alt="native.cloud logo" class="footer-logo light:sl-hidden" width="28" height="28" />
+          <img src={logoImage.src} alt="native.cloud logo" class="footer-logo" width="28" height="28" />
           <span class="footer-brand-title">native.cloud</span>
         </div>
         <p class="footer-tagline">
