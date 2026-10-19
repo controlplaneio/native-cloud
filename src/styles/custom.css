@@ -370,6 +370,7 @@ header.header {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  max-width: 100%;
 }
 
 .key-id-label {
@@ -392,9 +393,23 @@ header.header {
   color: var(--nc-code-text);
   background: transparent !important;
   padding: 0 !important;
-  word-break: break-all;
-  overflow-wrap: anywhere;
-  white-space: normal;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* wrap a max of 3 lines */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+@media (max-width: 22rem) {
+  .key-code {
+    /* avoid just a / on it's own line on very small screens */
+    word-break: break-all;
+  }
+  /* hide the site name when it's really small */
+  .title-wrapper > a > span {
+    display: none;
+  }
 }
 
 .key-actions-toolbar {
