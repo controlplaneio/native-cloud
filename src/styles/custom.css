@@ -178,6 +178,11 @@ header .site-title img,
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
+.site-title span {
+  /* push text up a bit to align with logo */
+  padding-bottom: .2em;
+}
+
 /* same as above but bigger drop shadow for bigger image/svg */
 .hero-logo-svg {
   border: none !important;
