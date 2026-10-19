@@ -17,6 +17,9 @@ export default defineConfig({
           icon: 'github',
           label: 'GitHub',
           href: 'https://github.com/controlplaneio/native-cloud',
+          // can't set attrs for open in new tab
+          // overriding the component below until supported
+          // https://github.com/withastro/starlight/discussions/3715#discussioncomment-16233668
         },
       ],
       defaultLocale: 'root',
@@ -37,6 +40,7 @@ export default defineConfig({
         PageSidebar: './src/components/PageSidebar.astro',
         SiteTitle: './src/components/SiteTitle.astro',
         ThemeSelect: './src/components/ThemeSelect.astro',
+        SocialIcons: "./src/components/StarlightSocialIcons.astro",
       },
       tableOfContents: {
         minHeadingLevel: 2,
