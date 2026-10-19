@@ -208,6 +208,25 @@ header .site-title img,
   .hero {
     padding: 0;
   }
+
+  #_top {
+    font-size: 2rem;
+  }
+
+  .tagline {
+    font-size: .8rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+  #_top {
+    font-size: 1.8rem;
+  }
+
+  .tagline {
+    font-size: .8rem;
+  }
 }
 
 /* by default search on mobile/tablet sits central, this shifts it over */
