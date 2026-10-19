@@ -178,6 +178,11 @@ header .site-title img,
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
+.site-title span {
+  /* push text up a bit to align with logo */
+  padding-bottom: .2em;
+}
+
 /* same as above but bigger drop shadow for bigger image/svg */
 .hero-logo-svg {
   border: none !important;
@@ -189,6 +194,20 @@ header .site-title img,
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transition: transform 0.25s ease, filter 0.25s ease;
+  height: auto;
+}
+
+@media (max-width: 72rem) {
+.hero {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .hero {
+    padding: 0;
+  }
 }
 
 /* by default search on mobile/tablet sits central, this shifts it over */
