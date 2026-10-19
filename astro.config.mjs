@@ -9,6 +9,15 @@ export default defineConfig({
       title: 'native.cloud',
       description: 'Shared names for common ideas in cloud native infrastructure metadata.',
       routeMiddleware: './src/routeData.ts',
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            src: '/scripts/ga-consent.js',
+            defer: true,
+          },
+        },
+      ],
       logo: {
         src: './src/assets/ocno_icon.svg',
       },
