@@ -1,7 +1,0 @@
-{{- if (gt (len .Page.Params.ontology.allowedValues) 0) -}}
-	### {{ .Get "title" | default (T "header_ontology_allowed_values") }} {.allowed-values}
-	{{- printf "\n\n" -}}
-	{{- range sort .Page.Params.ontology.allowedValues -}}
-		- `{{ . }}`{{- printf "\n" -}}
-	{{- end -}}
-{{- end -}}
