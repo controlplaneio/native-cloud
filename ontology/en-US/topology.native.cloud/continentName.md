@@ -7,11 +7,11 @@ params:
   ontology:
     key: topology.native.cloud/continentName
     exampleValues:
-      - "antartica"
+      - "antarctica"
       - "north-america"
     allowedValues:
       - "africa"
-      - "antartica"
+      - "antarctica"
       - "asia"
       - "australasia"
       - "europe"
