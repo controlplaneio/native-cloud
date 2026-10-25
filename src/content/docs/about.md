@@ -8,16 +8,16 @@ This is for anyone.
 
 ## The vision
 
-`native.cloud` is a shared set of keys for labeling, annotating, and describing cloud native resources. When teams and tools use the same name for the same idea, a policy, dashboard, or script written for one cluster works on the next.
+`native.cloud` is a shared set of keys for labelling, annotating, and describing cloud native resources. When teams and tools use the same name for the same idea, a policy, dashboard, or script written for one cluster works on the next.
 
-Today, each team picks its own naming conventions and each tool expects its own metadata format. The same fact ends up recorded several different ways, and automation has to translate between them.
+Today, each team picks its own naming conventions (or "ontology"), and each tool expects its own metadata format. For organizations to maintain consistency at scale, sharing semantics makes it easier for teams to collaborate and automate.
 
 ## What we provide
 
 Based on an idea formed in 2020, and live since 2026, `native.cloud` is about helping
 people share common definitions for metadata across cloud native platforms and tools.
 
-This site defines a curated set of keys that can be used in various [contexts](/advice-tips/contexts/), that include:
+This site defines a curated set of keys that can be used in various [contexts](/advice-tips/contexts/), which include:
 
 - [Annotations](/advice-tips/contexts/) - For storing arbitrary metadata
 - [Labels](/advice-tips/contexts/) - For identifying and selecting Kubernetes objects
@@ -36,11 +36,9 @@ It really doesn't have to be.
 
 We have some specific advice to [ease adoption](/advice-tips/ease-of-adoption/).
 
-If you've been asked by a boss or team lead to "just implement `native.cloud`" and you haven't found any keys that are useful to you, please don't add keys for the sake of it!
-If a key you need is missing but fits the vision, please raise an [RFC](https://github.com/controlplaneio/native-cloud/discussions).
+If you've been asked by a boss or team lead to "just implement `native.cloud` ontology", and you haven't found any keys that are useful to you, please raise an [RFC](https://github.com/controlplaneio/native-cloud/discussions).
 
 
 ## About ControlPlane
 
-[ControlPlane](https://control-plane.io/), the sponsor behind `native.cloud`, offers expert consultancy
-for strategic solutions and sustainable growth.
+[ControlPlane](https://control-plane.io/), the sponsor behind `native.cloud`, offers expert cloud native security and scaling services for strategic solutions and sustainable growth.
