@@ -6,17 +6,22 @@ import path from 'node:path';
 const DIST_DIR = path.resolve('./dist');
 
 test.describe('Astro Starlight Comprehensive Acceptance Suite', () => {
-  test('Home Page renders title, hero actions, pure white inline hero logo, and 8 ontology cards', () => {
+  test('Home Page renders title, hero actions, theme-aware inline hero logo, and 8 ontology cards', () => {
     const homeHtml = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf-8');
     assert.ok(homeHtml.includes('native.cloud'), 'Title includes native.cloud');
     assert.ok(homeHtml.includes('Explore Ontology'), 'Explore Ontology CTA present');
     assert.ok(homeHtml.includes('https://github.com/controlplaneio/native-cloud'), 'GitHub link present');
-    
-    // Check pure white inline hero logo
+
+    // The hero mark takes its colour from the theme rather than a hard-coded
+    // white, which was invisible against the light-mode background.
     assert.ok(homeHtml.includes('hero-logo-svg'), 'Inline hero logo SVG present');
-    assert.ok(homeHtml.includes('fill="#ffffff"'), 'Inline hero logo SVG has fill="#ffffff"');
-    assert.ok(homeHtml.includes('fill:#ffffff !important'), 'Inline hero logo has important style fill');
-    
+    assert.ok(homeHtml.includes('fill="currentColor"'), 'Inline hero logo SVG has fill="currentColor"');
+    assert.ok(
+      homeHtml.includes('fill:currentColor;stroke:currentColor'),
+      'Inline hero logo styles fill and stroke with currentColor'
+    );
+    assert.ok(!homeHtml.includes('fill:#ffffff'), 'Inline hero logo has no hard-coded white fill');
+
     // Check all 8 domain cards
     const domains = [
       'compute.native.cloud',

@@ -170,12 +170,23 @@ header .site-title img,
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  filter: drop-shadow(0 0 5px rgba(251, 177, 91, 0.4));
+  filter:
+    drop-shadow(0 0 4px rgba(253, 208, 140, 0.85))
+    drop-shadow(0 0 10px rgba(251, 177, 91, 0.70))
+    drop-shadow(0 0 20px rgba(234, 125, 36, 0.55));
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Starlight clips the title wrapper (overflow: clip with a .25rem padding and
+   a matching negative margin), which cropped the flare into a square. Widen
+   that padding so the glow has room; the negative margin keeps the layout put. */
+header .title-wrapper {
+  padding: 1.5rem;
+  margin: -1.5rem;
 }
 
 .site-title span {
@@ -185,10 +196,16 @@ header .site-title img,
 
 /* same as above but bigger drop shadow for bigger image/svg */
 .hero-logo-svg {
+  /* --sl-color-white is #ffffff in dark mode and #0f172a in light mode, so the
+     mark follows the theme instead of being white on a near-white background. */
+  color: var(--sl-color-white);
   border: none !important;
   outline: none !important;
   box-shadow: none !important;
-  filter: drop-shadow(0 0 50px rgba(251, 177, 91, 0.4));
+  filter:
+    drop-shadow(0 0 20px rgba(253, 208, 140, 0.65))
+    drop-shadow(0 0 60px rgba(251, 177, 91, 0.50))
+    drop-shadow(0 0 140px rgba(234, 125, 36, 0.35));
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
   backface-visibility: hidden;
@@ -271,7 +288,22 @@ header.header {
 
 /* Header Navbar & Footer Logo */
 .footer-logo {
-  filter: drop-shadow(0 0 8px rgba(251, 177, 91, 0.45));
+  filter:
+    drop-shadow(0 0 4px rgba(253, 208, 140, 0.85))
+    drop-shadow(0 0 10px rgba(251, 177, 91, 0.70))
+    drop-shadow(0 0 20px rgba(234, 125, 36, 0.55));
+}
+
+/* The header and footer marks are <img>, so page CSS cannot reach inside them;
+   the art is pure white, so inverting gives the same near-black as the hero. */
+[data-theme='light'] header .site-title img,
+[data-theme='light'] .site-title img,
+[data-theme='light'] .footer-logo {
+  filter:
+    invert(1)
+    drop-shadow(0 0 4px rgba(253, 208, 140, 0.85))
+    drop-shadow(0 0 10px rgba(251, 177, 91, 0.70))
+    drop-shadow(0 0 20px rgba(234, 125, 36, 0.55));
 }
 
 /* ==========================================================================
