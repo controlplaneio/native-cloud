@@ -7,7 +7,7 @@ params:
   ontology:
     key: topology.native.cloud/zoneID
     exampleValues:
-      - "antartica-42a-1"
+      - "antarctica-42a-1"
     uses:
       kubernetesAnnotation: false
       kubernetesLabel: true

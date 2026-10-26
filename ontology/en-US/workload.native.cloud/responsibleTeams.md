@@ -8,7 +8,7 @@ params:
     key: workload.native.cloud/responsibleTeams
     exampleValues:
       - '["platform-team"]'
-      - '["platform-team-antartica", "security-team-global"]'
+      - '["platform-team-antarctica", "security-team-global"]'
       - '["frontend", "backend", "sre"]'
     uses:
       kubernetesAnnotation: true
