@@ -189,9 +189,18 @@ header .title-wrapper {
   margin: -1.5rem;
 }
 
+/* Match the footer's lockup: the header inherited Starlight's wider nav gap. */
+header .site-title {
+  gap: 0.5rem;
+}
+
+/* Centre the wordmark on the mark. Flex centring aligns the line box, but
+   "native.cloud" has no descenders, so its ink sits low in that box; the nudge
+   puts the ink's centre on the mark's centre. The footer does the same. */
 .site-title span {
-  /* push text up a bit to align with logo */
-  padding-bottom: .2em;
+  line-height: 1;
+  position: relative;
+  top: -4px;
 }
 
 /* same as above but bigger drop shadow for bigger image/svg */
@@ -620,6 +629,10 @@ header.header {
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--sl-color-white);
+  /* Same optical centring as the header wordmark. */
+  line-height: 1;
+  position: relative;
+  top: -2px;
 }
 
 [data-theme='light'] .footer-brand-title {
